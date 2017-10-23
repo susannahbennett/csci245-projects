@@ -11,7 +11,7 @@ main(void)
 	printf("Enter max int-> ");
 	scanf("%d", &n);
 
-	vec = createBitVector(n + 1);
+	vec = bv_create(n + 1);
 
 	// add code here
 

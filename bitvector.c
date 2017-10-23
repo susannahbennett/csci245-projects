@@ -3,55 +3,55 @@
 #include "bitvector.h"
 
 struct bit_vector *
-createBitVector(int size)
+bv_create(int size)
 {
 	return NULL;
 }
 
 void
-destroy(struct bit_vector *v)
+bv_destroy(struct bit_vector *v)
 {
 
 }
 
 int
-contains(struct bit_vector *v, int i)
+bv_contains(struct bit_vector *v, int i)
 {
 	return -1;
 }
 
 void
-insert(struct bit_vector *v, int i)
+bv_insert(struct bit_vector *v, int i)
 {
 
 }
 
 void
-removeV(struct bit_vector *v, int i)
+bv_remove(struct bit_vector *v, int i)
 {
 
 }
 
 struct bit_vector *
-complement(struct bit_vector *v)
-{
-	return NULL;
-}
-
-struct bit_vector *
-unionV(struct bit_vector *v1, struct bit_vector *v2)
+bv_complement(struct bit_vector *v)
 {
 	return NULL;
 }
 
 struct bit_vector *
-intersection(struct bit_vector *v1, struct bit_vector *v2)
+bv_union(struct bit_vector *v1, struct bit_vector *v2)
 {
 	return NULL;
 }
 
 struct bit_vector *
-difference(struct bit_vector *v1, struct bit_vector *v2)
+bv_intersection(struct bit_vector *v1, struct bit_vector *v2)
+{
+	return NULL;
+}
+
+struct bit_vector *
+bv_difference(struct bit_vector *v1, struct bit_vector *v2)
 {
 	return NULL;
 }
