@@ -1,114 +1,141 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
 
-void readIntNextLine(FILE* source, int* dest)
+/* Architecture definitions */
+#define MEMSIZE 500
+#define REGS 32
+#define IP 0
+#define RP 29
+#define FP 30
+#define SP 31
+
+int main(int argc, char **argv)
 {
-  char line[20];
-  fgets(line, sizeof(line), source);
-  sscanf(line, "%d", dest);
-}
+	FILE *source;
+	int memory[MEMSIZE];
+	int instr_words;
+	int registers[REGS];
+	int i;
 
-int main(int argc, char** argv)
-{
-  FILE* source;
-  char line[20];
-  int memory[500];
-  int instr_words;
-  int registers[32];
-  int i;
+	source = fopen(argv[1], "r");
+	fscanf(source, "%d\n", &instr_words);
 
-  source = fopen(argv[1], "r");
-  readIntNextLine(source, &instr_words);
+	for(i = 0; i < instr_words; i++) 
+		fscanf(source, "%d\n", memory + i);
 
-  for(i = 0; i < instr_words; i++) 
-    readIntNextLine(source, memory + i);
+	registers[IP] = 0;
+	registers[FP] = registers[SP] = instr_words;
 
-  registers[0] = 0;
-  registers[30] = registers[31] = instr_words;
+	for(;;) {
+		int ip = registers[IP];
+		int rd, rs, ra, imm;
 
-  for(;;) 
-    {
-      int pc = registers[0];
-// printf("%d %d\n", pc, memory[pc]);
+		switch (memory[ip++]) 
+		{
+			case 1:  /* MOVI imm rd */
+				imm = memory[ip++];
+				rd = memory[ip++];
+				registers[rd] = imm;
+				break;
 
-      switch (memory[pc]) 
-        {
-        case 1:  /* LOAD lit, reg */  
-          registers[memory[pc+2]] = memory[pc+1];
-          pc += 3; break;
-          
-        case 2:   /* MOVE reg, reg */
-          registers[memory[pc+2]] = registers[memory[pc+1]];
-          pc += 3; break;
-          
-        case 3:  /* ADD reg, reg, reg */
-          registers[memory[pc+3]] = 
-            registers[memory[pc+1]] + registers[memory[pc+2]];
-          pc += 4; break;
-          
-        case 4:  /*  SUB reg, reg, reg */
-          registers[memory[pc+3]] = 
-            registers[memory[pc+1]] - registers[memory[pc+2]];
-          pc += 4; break;
-          
-        case 5:  /* MUL reg, reg, reg */
-          registers[memory[pc+3]] = 
-            registers[memory[pc+1]] * registers[memory[pc+2]];
-          pc += 4; break;
-          
-        case 6:  /* DIV reg, reg, reg */
-          registers[memory[pc+3]] = 
-            registers[memory[pc+1]] / registers[memory[pc+2]];
-          pc += 4; break;
-          
-        case 7:  /* IF reg, reg */
-          pc = (registers[memory[pc+1]] == 0) ? pc + 3 : registers[memory[pc+2]];
-          break;
-          
-        case 8:   /* PRNT reg */
-          printf("%d\n", registers[memory[pc+1]]);
-          pc += 2; break;
-          
-        case 9:   /* HALT */
-          return (0);
-          
-        case 10: /* READ */
-          registers[memory[pc+2]] = memory[registers[memory[pc+1]]];
-          pc += 3; break;
-          
-        case 11: /* WRT */
-          memory[registers[memory[pc+1]]] = registers[memory[pc+2]];
-          pc += 3; break;
-          
-      case 12: /* JAL reg */
-        registers[29] = pc + 2;
-        pc = registers[memory[pc+1]];
-        break;
-        
-      case 13: /* RET */
-        pc = registers[29];
-        break;
-        
-      case 14: /* PSH lit, reg */
-        registers[memory[pc+2]] = registers[30];
-        registers[30] = registers[31];
-        registers[31] += memory[pc+1];
-        pc += 3; break;
-        
-      case 15: /* POP reg */
-        registers[31] = registers[30];
-        registers[30] = registers[memory[pc+1]];
-        pc += 2; break;
-         
-      case 16:  /* RELO lit, reg */
-        registers[memory[pc+2]] = memory[registers[30] + memory[pc+1]];
-        pc += 3; break;
-        
-      case 17: /* WRLO lit, reg */
-        memory[registers[30] + memory[pc+1]] =  registers[memory[pc+2]];
-        pc += 3; break;
+			case 2:  /* MOV  rs rd */
+				rs = memory[ip++];
+				rd = memory[ip++];
+				registers[rd] = registers[rs];
+				break;
 
-        }
-      registers[0] = pc;
-    }
+			case 3:  /* ADD  rs rd */
+				rs = memory[ip++];
+				rd = memory[ip++];
+				registers[rd] += registers[rs];
+				break;
+
+			case 4:  /* SUB  rs rd */
+				rs = memory[ip++];
+				rd = memory[ip++];
+				registers[rd] -= registers[rs];
+				break;
+
+			case 5:  /* MUL  rs rd */
+				rs = memory[ip++];
+				rd = memory[ip++];
+				registers[rd] *= registers[rs];
+				break;
+
+			case 6:  /* IDIV rs rd */
+				rs = memory[ip++];
+				rd = memory[ip++];
+				registers[rd] /= registers[rs];
+				break;
+
+			case 7:  /* JMP  ra */
+				ra = memory[ip++];
+				ip = registers[ra];
+				break;
+
+			case 8:  /* JNZ  rs ra */
+				rs = memory[ip++];
+				ra = memory[ip++];
+				if (registers[rs])
+					ip = registers[ra];
+				break;
+
+			case 9:  /* OUT  rs */
+				rs = memory[ip++];
+				printf("%d\n", registers[rs]);
+				break;
+
+			case 10: /* HALT */
+				return 0;
+
+			case 11: /* LD   ra rd */
+				ra = memory[ip++];
+				rd = memory[ip++];
+				registers[rd] = memory[registers[ra]];
+				break;
+
+			case 12: /* ST   ra rs */
+				ra = memory[ip++];
+				rs = memory[ip++];
+				memory[registers[ra]] = registers[rs];
+				break;
+
+			case 13: /* JAL  ra */
+				ra = memory[ip++];
+				registers[RP] = ip;
+				ip = registers[ra];
+				break;
+
+			case 14: /* RET */
+				ip = registers[RP];
+				break;
+
+			case 15: /* PUSH rs */
+				rs = memory[ip++];
+				memory[registers[SP]++] = registers[rs];
+				break;
+
+			case 16: /* POP  rd */
+				rd = memory[ip++];
+				registers[rd] = memory[--registers[SP]];
+				break;
+
+			case 17: /* LDLO imm rd */
+				imm = memory[ip++];
+				rd = memory[ip++];
+				registers[rd] = memory[registers[FP] + imm];
+				break;
+
+			case 18: /* STLO imm rs */
+				imm = memory[ip++];
+				rs = memory[ip++];
+				memory[registers[FP] + imm] = registers[rs];
+				break;
+
+			default:
+				fprintf(stderr, "invalid opcode: %d\n", memory[ip - 1]);
+				return 1;
+		}
+		registers[IP] = ip;
+	}
+	return 0;
 }
