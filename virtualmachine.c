@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <ctype.h>
 
 /* Architecture definitions */
 #define MEMSIZE 500
@@ -71,29 +72,46 @@ int read_vmlfile(char *fname, int *memory)
 	return words;
 }
 
+int get_reg_arg(char *arg)
+{
+	int regnum;
+	if (!strcasecmp(arg, "ip"))
+		return IP;
+	if (!strcasecmp(arg, "rp"))
+		return RP;
+	if (!strcasecmp(arg, "fp"))
+		return FP;
+	if (!strcasecmp(arg, "sp"))
+		return SP;
+	if (arg[0] != 'r' && arg[0] != 'R')
+		return -1;
+
+	regnum = atoi(arg + 1);
+	if (regnum < 0 || regnum >= REGS)
+		return -1;
+	return regnum;
+}
+
 int get_addr_arg(char *arg, int *regs)
 {
 	int regnum, addr;
-	switch (arg[0]) {
-		case '\0':
-			fprintf(stderr, "address argument is required\n");
-			return -1;
-		case '0'...'9':
-			addr = atoi(arg);
-			break;
-		case 'r':
-		case 'R':
-			regnum = atoi(arg + 1);
-			if (regnum < 0 || regnum >= REGS) {
-				fprintf(stderr, "bad register number: `%s'\n", arg);
-				return -1;
-			}
-			addr = regs[regnum];
-			break;
-		default:
-			fprintf(stderr, "bad address: `%s'\n", arg);
-			return -1;
+	if (arg[0] == '\0') {
+		fprintf(stderr, "address argument is required\n");
+		return -1;
 	}
+
+	// Try register name first, then address
+	regnum = get_reg_arg(arg);
+	if (regnum >= 0) {
+		addr = regs[regnum];
+	} else if (isdigit(arg[0])) {
+		addr = atoi(arg);
+	} else {
+		fprintf(stderr, "bad address: `%s'\n", arg);
+		return -1;
+	}
+
+	// Check that address is within memory
 	if (addr < 0 || addr >= MEMSIZE) {
 		fprintf(stderr, "address %d out of range\n", addr);
 		return -1;
