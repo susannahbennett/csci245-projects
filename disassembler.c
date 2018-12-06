@@ -11,6 +11,13 @@ main(int argc, char **argv)
 	int *memory;
 	int ip;
 
+	if (argc < 2) {
+		fprintf(stderr,
+				"Missing filename.\n"
+				"Usage: %s program.vml\n", argv[0]);
+		return 1;
+	}
+
 	source = fopen(argv[1], "r");
 	fscanf(source, "%d\n", &instr_words);
 
