@@ -371,14 +371,21 @@ void print_stack(struct machine *vm, int num)
 	int addr;
 
 	for (addr = sp; addr >= sp - num; addr--) {
-		if (addr != sp)
-			fprintf(stderr, " %d", vm->mem[addr]);
-		else
+		if (addr != sp) {
+			if (in_mem(addr))
+				fprintf(stderr, " %d", vm->mem[addr]);
+			else
+				fprintf(stderr, " XX");
+		} else {
 			fprintf(stderr, "[SP]");
+		}
 		if (addr == fp)
 			fprintf(stderr, "[FP]");
 	}
 	fprintf(stderr, "\n");
+
+	if (!in_mem(sp - 1) || !in_mem(sp - num))
+		fprintf(stderr, "Note: some addresses (XX) were out of range\n");
 }
 
 int main(int argc, char **argv)
