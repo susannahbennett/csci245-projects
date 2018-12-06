@@ -69,10 +69,12 @@ int read_vmlfile(char *fname, int *memory)
 		fprintf(stderr, "File not found: `%s'\n", fname);
 		return -1;
 	}
-	fscanf(source, "%d\n", &words);
-
+	if (fscanf(source, " %d ", &words) != 1) {
+		fprintf(stderr, "No program size in first line of %s\n", fname);
+		return -1;
+	}
 	if (words < 0) {
-		fprintf(stderr, "Bad word count in %s: %d\n", fname, words);
+		fprintf(stderr, "Invalid program size %d in %s\n", words, fname);
 		return -1;
 	}
 	if (words > MEMSIZE) {
@@ -82,14 +84,19 @@ int read_vmlfile(char *fname, int *memory)
 
 	for(i = 0; i < words; i++) {
 		if (fscanf(source, " %d ", memory + i) != 1) {
-			if (feof(source)) {
+			if (feof(source))
 				fprintf(stderr, "File %s advertised %d words but had only %d\n",
 						fname, words, i);
-			} else {
+			else
 				fprintf(stderr, "Bad data for word %d in file %s\n", i, fname);
-			}
 			return -1;
 		}
+	}
+
+	if (!feof(source)) {
+		fprintf(stderr, "Bad VML file format (trailing data after %d words)\n",
+				words);
+		return -1;
 	}
 
 	fclose(source);
