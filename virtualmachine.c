@@ -73,13 +73,14 @@ int read_vmlfile(char *fname, int *memory)
 
 int get_addr_arg(char *arg, int *regs)
 {
-	int regnum;
+	int regnum, addr;
 	switch (arg[0]) {
 		case '\0':
 			fprintf(stderr, "address argument is required\n");
 			return -1;
 		case '0'...'9':
-			return atoi(arg);
+			addr = atoi(arg);
+			break;
 		case 'r':
 		case 'R':
 			regnum = atoi(arg + 1);
@@ -87,11 +88,17 @@ int get_addr_arg(char *arg, int *regs)
 				fprintf(stderr, "bad register number: `%s'\n", arg);
 				return -1;
 			}
-			return regs[regnum];
+			addr = regs[regnum];
+			break;
 		default:
 			fprintf(stderr, "bad address: `%s'\n", arg);
 			return -1;
 	}
+	if (addr < 0 || addr >= MEMSIZE) {
+		fprintf(stderr, "address %d out of range\n", addr);
+		return -1;
+	}
+	return addr;
 }
 
 /*
