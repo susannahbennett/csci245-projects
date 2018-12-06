@@ -341,7 +341,7 @@ int read_command(char *cmd, char *arg, int ip) {
 	int argc = 0;
 	do {
 		// Display prompt and read a line
-		fprintf(stderr, "dbg[%03d]> ", ip);
+		fprintf(stderr, "\e[1;33mdbg[%03d]>\e[0m ", ip);
 		if (!fgets(line, MAXLINE, stdin)) {
 			if (ferror(stdin))
 				fprintf(stderr, "Unexpected error when reading command\n");
