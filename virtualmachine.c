@@ -20,6 +20,12 @@ struct machine {
 	int mem[MEMSIZE];
 };
 
+struct debugger {
+	int enable;
+	int pause;
+	int breakpoint;
+};
+
 /*
  * Prints debugger help message
  */
@@ -351,12 +357,12 @@ int read_command(char *cmd, char *arg, int ip) {
 int main(int argc, char **argv)
 {
 	struct machine vm;
-	int debug = 0;
-	int breakpoint = -1;
+	struct debugger dbg;
 	int filearg = 1;
 
+	dbg.enable = 0;
 	if (argc > 1 && !strcmp(argv[1], "-d")) {
-		debug = 1;
+		dbg.enable = 1;
 		filearg++;
 	}
 
@@ -372,50 +378,51 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	int paused = debug;
+	dbg.breakpoint = -1;
+	dbg.pause = dbg.enable;
 	for(;;) {
 		char cmd[256], arg[256];
 		int args;
 
-		if (debug) {
+		if (dbg.enable) {
 			// Handle breakpoint
-			if (!paused && vm.reg[IP] == breakpoint) {
-				fprintf(stderr, "Hit breakpoint at %d\n", breakpoint);
-				paused = 1;
+			if (!dbg.pause && vm.reg[IP] == dbg.breakpoint) {
+				fprintf(stderr, "Hit breakpoint at %d\n", dbg.breakpoint);
+				dbg.pause = 1;
 			}
 
-			if (paused) {
+			if (dbg.pause) {
 				// Display a prompt, read a command and parse it
 				args = read_command(cmd, arg, vm.reg[IP]);
 				if (args < 0) {
 					fprintf(stderr, "\nEnd of input, continuing program\n");
-					debug = 0;
+					dbg.enable = 0;
 				}
 			}
 		}
 
-		if (debug && paused && is_prefix(cmd, "continue")) {
+		if (dbg.enable && dbg.pause && is_prefix(cmd, "continue")) {
 			// Continue (make sure one step happens to avoid
 			// immediately re-pausing if at a breakpoint)
-			paused = 0;
+			dbg.pause = 0;
 		}
 
 		// Run one step of the machine (default if not in debug mode or
 		// if not paused)
-		if (!debug || !paused || is_prefix(cmd, "step")) {
+		if (!dbg.enable || !dbg.pause || is_prefix(cmd, "step")) {
 			switch (step(&vm)) {
 				case 0:
 					// Normal step
 					break;
 				case 1:
 					// Error
-					if (!debug)
+					if (!dbg.enable)
 						return 1;
-					paused = 1;
+					dbg.pause = 1;
 					break;
 				case -1:
 					// Halt instruction
-					if (debug)
+					if (dbg.enable)
 						fprintf(stderr, "Program exited normally\n");
 					return 0;
 			}
@@ -466,16 +473,16 @@ int main(int argc, char **argv)
 			if (args >= 2)
 				addr = get_addr_arg(arg, vm.reg);
 			if (addr >= 0) {
-				breakpoint = addr;
-				fprintf(stderr, "Breakpoint set at address %d\n", breakpoint);
+				dbg.breakpoint = addr;
+				fprintf(stderr, "Breakpoint set at address %d\n", addr);
 			}
 		} else if (is_prefix(cmd, "delete")) {
 			// Delete breakpoint
-			if (breakpoint < 0) {
+			if (dbg.breakpoint < 0) {
 				fprintf(stderr, "No breakpoint set\n");
 			} else {
-				fprintf(stderr, "Breakpoint deleted (was %d)\n", breakpoint);
-				breakpoint = -1;
+				fprintf(stderr, "Breakpoint deleted (was %d)\n", dbg.breakpoint);
+				dbg.breakpoint = -1;
 			}
 		}
 	}
