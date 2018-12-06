@@ -45,7 +45,7 @@ int read_vmlfile(char *fname, int *memory)
 	int words, i;
 	FILE *source = fopen(fname, "r");
 	if (!source) {
-		fprintf(stderr, "File not found: %s\n", fname);
+		fprintf(stderr, "File not found: `%s'\n", fname);
 		return -1;
 	}
 	fscanf(source, "%d\n", &words);
@@ -84,12 +84,12 @@ int get_addr_arg(char *arg, int *regs)
 		case 'R':
 			regnum = atoi(arg + 1);
 			if (regnum < 0 || regnum >= REGS) {
-				fprintf(stderr, "bad register number: %s\n", arg);
+				fprintf(stderr, "bad register number: `%s'\n", arg);
 				return -1;
 			}
 			return regs[regnum];
 		default:
-			fprintf(stderr, "bad address: %s\n", arg);
+			fprintf(stderr, "bad address: `%s'\n", arg);
 			return -1;
 	}
 }
