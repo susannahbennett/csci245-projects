@@ -14,6 +14,11 @@
 /* Other constants */
 #define MAXLINE 255
 
+struct machine {
+	int reg[REGS];
+	int mem[MEMSIZE];
+};
+
 /*
  * Prints debugger help message
  */
@@ -75,8 +80,10 @@ int read_vmlfile(char *fname, int *memory)
 	return words;
 }
 
-int reset_machine(int *registers, int *memory, char *fname)
+int reset_machine(struct machine *vm, char *fname)
 {
+	int *registers = vm->reg;
+	int *memory = vm->mem;
 	int code_size = read_vmlfile(fname, memory);
 	if (code_size < 0)
 		return 1;
@@ -146,8 +153,10 @@ int is_prefix(char *pre, char *str)
  *
  * Returns 0 for success, -1 to halt the machine, and 1 if there is an error.
  */
-int step(int *registers, int *memory)
+int step(struct machine *vm)
 {
+	int *registers = vm->reg;
+	int *memory = vm->mem;
 	int ip = registers[IP];
 	int rd, rs, ra, imm;
 
@@ -283,8 +292,7 @@ int read_command(char *cmd, char *arg, int ip) {
 
 int main(int argc, char **argv)
 {
-	int memory[MEMSIZE];
-	int registers[REGS];
+	struct machine vm;
 	int debug = 0;
 	int breakpoint = -1;
 	char *fname;
@@ -303,7 +311,7 @@ int main(int argc, char **argv)
 	}
 	fname = argv[filearg];
 
-	if (reset_machine(registers, memory, fname)) {
+	if (reset_machine(&vm, fname)) {
 		return 1;
 	}
 
@@ -314,14 +322,14 @@ int main(int argc, char **argv)
 
 		if (debug) {
 			// Handle breakpoint
-			if (!paused && registers[IP] == breakpoint) {
+			if (!paused && vm.reg[IP] == breakpoint) {
 				fprintf(stderr, "Hit breakpoint at %d\n", breakpoint);
 				paused = 1;
 			}
 
 			if (paused) {
 				// Display a prompt, read a command and parse it
-				args = read_command(cmd, arg, registers[IP]);
+				args = read_command(cmd, arg, vm.reg[IP]);
 				if (args < 0) {
 					fprintf(stderr, "\nEnd of input, continuing program\n");
 					debug = 0;
@@ -338,7 +346,7 @@ int main(int argc, char **argv)
 		// Run one step of the machine (default if not in debug mode or
 		// if not paused)
 		if (!debug || !paused || is_prefix(cmd, "step")) {
-			switch (step(registers, memory)) {
+			switch (step(&vm)) {
 				case 0:
 					// Normal step
 					break;
@@ -374,7 +382,7 @@ int main(int argc, char **argv)
 				if (regnum < 0) {
 					fprintf(stderr, "bad register name: `%s'\n", arg);
 				} else {
-					fprintf(stderr, "%s: %d\n", arg, registers[regnum]);
+					fprintf(stderr, "%s: %d\n", arg, vm.reg[regnum]);
 				}
 			}
 		} else if (!strcmp(cmd, "x")) {
@@ -382,24 +390,24 @@ int main(int argc, char **argv)
 			if (args < 2) {
 				fprintf(stderr, "x command requires an argument\n");
 			} else {
-				int addr = get_addr_arg(arg, registers);
+				int addr = get_addr_arg(arg, vm.reg);
 				if (addr >= 0)
-					fprintf(stderr, "%03d: %d\n", addr, memory[addr]);
+					fprintf(stderr, "%03d: %d\n", addr, vm.mem[addr]);
 			}
 		} else if (is_prefix(cmd, "frame")) {
 			// Show stack values
 			fprintf(stderr, "frame command not yet implemented\n");
 		} else if (is_prefix(cmd, "restart")) {
 			// Restart
-			if (reset_machine(registers, memory, fname)) {
+			if (reset_machine(&vm, fname)) {
 				fprintf(stderr, "Machine reset failed, exiting\n");
 				return 1;
 			}
 		} else if (is_prefix(cmd, "break")) {
 			// Set breakpoint
-			int addr = registers[IP];
+			int addr = vm.reg[IP];
 			if (args >= 2)
-				addr = get_addr_arg(arg, registers);
+				addr = get_addr_arg(arg, vm.reg);
 			if (addr >= 0) {
 				breakpoint = addr;
 				fprintf(stderr, "Breakpoint set at address %d\n", breakpoint);
