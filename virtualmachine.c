@@ -223,12 +223,12 @@ int step(int *registers, int *memory)
 	return 0;
 }
 
-int read_command(char *cmd, char *arg) {
+int read_command(char *cmd, char *arg, int ip) {
 	char line[MAXLINE + 1];
 	int argc = 0;
 	do {
 		// Display prompt and read a line
-		fprintf(stderr, "dbg> ");
+		fprintf(stderr, "dbg[%03d]> ", ip);
 		if (!fgets(line, MAXLINE, stdin)) {
 			if (ferror(stdin))
 				fprintf(stderr, "Unexpected error when reading command\n");
@@ -284,7 +284,7 @@ int main(int argc, char **argv)
 
 			if (paused) {
 				// Display a prompt, read a command and parse it
-				args = read_command(cmd, arg);
+				args = read_command(cmd, arg, registers[IP]);
 				if (args < 0) {
 					fprintf(stderr, "\nEnd of input, continuing program\n");
 					debug = 0;
