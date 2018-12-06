@@ -245,15 +245,13 @@ int read_command(char *cmd, char *arg, int ip) {
 int main(int argc, char **argv)
 {
 	int memory[MEMSIZE];
-	int code_size;
 	int registers[REGS];
 	int debug = 0;
-	int paused = 0;
-	int filearg = 1;
 	int breakpoint = -1;
+	int filearg = 1;
 
 	if (argc > 1 && !strcmp(argv[1], "-d")) {
-		debug = paused = 1;
+		debug = 1;
 		filearg++;
 	}
 
@@ -264,12 +262,13 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	code_size = read_vmlfile(argv[filearg], memory);
+	int code_size = read_vmlfile(argv[filearg], memory);
 	if (code_size < 0)
 		return 1;
 
 	registers[IP] = 0;
 	registers[FP] = registers[SP] = code_size;
+	int paused = debug;
 
 	for(;;) {
 		char cmd[256], arg[256];
