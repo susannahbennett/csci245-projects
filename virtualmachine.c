@@ -49,6 +49,11 @@ void help(void)
 "special-purpose registers (ip, rp, fp, sp).\n");
 }
 
+int in_mem(int addr)
+{
+	return addr >= 0 && addr < MEMSIZE;
+}
+
 int read_vmlfile(char *fname, int *memory)
 {
 	int words, i;
@@ -61,6 +66,10 @@ int read_vmlfile(char *fname, int *memory)
 
 	if (words < 0) {
 		fprintf(stderr, "Bad word count in %s: %d\n", fname, words);
+		return -1;
+	}
+	if (words > MEMSIZE) {
+		fprintf(stderr, "Program size %d too large for memory\n", words);
 		return -1;
 	}
 
@@ -133,7 +142,7 @@ int get_addr_arg(char *arg, int *regs)
 	}
 
 	// Check that address is within memory
-	if (addr < 0 || addr >= MEMSIZE) {
+	if (!in_mem(addr)) {
 		fprintf(stderr, "address %d out of range\n", addr);
 		return -1;
 	}
@@ -153,65 +162,81 @@ int is_prefix(char *pre, char *str)
  *
  * Returns 0 for success, -1 to halt the machine, and 1 if there is an error.
  */
+#define FETCH(name) do { \
+		if (!in_mem(ip)) { \
+			fprintf(stderr, "instruction fetch at %d out of range\n", ip); \
+			return 1; \
+		} \
+		(name) = memory[ip++]; \
+	} while (0)
+#define IMM(name) do { FETCH((name)); } while (0)
+#define REG(name) do { \
+		FETCH((name)); \
+		if ((name) < 0 || (name) >= REGS) { \
+			fprintf(stderr, "register operand %d out of range\n", (name)); \
+			return 1; \
+		} \
+	} while (0)
+#define MEM(addr) ({ \
+		if (!in_mem((addr))) { \
+			fprintf(stderr, "memory access %d out of range\n", (addr)); \
+			return 1; \
+		} \
+		memory[addr]; \
+	})
 int step(struct machine *vm)
 {
 	int *registers = vm->reg;
 	int *memory = vm->mem;
 	int ip = registers[IP];
-	int rd, rs, ra, imm;
+	int opcode, rd, rs, ra, imm, addr;
 
-	switch (memory[ip++]) 
+	FETCH(opcode);
+	switch (opcode)
 	{
-		case 1:  /* MOVI imm rd */
-			imm = memory[ip++];
-			rd = memory[ip++];
+		case 1:  /* MOVI */
+			IMM(imm); REG(rd);
 			registers[rd] = imm;
 			break;
 
 		case 2:  /* MOV  rs rd */
-			rs = memory[ip++];
-			rd = memory[ip++];
+			REG(rs); REG(rd);
 			registers[rd] = registers[rs];
 			break;
 
 		case 3:  /* ADD  rs rd */
-			rs = memory[ip++];
-			rd = memory[ip++];
+			REG(rs); REG(rd);
 			registers[rd] += registers[rs];
 			break;
 
 		case 4:  /* SUB  rs rd */
-			rs = memory[ip++];
-			rd = memory[ip++];
+			REG(rs); REG(rd);
 			registers[rd] -= registers[rs];
 			break;
 
 		case 5:  /* MUL  rs rd */
-			rs = memory[ip++];
-			rd = memory[ip++];
+			REG(rs); REG(rd);
 			registers[rd] *= registers[rs];
 			break;
 
 		case 6:  /* IDIV rs rd */
-			rs = memory[ip++];
-			rd = memory[ip++];
+			REG(rs); REG(rd);
 			registers[rd] /= registers[rs];
 			break;
 
 		case 7:  /* JMP  ra */
-			ra = memory[ip++];
+			REG(ra);
 			ip = registers[ra];
 			break;
 
 		case 8:  /* JNZ  rs ra */
-			rs = memory[ip++];
-			ra = memory[ip++];
+			REG(rs); REG(ra);
 			if (registers[rs])
 				ip = registers[ra];
 			break;
 
 		case 9:  /* OUT  rs */
-			rs = memory[ip++];
+			REG(rs);
 			printf("%d\n", registers[rs]);
 			break;
 
@@ -219,19 +244,27 @@ int step(struct machine *vm)
 			return -1;
 
 		case 11: /* LD   ra rd */
-			ra = memory[ip++];
-			rd = memory[ip++];
+			REG(ra); REG(rd);
+			if (!in_mem(registers[ra])) {
+				fprintf(stderr, "LD address %d out of range\n",
+						registers[ra]);
+				return 1;
+			}
 			registers[rd] = memory[registers[ra]];
 			break;
 
 		case 12: /* ST   ra rs */
-			ra = memory[ip++];
-			rs = memory[ip++];
+			REG(ra); REG(rs);
+			if (!in_mem(registers[ra])) {
+				fprintf(stderr, "ST address %d out of range\n",
+						registers[ra]);
+				return 1;
+			}
 			memory[registers[ra]] = registers[rs];
 			break;
 
 		case 13: /* JAL  ra */
-			ra = memory[ip++];
+			REG(ra);
 			registers[RP] = ip;
 			ip = registers[ra];
 			break;
@@ -241,35 +274,61 @@ int step(struct machine *vm)
 			break;
 
 		case 15: /* PUSH rs */
-			rs = memory[ip++];
-			memory[registers[SP]++] = registers[rs];
+			REG(rs);
+			if (!in_mem(registers[SP])) {
+				fprintf(stderr, "SP (%d) out of range for PUSH\n",
+						registers[SP]);
+				return 1;
+			}
+			memory[registers[SP]] = registers[rs];
+			registers[SP]++;
 			break;
 
 		case 16: /* POP  rd */
-			rd = memory[ip++];
-			registers[rd] = memory[--registers[SP]];
+			REG(rd);
+			registers[SP]--;
+			if (!in_mem(registers[SP])) {
+				fprintf(stderr, "SP (%d) out of range for POP\n",
+						registers[SP]);
+				return 1;
+			}
+			registers[rd] = memory[registers[SP]];
 			break;
 
 		case 17: /* LDLO imm rd */
-			imm = memory[ip++];
-			rd = memory[ip++];
-			registers[rd] = memory[registers[FP] + imm];
+			IMM(imm); REG(rd);
+			addr = registers[FP] + imm;
+			if (!in_mem(addr)) {
+				fprintf(stderr, "LDLO (%d = FP + %d) out of range\n",
+						addr, imm);
+				return 1;
+			}
+			registers[rd] = memory[addr];
 			break;
 
 		case 18: /* STLO imm rs */
-			imm = memory[ip++];
-			rs = memory[ip++];
-			memory[registers[FP] + imm] = registers[rs];
+			IMM(imm); REG(rs);
+			addr = registers[FP] + imm;
+			if (!in_mem(addr)) {
+				fprintf(stderr, "STLO (%d = FP + %d) out of range\n",
+						addr, imm);
+				return 1;
+			}
+			memory[addr] = registers[rs];
 			break;
 
 		default:
-			fprintf(stderr, "invalid opcode: %d\n", memory[ip - 1]);
+			fprintf(stderr, "invalid opcode: %d\n", memory[registers[IP]]);
 			return 1;
 	}
+	// Update IP only if no error
 	registers[IP] = ip;
 
 	return 0;
 }
+#undef REG
+#undef IMM
+#undef FETCH
 
 int read_command(char *cmd, char *arg, int ip) {
 	char line[MAXLINE + 1];
