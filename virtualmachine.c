@@ -281,14 +281,14 @@ int main(int argc, char **argv)
 				fprintf(stderr, "Hit breakpoint at %d\n", breakpoint);
 				paused = 1;
 			}
-		}
 
-		if (debug && paused) {
-			// Display a prompt, read a command and parse it
-			args = read_command(cmd, arg);
-			if (args < 0) {
-				fprintf(stderr, "\nEnd of input, continuing program\n");
-				debug = 0;
+			if (paused) {
+				// Display a prompt, read a command and parse it
+				args = read_command(cmd, arg);
+				if (args < 0) {
+					fprintf(stderr, "\nEnd of input, continuing program\n");
+					debug = 0;
+				}
 			}
 		}
 
