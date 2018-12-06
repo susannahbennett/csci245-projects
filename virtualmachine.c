@@ -96,12 +96,13 @@ int read_vmlfile(char *fname, int *memory)
 	return words;
 }
 
-int reset_machine(struct machine *vm)
+int reset_machine(struct machine *vm, char *filename)
 {
-	int code_size = read_vmlfile(vm->program, vm->mem);
+	int code_size = read_vmlfile(filename, vm->mem);
 	if (code_size < 0)
 		return 1;
 
+	vm->program = filename;
 	vm->reg[IP] = 0;
 	vm->reg[FP] = vm->reg[SP] = code_size;
 	return 0;
@@ -372,9 +373,8 @@ int main(int argc, char **argv)
 			"Usage: %s [-d] program.vml\n", argv[0]);
 		return 1;
 	}
-	vm.program = argv[filearg];
 
-	if (reset_machine(&vm)) {
+	if (reset_machine(&vm, argv[filearg])) {
 		return 1;
 	}
 
@@ -462,8 +462,8 @@ int main(int argc, char **argv)
 			// Show stack values
 			fprintf(stderr, "frame command not yet implemented\n");
 		} else if (is_prefix(cmd, "restart")) {
-			// Restart
-			if (reset_machine(&vm)) {
+			// Restart same program
+			if (reset_machine(&vm, vm.program)) {
 				fprintf(stderr, "Machine reset failed, exiting\n");
 				return 1;
 			}
