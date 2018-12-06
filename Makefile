@@ -1,10 +1,17 @@
 .PHONY: all clean
 
 BINS = disassembler virtualmachine
-CFLAGS = -g
+OBJS = asm.o $(addsuffix .o,$(BINS))
+CFLAGS = -g -Wall -Wextra
 LDFLAGS = -g
 
 all: $(BINS)
 
 clean:
-	$(RM) $(BINS)
+	$(RM) $(BINS) $(OBJS)
+
+asm.o: asm.h
+disassembler.o: asm.h
+disassembler: asm.o
+virtualmachine.o: asm.h
+virtualmachine: asm.o
