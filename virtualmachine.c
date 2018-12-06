@@ -339,15 +339,17 @@ int main(int argc, char **argv)
 			fprintf(stderr, "print command not yet implemented\n");
 		} else if (!strcmp(cmd, "x")) {
 			// Examine memory
-			fprintf(stderr, "x command not yet implemented\n");
+			int addr = get_addr_arg(arg, registers);
+			if (addr >= 0)
+				fprintf(stderr, "%03d: %d\n", addr, memory[addr]);
 		} else if (is_prefix(cmd, "restart")) {
 			// Restart
 			fprintf(stderr, "restart command not yet implemented\n");
 		} else if (is_prefix(cmd, "break")) {
 			// Set breakpoint
-			int newbp = get_addr_arg(arg, registers);
-			if (newbp >= 0)
-				breakpoint = newbp;
+			int addr = get_addr_arg(arg, registers);
+			if (addr >= 0)
+				breakpoint = addr;
 		} else if (is_prefix(cmd, "delete")) {
 			// Delete breakpoint
 			breakpoint = -1;
