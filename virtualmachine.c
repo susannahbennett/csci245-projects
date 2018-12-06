@@ -28,6 +28,8 @@ void help(void)
 "              (also accepts mnemonics IP, RP, FP, SP)\n"
 "  x A       - Prints the value in memory at address A\n"
 "              (also accepts register names if register holds an address)\n"
+"  frame [N] - Displays the top N values on the stack\n"
+"              (default from SP to FP)\n"
 "  step [N]  - Executes N instructions (default 1)\n"
 "  continue  - Runs the program from current state without interruption\n"
 "  restart   - Resets the program to initial state\n"
@@ -384,6 +386,9 @@ int main(int argc, char **argv)
 				if (addr >= 0)
 					fprintf(stderr, "%03d: %d\n", addr, memory[addr]);
 			}
+		} else if (is_prefix(cmd, "frame")) {
+			// Show stack values
+			fprintf(stderr, "frame command not yet implemented\n");
 		} else if (is_prefix(cmd, "restart")) {
 			// Restart
 			if (reset_machine(registers, memory, fname)) {
