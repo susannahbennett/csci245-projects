@@ -406,7 +406,12 @@ int main(int argc, char **argv)
 			}
 		} else if (is_prefix(cmd, "delete")) {
 			// Delete breakpoint
-			breakpoint = -1;
+			if (breakpoint < 0) {
+				fprintf(stderr, "No breakpoint set\n");
+			} else {
+				fprintf(stderr, "Breakpoint deleted (was %d)\n", breakpoint);
+				breakpoint = -1;
+			}
 		}
 	}
 	return 0;
