@@ -427,9 +427,11 @@ int main(int argc, char **argv)
 					break;
 				case -1:
 					// Halt instruction
-					if (dbg.enable)
-						fprintf(stderr, "Program exited normally\n");
-					return 0;
+					if (!dbg.enable)
+						return 0;
+					fprintf(stderr, "[Program exited normally]\n");
+					dbg.pause = 1;
+					break;
 			}
 		} else if (is_prefix(cmd, "continue")) {
 			// Continue (already handled in a previous if)
