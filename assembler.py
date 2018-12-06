@@ -9,6 +9,13 @@ class OperandException(Exception):
     def __str__(self):
         return self.msg
 
+regnames = {
+        'IP': 'R0',
+        'RP': 'R29',
+        'FP': 'R30',
+        'SP': 'R31',
+        }
+
 # convert a literal operand as it appears in the source file to
 # how it should appear in the intermediate representation.
 # If it's a number, then keep it as it is;
@@ -35,6 +42,10 @@ def IMM(operand):
 # Specifically, it better begin with R and then have a number from 0 to 32.
 # If not, raise an appropriate exception
 def REG(operand):
+    try:
+        operand = regnames[operand.upper()]
+    except KeyError:
+        pass
     if operand[0] != 'R' or not operand[1:].isdigit():
         raise OperandException("Needs register, found %s" % operand)
     elif int(operand[1:]) not in range(32):
@@ -63,7 +74,7 @@ instructions = {
         'PUSH': [15, REG],
         'POP': [16, REG],
         'LDLO': [17, IMM, REG],
-        'STLO': [18, IMM, REG]
+        'STLO': [18, IMM, REG],
         }
 
 
