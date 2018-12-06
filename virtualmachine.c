@@ -365,6 +365,22 @@ int read_command(char *cmd, char *arg, int ip) {
 	return argc;
 }
 
+void print_stack(struct machine *vm, int num)
+{
+	int sp = vm->reg[SP], fp = vm->reg[FP];
+	int addr;
+
+	for (addr = sp; addr >= sp - num; addr--) {
+		if (addr != sp)
+			fprintf(stderr, " %d", vm->mem[addr]);
+		else
+			fprintf(stderr, "[SP]");
+		if (addr == fp)
+			fprintf(stderr, "[FP]");
+	}
+	fprintf(stderr, "\n");
+}
+
 int main(int argc, char **argv)
 {
 	struct machine vm;
@@ -477,7 +493,19 @@ int main(int argc, char **argv)
 			}
 		} else if (is_prefix(cmd, "frame")) {
 			// Show stack values
-			fprintf(stderr, "frame command not yet implemented\n");
+			int num;
+			if (args >= 2) {
+				num = atoi(arg);
+			} else {
+				if (vm.reg[SP] < vm.reg[FP]) {
+					fprintf(stderr, "Bad frame: SP (%d) is below FP (%d)\n",
+							vm.reg[SP], vm.reg[FP]);
+					continue;
+				} else {
+					num = vm.reg[SP] - vm.reg[FP] + 1;
+				}
+			}
+			print_stack(&vm, num);
 		} else if (is_prefix(cmd, "restart")) {
 			// Restart same program
 			if (reset_machine(&vm, vm.program)) {
