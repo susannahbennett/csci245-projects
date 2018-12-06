@@ -15,6 +15,7 @@
 #define MAXLINE 255
 
 struct machine {
+	char *program;
 	int reg[REGS];
 	int mem[MEMSIZE];
 };
@@ -89,16 +90,14 @@ int read_vmlfile(char *fname, int *memory)
 	return words;
 }
 
-int reset_machine(struct machine *vm, char *fname)
+int reset_machine(struct machine *vm)
 {
-	int *registers = vm->reg;
-	int *memory = vm->mem;
-	int code_size = read_vmlfile(fname, memory);
+	int code_size = read_vmlfile(vm->program, vm->mem);
 	if (code_size < 0)
 		return 1;
 
-	registers[IP] = 0;
-	registers[FP] = registers[SP] = code_size;
+	vm->reg[IP] = 0;
+	vm->reg[FP] = vm->reg[SP] = code_size;
 	return 0;
 }
 
@@ -354,7 +353,6 @@ int main(int argc, char **argv)
 	struct machine vm;
 	int debug = 0;
 	int breakpoint = -1;
-	char *fname;
 	int filearg = 1;
 
 	if (argc > 1 && !strcmp(argv[1], "-d")) {
@@ -368,9 +366,9 @@ int main(int argc, char **argv)
 			"Usage: %s [-d] program.vml\n", argv[0]);
 		return 1;
 	}
-	fname = argv[filearg];
+	vm.program = argv[filearg];
 
-	if (reset_machine(&vm, fname)) {
+	if (reset_machine(&vm)) {
 		return 1;
 	}
 
@@ -458,7 +456,7 @@ int main(int argc, char **argv)
 			fprintf(stderr, "frame command not yet implemented\n");
 		} else if (is_prefix(cmd, "restart")) {
 			// Restart
-			if (reset_machine(&vm, fname)) {
+			if (reset_machine(&vm)) {
 				fprintf(stderr, "Machine reset failed, exiting\n");
 				return 1;
 			}
