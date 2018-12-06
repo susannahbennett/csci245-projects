@@ -21,18 +21,19 @@ void help(void)
 {
 	fprintf(stderr,
 "Debugger commands (may be abbreviated):\n"
-"  help     - Prints this message\n"
-"  quit     - Exits virtual machine completely\n"
-"  list [N] - Disassembles the next N instructions (default 5)\n"
-"  print R  - Prints the value of the register named R\n"
-"             (also accepts mnemonics IP, RP, FP, SP)\n"
-"  x A      - Prints the value in memory at address A\n"
-"             (also accepts register names if register holds an address)\n"
-"  step [N] - Executes N instructions (default 1)\n"
-"  continue - Runs the program from current state without interruption\n"
-"  restart  - Resets the program to initial state\n"
-"  break A  - Creates a `breakpoint' to pause execution whenever IP == A\n"
-"  delete   - Deletes the breakpoint\n"
+"  help      - Prints this message\n"
+"  quit      - Exits virtual machine completely\n"
+"  list [N]  - Disassembles the next N instructions (default 5)\n"
+"  print R   - Prints the value of the register named R\n"
+"              (also accepts mnemonics IP, RP, FP, SP)\n"
+"  x A       - Prints the value in memory at address A\n"
+"              (also accepts register names if register holds an address)\n"
+"  step [N]  - Executes N instructions (default 1)\n"
+"  continue  - Runs the program from current state without interruption\n"
+"  restart   - Resets the program to initial state\n"
+"  break [A] - Creates a `breakpoint' to pause execution whenever IP == A\n"
+"              (default is current IP)\n"
+"  delete    - Deletes the breakpoint\n"
 "\n"
 "Commands which accept an address will also accept a register name, in\n"
 "which case the value in that register will be used as the address.\n"
@@ -391,12 +392,12 @@ int main(int argc, char **argv)
 			}
 		} else if (is_prefix(cmd, "break")) {
 			// Set breakpoint
-			if (args < 2) {
-				fprintf(stderr, "break command requires an argument\n");
-			} else {
-				int addr = get_addr_arg(arg, registers);
-				if (addr >= 0)
-					breakpoint = addr;
+			int addr = registers[IP];
+			if (args >= 2)
+				addr = get_addr_arg(arg, registers);
+			if (addr >= 0) {
+				breakpoint = addr;
+				fprintf(stderr, "Breakpoint set at address %d\n", breakpoint);
 			}
 		} else if (is_prefix(cmd, "delete")) {
 			// Delete breakpoint
