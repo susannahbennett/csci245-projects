@@ -354,7 +354,16 @@ int main(int argc, char **argv)
 			fprintf(stderr, "list command not yet implemented\n");
 		} else if (is_prefix(cmd, "print")) {
 			// Print register
-			fprintf(stderr, "print command not yet implemented\n");
+			if (args < 2) {
+				fprintf(stderr, "print command requires an argument\n");
+			} else {
+				int regnum = get_reg_arg(arg);
+				if (regnum < 0) {
+					fprintf(stderr, "bad register name: `%s'\n", arg);
+				} else {
+					fprintf(stderr, "%s: %d\n", arg, registers[regnum]);
+				}
+			}
 		} else if (!strcmp(cmd, "x")) {
 			// Examine memory
 			if (args < 2) {
