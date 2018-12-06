@@ -358,10 +358,14 @@ int read_command(char *cmd, char *arg, int ip) {
 int main(int argc, char **argv)
 {
 	struct machine vm;
-	struct debugger dbg;
-	int filearg = 1;
+	struct debugger dbg = {
+		.enable = 0,
+		.pause = 0,
+		.breakpoint = -1,
+	};
 
-	dbg.enable = 0;
+	// Parse command-line arguments
+	int filearg = 1;
 	if (argc > 1 && !strcmp(argv[1], "-d")) {
 		dbg.enable = 1;
 		filearg++;
@@ -378,8 +382,9 @@ int main(int argc, char **argv)
 		return 1;
 	}
 
-	dbg.breakpoint = -1;
+	// Start paused if debugging
 	dbg.pause = dbg.enable;
+
 	for(;;) {
 		char cmd[256], arg[256];
 		int args;
