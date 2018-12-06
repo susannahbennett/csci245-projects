@@ -72,6 +72,17 @@ int read_vmlfile(char *fname, int *memory)
 	return words;
 }
 
+int reset_machine(int *registers, int *memory, char *fname)
+{
+	int code_size = read_vmlfile(fname, memory);
+	if (code_size < 0)
+		return 1;
+
+	registers[IP] = 0;
+	registers[FP] = registers[SP] = code_size;
+	return 0;
+}
+
 int get_reg_arg(char *arg)
 {
 	int regnum;
@@ -273,6 +284,7 @@ int main(int argc, char **argv)
 	int registers[REGS];
 	int debug = 0;
 	int breakpoint = -1;
+	char *fname;
 	int filearg = 1;
 
 	if (argc > 1 && !strcmp(argv[1], "-d")) {
@@ -286,15 +298,13 @@ int main(int argc, char **argv)
 			"Usage: %s [-d] program.vml\n", argv[0]);
 		return 1;
 	}
+	fname = argv[filearg];
 
-	int code_size = read_vmlfile(argv[filearg], memory);
-	if (code_size < 0)
+	if (reset_machine(registers, memory, fname)) {
 		return 1;
+	}
 
-	registers[IP] = 0;
-	registers[FP] = registers[SP] = code_size;
 	int paused = debug;
-
 	for(;;) {
 		char cmd[256], arg[256];
 		int args;
@@ -375,7 +385,10 @@ int main(int argc, char **argv)
 			}
 		} else if (is_prefix(cmd, "restart")) {
 			// Restart
-			fprintf(stderr, "restart command not yet implemented\n");
+			if (reset_machine(registers, memory, fname)) {
+				fprintf(stderr, "Machine reset failed, exiting\n");
+				return 1;
+			}
 		} else if (is_prefix(cmd, "break")) {
 			// Set breakpoint
 			if (args < 2) {
