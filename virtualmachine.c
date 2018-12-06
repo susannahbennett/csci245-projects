@@ -277,7 +277,7 @@ int main(int argc, char **argv)
 
 		if (debug) {
 			// Handle breakpoint
-			if (registers[IP] == breakpoint) {
+			if (!paused && registers[IP] == breakpoint) {
 				fprintf(stderr, "Hit breakpoint at %d\n", breakpoint);
 				paused = 1;
 			}
