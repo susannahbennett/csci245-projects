@@ -99,6 +99,9 @@ int read_vmlfile(char *fname, int *memory)
 		return -1;
 	}
 
+	// Add an invalid opcode at the end to separate from stack
+	memory[words++] = -1;
+
 	fclose(source);
 	return words;
 }
