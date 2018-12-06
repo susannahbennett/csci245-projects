@@ -3,6 +3,8 @@
 #include <string.h>
 #include <ctype.h>
 
+#include "asm.h"
+
 /* Architecture definitions */
 #define MEMSIZE 500
 #define REGS 32
@@ -477,7 +479,13 @@ int main(int argc, char **argv)
 			break;
 		} else if (is_prefix(cmd, "list")) {
 			// List disassembly
-			fprintf(stderr, "list command not yet implemented\n");
+			int num = 5, addr = vm.reg[IP];
+			if (args >= 2) {
+				num = atoi(arg);
+			}
+			int i;
+			for (i = 0; i < num && in_mem(addr); i++)
+				addr = disassemble(vm.mem, addr);
 		} else if (is_prefix(cmd, "print")) {
 			// Print register
 			if (args < 2) {
