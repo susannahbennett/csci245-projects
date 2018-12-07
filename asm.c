@@ -59,32 +59,32 @@ disassemble(int *memory, int ip)
 			break;
 
 		case 2:  /* MOV  rs rd */
-			rd = memory[ip++];
 			rs = memory[ip++];
+			rd = memory[ip++];
 			printf("%03d: MOV  r%d r%d\n", addr, rs, rd);
 			break;
 
 		case 3:  /* ADD  rs rd */
-			rd = memory[ip++];
 			rs = memory[ip++];
+			rd = memory[ip++];
 			printf("%03d: ADD  r%d r%d\n", addr, rs, rd);
 			break;
 
 		case 4:  /* SUB  rs rd */
-			rd = memory[ip++];
 			rs = memory[ip++];
+			rd = memory[ip++];
 			printf("%03d: SUB  r%d r%d\n", addr, rs, rd);
 			break;
 
 		case 5:  /* MUL  rs rd */
-			rd = memory[ip++];
 			rs = memory[ip++];
+			rd = memory[ip++];
 			printf("%03d: MUL  r%d r%d\n", addr, rs, rd);
 			break;
 
 		case 6:  /* IDIV rs rd */
-			rd = memory[ip++];
 			rs = memory[ip++];
+			rd = memory[ip++];
 			printf("%03d: IDIV r%d r%d\n", addr, rs, rd);
 			break;
 
