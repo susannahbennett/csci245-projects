@@ -110,7 +110,7 @@ disassemble(int *memory, int ip)
 			break;
 
 		default:
-			fprintf(stderr, "invalid opcode: %d\n", memory[ip]);
+			fprintf(stderr, "%03d: invalid opcode: %d\n", addr, memory[addr]);
 			return -1;
 	}
 	return ip;
