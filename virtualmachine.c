@@ -64,51 +64,9 @@ int in_mem(int addr)
 	return addr >= 0 && addr < MEMSIZE;
 }
 
-int read_vmlfile(char *fname, int *memory)
-{
-	int words, i;
-	FILE *source = fopen(fname, "r");
-	if (!source) {
-		fprintf(stderr, "File not found: `%s'\n", fname);
-		return -1;
-	}
-	if (fscanf(source, " %d ", &words) != 1) {
-		fprintf(stderr, "No program size in first line of %s\n", fname);
-		return -1;
-	}
-	if (words < 0) {
-		fprintf(stderr, "Invalid program size %d in %s\n", words, fname);
-		return -1;
-	}
-	if (words > MEMSIZE) {
-		fprintf(stderr, "Program size %d too large for memory\n", words);
-		return -1;
-	}
-
-	for(i = 0; i < words; i++) {
-		if (fscanf(source, " %d ", memory + i) != 1) {
-			if (feof(source))
-				fprintf(stderr, "File %s advertised %d words but had only %d\n",
-						fname, words, i);
-			else
-				fprintf(stderr, "Bad data for word %d in file %s\n", i, fname);
-			return -1;
-		}
-	}
-
-	if (!feof(source)) {
-		fprintf(stderr, "Bad VML file format (trailing data after %d words)\n",
-				words);
-		return -1;
-	}
-
-	fclose(source);
-	return words;
-}
-
 int reset_machine(struct machine *vm, char *filename)
 {
-	int code_size = read_vmlfile(filename, vm->mem);
+	int code_size = read_vmlfile(filename, vm->mem, MEMSIZE);
 	if (code_size < 0)
 		return 1;
 
