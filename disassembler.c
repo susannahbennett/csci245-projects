@@ -3,12 +3,13 @@
 
 #include "asm.h"
 
+#define MEMSIZE 500
+
 int
 main(int argc, char **argv)
 {
-	FILE *source;
 	int instr_words;
-	int *memory;
+	int memory[MEMSIZE];
 	int ip;
 
 	if (argc < 2) {
@@ -18,13 +19,7 @@ main(int argc, char **argv)
 		return 1;
 	}
 
-	source = fopen(argv[1], "r");
-	fscanf(source, "%d\n", &instr_words);
-
-	memory = (int *) calloc(sizeof(int), instr_words);
-
-	for(ip = 0; ip < instr_words; ip++)
-		fscanf(source, "%d\n", memory+ip);
+	instr_words = read_vmlfile(argv[1], memory, MEMSIZE);
 
 	for (ip = 0; ip < instr_words; /* */) {
 		int newip = disassemble(memory, ip);
