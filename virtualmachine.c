@@ -102,9 +102,6 @@ int read_vmlfile(char *fname, int *memory)
 		return -1;
 	}
 
-	// Add an invalid opcode at the end to separate from stack
-	memory[words++] = -1;
-
 	fclose(source);
 	return words;
 }
@@ -114,6 +111,9 @@ int reset_machine(struct machine *vm, char *filename)
 	int code_size = read_vmlfile(filename, vm->mem);
 	if (code_size < 0)
 		return 1;
+
+	// Add an invalid opcode to the code segment to separate from stack
+	vm->mem[code_size++] = -1;
 
 	vm->program = filename;
 	vm->reg[IP] = 0;
