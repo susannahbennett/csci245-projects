@@ -223,8 +223,8 @@ for instr in instr_seq:
             lab = x[1:]
             # is it defined somewhere?
             if lab not in lab_def_byte and lab not in bad_labels:
-                print "Undefined label % used on line %" % (lab, lab_use_map[lab])
-                print lines[lab_use_map[lab]]
+                print "Undefined label % used on line %" % (lab, lab_use_line[lab])
+                print lines[lab_use_line[lab]]
                 error = True
                 bad_labels.append(lab)
             else:
