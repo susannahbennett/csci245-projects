@@ -80,9 +80,36 @@ quickSortR(int array[], int start, int stop)
 {
 
 	//  -----  add your code here   -------
-	// don't forget to count and return the number of comparisons
+  int compars = 0;
+  int pivot;
+  int i, j;
+  int midpoint;
 
-	return 0;
+  if(start<stop){
+    {
+     pivot = array[stop-1];
+     i = start -1;
+     for (j = start; j < stop; j++) {
+       if (array[j] <= pivot) {
+	 if (i != j){
+
+	   int temp = array[i+1];
+	   array[i+1] = array[j];
+	   array[j] = temp;
+	 }
+	 i++;
+	 compars++;
+	 
+       }
+     }
+     midpoint = i;
+  }
+
+  quickSortR(array, start, midpoint);
+  quickSortR(array, midpoint+1, stop);
+  }
+
+  return compars;
 }
 
 int
