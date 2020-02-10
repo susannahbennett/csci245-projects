@@ -66,6 +66,8 @@ public abstract class TestCalcAbs {
     protected void testSequence(String buttonSeq, String[] expected) {
         TestFace f = freshCalc();
         f.press(buttonSeq);
+	if (expected == null)
+		return;
         String screen = f.viewScreen();
         boolean foundMatch = false;
         for (String ex : expected)
