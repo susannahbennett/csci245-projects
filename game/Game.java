@@ -41,14 +41,14 @@ public class Game {
         Room[] rooms = new Room[4];
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("room "+i);
-        rooms[0].setNorth(rooms[1]);
-        rooms[1].setSouth(rooms[0]);
-        rooms[1].setEast(rooms[2]);
-        rooms[2].setWest(rooms[1]);
-        rooms[2].setSouth(rooms[3]);
-        rooms[3].setNorth(rooms[2]);
-        rooms[3].setWest(rooms[0]);
-        rooms[0].setEast(rooms[3]);
+        rooms[0].setDirection("down",rooms[1]);
+        rooms[1].setDirection("south",rooms[0]);
+        rooms[1].setDirection("east",rooms[2]);
+        rooms[2].setDirection("west",rooms[1]);
+        rooms[2].setDirection("south",rooms[3]);
+        rooms[3].setDirection("north",rooms[2]);
+        rooms[3].setDirection("west",rooms[0]);
+        rooms[0].setDirection("east",rooms[3]);
         over = false;
         currentRoom = rooms[0];
     }
