@@ -87,11 +87,13 @@ public class TestCalcBasic extends TestCalcAbs {
     @Test
     public void decimalRepeatPlus() {
         testSequence("13.2.5+1.25=", new String[] {"14.5"});
+        testSequence("13.2.5+1.25=", new String[] {"14.5"});
     }
 
     @Test
     public void decimalRepeatPlusTwice() {
         testSequence("13.2.5+1.2.5=", new String[] {"14.5"});
+        testSequence("13.2.5+1.2.5*", new String[] {"14.5"});
     }
 
     @Test
@@ -103,16 +105,19 @@ public class TestCalcBasic extends TestCalcAbs {
     @Test
     public void subNeg() {
         testSequence("3-12=", new String[] {"-9", "-9.0"});
+        testSequence("3-12-", new String[] {"-9", "-9.0"});
     }
 
     @Test
     public void subNegTimes() {
         testSequence("3-12*4=", new String[] {"-36", "-36.0"});
+        testSequence("3-12*4+", new String[] {"-36", "-36.0"});
     }
 
     @Test
     public void subNegTimesNeg() {
         testSequence("3-12*4" + PM + "=", new String[] {"36", "36.0"});
+        testSequence("3-12*4" + PM + "-", new String[] {"36", "36.0"});
     }
 
     @Test
@@ -135,26 +140,31 @@ public class TestCalcBasic extends TestCalcAbs {
     @Test
     public void addThreeEq() {
         testSequence("10+27+40=", new String[] {"77", "77.0"});
+        testSequence("10+27+40+", new String[] {"77", "77.0"});
     }
 
     @Test
     public void divThreeEq() {
         testSequence("8888/88/2=", new String[] {"50.5"});
+        testSequence("8888/88/2/", new String[] {"50.5"});
     }
 
     @Test
     public void clear() {
         testSequence("1+5C4+9=", new String[] {"13", "13.0"});
+        testSequence("1+5C4+9*", new String[] {"13", "13.0"});
     }
 
     @Test
     public void clearNeg() {
         testSequence("28" + PM + "C3+5=", new String[] {"8", "8.0"});
+        testSequence("28" + PM + "C3+5+", new String[] {"8", "8.0"});
     }
 
     @Test
     public void clearThenNeg() {
         testSequence("28" + PM + "C3" + PM + "+5=", new String[] {"2", "2.0"});
+        testSequence("28" + PM + "C3" + PM + "+5+", new String[] {"2", "2.0"});
     }
 
     @Test
@@ -175,6 +185,12 @@ public class TestCalcBasic extends TestCalcAbs {
     @Test
     public void twoCalculations() {
         testSequence("2+8=3*13=", new String[] {"39", "39.0"});
+    }
+
+    @Test
+    public void chainAfterEquals() {
+        testSequence("3*4=+2=", new String[] {"14", "14.0"});
+        testSequence("3*4=+2/", new String[] {"14", "14.0"});
     }
 
     @Test
