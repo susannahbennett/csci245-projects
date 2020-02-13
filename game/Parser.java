@@ -49,16 +49,11 @@ public class Parser {
 
 
         if (command.equals("north") || command.equals("south") 
-            || command.equals("west") || command.equals("east")) {
+            || command.equals("west") || command.equals("east") || command.equals("down")) {
             Room nextRoom;   // the room we're moving to
-            if (command.equals("north"))
-                nextRoom = room.getNorth();
-            else if (command.equals("south"))
-                nextRoom = room.getSouth();
-            else if (command.equals("west"))
-                nextRoom = room.getWest();
-            else
-                nextRoom = room.getEast();
+            
+            nextRoom = room.getDirection(command);
+          
             if (nextRoom == null) 
                 System.out.println("There is no door in that direction.");
             else

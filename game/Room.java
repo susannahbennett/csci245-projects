@@ -35,11 +35,10 @@ public class Room {
     /**
      * Methods for added "doors"-- directional connections to other rooms.
      */
-    public void setNorth(Room north) { map.put("north",north); }
-    public void setSouth(Room south) { map.put("south",south);}
-    public void setEast(Room east) { map.put("east",east);}
-    public void setWest(Room west) { map.put("west",west); }
-
+    public void setDirection(String str,Room room) { 
+    	map.put(str,room);
+    	}
+   
 	
     /**
      * Retrieve a description of this room (to the user).
@@ -50,10 +49,7 @@ public class Room {
      * Methods to determine the rooms to which various
      * doors-- if they exist-- lead.
      */
-    public Room getNorth() { return map.get("north"); }
-    public Room getSouth() { return map.get("south");  }
-    public Room getEast() { return map.get("east");  }
-    public Room getWest() { return map.get("west"); }
+    public Room getDirection(String str) { return map.get(str); }
     
     public void addKey() {
     	itemarray.add(new Key());

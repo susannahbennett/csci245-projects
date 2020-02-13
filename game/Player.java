@@ -1,7 +1,5 @@
-/**
- * 
- */
 package game;
+import java.util.*;
 
 /**
  * @author stevenbarker
@@ -9,12 +7,21 @@ package game;
  */
 public class Player {
 
-	/**
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+	private Game game;
+	
+	private ArrayList<Item> inventory;
+	
+	private String currentroom;
 
+	/**
+	 * @param game
+	 * @param inventory
+	 * @param currentroom
+	 */
+	public Player(Game game, ArrayList<Item> inventory, String currentroom) {
+		this.game = game;
+		this.inventory = inventory;
+		this.currentroom = currentroom;
 	}
 
 }
