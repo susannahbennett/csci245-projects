@@ -40,7 +40,7 @@ public class Game {
     public Game() {
         Room[] rooms = new Room[4];
         for (int i = 0; i < rooms.length; i++)
-            rooms[i] = new Room("a room");
+            rooms[i] = new Room("room "+i);
         rooms[0].setNorth(rooms[1]);
         rooms[1].setSouth(rooms[0]);
         rooms[1].setEast(rooms[2]);
