@@ -97,6 +97,16 @@ public class TestCalcBasic extends TestCalcAbs {
     }
 
     @Test
+    public void decimalPlusMinus() {
+        testSequence("1" + PM + ".5", new String[] {"-1.5"});
+        testSequence("1" + PM + ".5" + PM, new String[] {"1.5"});
+        testSequence("1." + PM + "5", new String[] {"-1.5"});
+        testSequence("1." + PM + "5" + PM, new String[] {"1.5"});
+        testSequence("1.0" + PM + "5", new String[] {"-1.05"});
+        testSequence("1.0" + PM + "5" + PM, new String[] {"1.05"});
+    }
+
+    @Test
     public void subEq() {
         testSequence("17-9=", new String[] {"8", "8.0"});
         testSequence("17-8+", new String[] {"9", "9.0"});
