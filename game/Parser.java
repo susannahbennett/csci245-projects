@@ -1,5 +1,7 @@
 package game;
 
+import java.util.HashMap;
+
 /**
  * Parser.java
  * 
@@ -19,12 +21,15 @@ public class Parser {
      * For user input from the keyboard.
      */
     private Scanner keyboard;
+    
+    private HashMap<String, Command> actions;
 
     /**
      * Plain constructor
      */
     public Parser() {
         keyboard = new Scanner(System.in);
+        actions = new HashMap<String, Command>(); 
     }
 
     /**
@@ -63,6 +68,5 @@ public class Parser {
             System.out.println("I do not know how to " + command + ".");
 
     }
-
 
 }
