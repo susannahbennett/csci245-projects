@@ -16,7 +16,7 @@ public class Room {
     /**
      * Rooms adjacent to this one, to which there is a door.
      */
-    private Room north, south, east, west;
+    private Room north, south, east, west, upstairs, downstairs;
 
     /**
      * A description of this room
@@ -30,12 +30,14 @@ public class Room {
     public Room(String description) { this.description = description; }
     
     /**
-     * Methods for added "doors"-- directiona connections to other rooms.
+     * Methods for added "doors"-- directional connections to other rooms.
      */
     public void setNorth(Room north) { this.north = north; }
     public void setSouth(Room south) { this.south = south; }
     public void setEast(Room east) { this.east = east; }
     public void setWest(Room west) { this.west = west; }
+    public void setUpstairs(Room upstairs) { this.upstairs = upstairs; }
+    public void setDownstairs(Room downstairs) { this.downstairs = downstairs; }
 	
     /**
      * Retrieve a description of this room (to the user).
@@ -44,12 +46,14 @@ public class Room {
     
     /**
      * Methods to determine the rooms to which various
-     * doors-- if they extist-- lead.
+     * doors-- if they exist-- lead.
      */
     public Room getNorth() { return north; }
     public Room getSouth() { return south; }
     public Room getEast() { return east; }
     public Room getWest() { return west; }
+    public Room getUpstairs() { return upstairs;}
+    public Room getDownstairs() { return downstairs;}
     
 
 	
