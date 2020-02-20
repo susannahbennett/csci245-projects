@@ -14,12 +14,12 @@ public class Look implements Command {
 	/**
 	 * Constructor
 	 */
-	public Look() {
-		
+	public Look(Player p1) {
+		this.p1 = p1;
 	}
 
-	/* (non-Javadoc)
-	 * @see game.Command#doSomething(game.Player)
+	/**
+	 * 
 	 */
 	public void doSomething(Player p1) {
 		

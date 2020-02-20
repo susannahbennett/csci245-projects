@@ -23,13 +23,19 @@ public class Parser {
     private Scanner keyboard;
     
     private HashMap<String, Command> actions;
+    
+    private Player p1;
 
     /**
      * Plain constructor
      */
-    public Parser() {
+    public Parser(Player p1) {
         keyboard = new Scanner(System.in);
+        this.p1 = p1;
         actions = new HashMap<String, Command>(); 
+        actions.put("help", new Help(p1));
+        actions.put("look", new Look(p1));
+        actions.put("use", new Use(p1));
     }
 
     /**
@@ -47,7 +53,7 @@ public class Parser {
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
 
-
+        
         if (command.equals("north") || command.equals("south") 
             || command.equals("west") || command.equals("east") || command.equals("down")) {
             Room nextRoom;   // the room we're moving to
