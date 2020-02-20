@@ -24,7 +24,8 @@ public class Player {
 		this.currentroom = currentroom;
 	}
 	
-	public void use(Item item) {
+	public Room getCurrentRoom() {
+		return currentroom;
 	}
 
 }

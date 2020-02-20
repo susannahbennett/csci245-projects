@@ -67,7 +67,7 @@ public class Parser {
             else
                 game.setCurrentRoom(nextRoom);
         }else if(actions.containsKey(command)) {
-        	actions.get(command).doSomething();
+        	actions.get(command).doSomething(p1);
         }
         else
             System.out.println("I do not know how to " + command + ".");
