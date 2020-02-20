@@ -23,5 +23,8 @@ public class Player {
 		this.inventory = inventory;
 		this.currentroom = currentroom;
 	}
+	
+	public void use(Item item) {
+	}
 
 }

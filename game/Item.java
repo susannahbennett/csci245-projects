@@ -4,8 +4,8 @@
 package game;
 
 /**
+ * Interface for all items in the game.
  * @author stevenbarker
- *	Supertype for all items in the game
  */
 public interface Item {
 
