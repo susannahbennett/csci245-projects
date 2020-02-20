@@ -55,13 +55,9 @@ public class Parser {
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
 
-<<<<<<< HEAD
+
         if(room.getMap().containsKey(command)) {
-=======
-        
-        if (command.equals("north") || command.equals("south") 
-            || command.equals("west") || command.equals("east") || command.equals("down")) {
->>>>>>> 9ab54e95fbe22531e2ece2cff914cc8cd3fe76b9
+
             Room nextRoom;   // the room we're moving to
             
             nextRoom = room.getDirection(command);
