@@ -16,7 +16,7 @@ import java.util.HashMap;
 
 public class Room {
 	
-	private HashMap<String,Room> map = new HashMap<String,Room>();
+	private HashMap<String,Room> directionMap = new HashMap<String,Room>();
 	private ArrayList<Item> itemarray = new ArrayList<Item>();
 
     /**
@@ -36,7 +36,7 @@ public class Room {
      * Methods for added "doors"-- directional connections to other rooms.
      */
     public void setDirection(String str,Room room) { 
-    	map.put(str,room);
+    	directionMap.put(str,room);
     	}
    
 	
@@ -49,12 +49,26 @@ public class Room {
      * Methods to determine the rooms to which various
      * doors-- if they exist-- lead.
      */
-    public Room getDirection(String str) { return map.get(str); }
+    public Room getDirection(String str) { return directionMap.get(str); }
     
+    /**
+     * Method to add a key to the item inventory
+     */
     public void addKey() {
     	itemarray.add(new Key());
     }
-   
+    
+    /**
+     * Method to retrieve direction map
+     * @return the map containing the available directions
+     */
+    public HashMap<String, Room> getMap(){
+    	return directionMap;
+    }
+    
+    
+    
+    
 
 	
 }
