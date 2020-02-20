@@ -1,5 +1,7 @@
 package game;
 
+import java.util.ArrayList;
+
 /**
  * PlayGame.java
  * 
@@ -12,11 +14,13 @@ package game;
  */
 
 public class PlayGame {
-    
+	
     public static void main(String[] args) {
         System.out.println("Welcome to the game");
         Game game = new Game();   // reference to the game object
-        Parser parser = new Parser();
+        ArrayList<Item> inventory = new ArrayList<Item>();
+        Room currentRoom = new Room("Room 0");
+        Parser parser = new Parser(new Player(game, inventory, currentRoom));
 
         while (! game.isOver()) 
             parser.executeTurn(game);

@@ -22,14 +22,22 @@ public class Parser {
      */
     private Scanner keyboard;
     
+    private Room room;
+    
     private HashMap<String, Command> actions;
+    
+    private Player p1;
 
     /**
      * Plain constructor
      */
-    public Parser() {
+    public Parser(Player p1) {
         keyboard = new Scanner(System.in);
+        this.p1 = p1;
         actions = new HashMap<String, Command>(); 
+        actions.put("help", new Help(p1));
+        actions.put("look", new Look(p1));
+        actions.put("use", new Use(p1));
     }
 
     /**
@@ -47,22 +55,23 @@ public class Parser {
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
 
-
+<<<<<<< HEAD
+        if(room.getMap().containsKey(command)) {
+=======
+        
         if (command.equals("north") || command.equals("south") 
-            || command.equals("west") || command.equals("east")) {
+            || command.equals("west") || command.equals("east") || command.equals("down")) {
+>>>>>>> 9ab54e95fbe22531e2ece2cff914cc8cd3fe76b9
             Room nextRoom;   // the room we're moving to
-            if (command.equals("north"))
-                nextRoom = room.getNorth();
-            else if (command.equals("south"))
-                nextRoom = room.getSouth();
-            else if (command.equals("west"))
-                nextRoom = room.getWest();
-            else
-                nextRoom = room.getEast();
+            
+            nextRoom = room.getDirection(command);
+          
             if (nextRoom == null) 
                 System.out.println("There is no door in that direction.");
             else
                 game.setCurrentRoom(nextRoom);
+        }else if(actions.containsKey(command)) {
+        	actions.get(command).doSomething();
         }
         else
             System.out.println("I do not know how to " + command + ".");
