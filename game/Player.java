@@ -11,14 +11,14 @@ public class Player {
 	
 	private ArrayList<Item> inventory;
 	
-	private String currentroom;
+	private Room currentroom;
 
 	/**
 	 * @param game
 	 * @param inventory
 	 * @param currentroom
 	 */
-	public Player(Game game, ArrayList<Item> inventory, String currentroom) {
+	public Player(Game game, ArrayList<Item> inventory, Room currentroom) {
 		this.game = game;
 		this.inventory = inventory;
 		this.currentroom = currentroom;
