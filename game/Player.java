@@ -9,23 +9,30 @@ public class Player {
 
 	private Game game;
 	
-	private ArrayList<Item> inventory;
+	private HashMap<String, Item> inventory;
 	
-	private Room currentroom;
+	private Room currentRoom;
 
 	/**
 	 * @param game
 	 * @param inventory
 	 * @param currentroom
 	 */
-	public Player(Game game, ArrayList<Item> inventory, Room currentroom) {
+	public Player(Game game, HashMap<String, Item> inventory, Room currentRoom) {
 		this.game = game;
 		this.inventory = inventory;
-		this.currentroom = currentroom;
+		this.currentRoom = currentRoom;
+	}
+	
+	public HashMap<String, Item>  getItemList () {
+		return inventory;
 	}
 	
 	public Room getCurrentRoom() {
-		return currentroom;
+		return currentRoom;
 	}
-
+	
+	public void setCurrentRoom() {
+		
+	}
 }
