@@ -10,4 +10,5 @@ package game;
 public interface Command { 
 	
 	public void doSomething(Player p1);
+	
 }
