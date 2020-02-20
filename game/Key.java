@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 import java.util.Scanner;
@@ -16,7 +13,7 @@ public class Key implements Item {
 		
 		Scanner keyboard = new Scanner(System.in);
 		
-		while(1==1) {
+		while(true) {
 			System.out.println("Which door would you like to try to unlock? ->");
 			String door = keyboard.nextLine().toLowerCase();
 			
@@ -27,6 +24,7 @@ public class Key implements Item {
 				System.out.println("That door does not exist, please try again");
 			}
 		}
+		keyboard.close();
 		
 		
 		
