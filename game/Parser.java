@@ -22,6 +22,8 @@ public class Parser {
      */
     private Scanner keyboard;
     
+    private Room room;
+    
     private HashMap<String, Command> actions;
     
     private Player p1;
@@ -53,9 +55,9 @@ public class Parser {
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
 
-        
-        if (command.equals("north") || command.equals("south") 
-            || command.equals("west") || command.equals("east") || command.equals("down")) {
+
+        if(room.getMap().containsKey(command)) {
+
             Room nextRoom;   // the room we're moving to
             
             nextRoom = room.getDirection(command);
@@ -64,6 +66,8 @@ public class Parser {
                 System.out.println("There is no door in that direction.");
             else
                 game.setCurrentRoom(nextRoom);
+        }else if(actions.containsKey(command)) {
+        	actions.get(command).doSomething(p1);
         }
         else
             System.out.println("I do not know how to " + command + ".");

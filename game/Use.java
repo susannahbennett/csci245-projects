@@ -22,7 +22,6 @@ public class Use implements Command {
 			return;
 		}
 		item.function(p1);
-		
 
 	}
 
