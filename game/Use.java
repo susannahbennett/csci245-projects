@@ -1,5 +1,6 @@
 package game;
 
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Use implements Command {
@@ -17,11 +18,12 @@ public class Use implements Command {
 	@Override
 	public void doSomething(Player p1) {
 		item = keyboard.nextLine().toLowerCase();
-		if (!p1.getItemList().contains(item)) {
+		HashMap<String, Item> items = p1.getItemList();
+		if (!items.containsKey(item)) {
 			System.out.println("Inventory shows this item doesn't exist");
 			return;
 		}
-		item.function(p1);
+		items.get(item).function(p1);
 
 	}
 

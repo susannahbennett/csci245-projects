@@ -26,7 +26,7 @@ public class Look implements Command {
 	public void doSomething(Player p1) {
 		Room room = p1.getCurrentRoom();
 		
-		Iterator<String> i = room.getMap.keySet().iterator();
+		Iterator<String> i = room.getMap().keySet().iterator();
 		System.out.println("Surrounding rooms: ");
 		while (i.hasNext()) {
 			System.out.println(i.next());
