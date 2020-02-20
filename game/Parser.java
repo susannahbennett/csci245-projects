@@ -22,8 +22,6 @@ public class Parser {
      */
     private Scanner keyboard;
     
-    private Room room;
-    
     private HashMap<String, Command> actions;
     
     private Player p1;
@@ -67,7 +65,7 @@ public class Parser {
             else
                 game.setCurrentRoom(nextRoom);
         }else if(actions.containsKey(command)) {
-        	actions.get(command).doSomething();
+        	actions.get(command).doSomething(p1);
         }
         else
             System.out.println("I do not know how to " + command + ".");
