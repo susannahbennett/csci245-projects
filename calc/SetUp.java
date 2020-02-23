@@ -19,15 +19,28 @@ public class SetUp {
 	 * the calculator. 
 	 */
 	public static void setUpCalculator(CalculatorFace face) {
-
-		// delete this line.
-		face.writeToScreen("hello");
+		CalcInternals internal = new CalcInternals(face);
 		
+		//add action listeners to every button on the calculator 
+		face.addNumberActionListener(0, new NumListener(internal, 0));
+		face.addNumberActionListener(1, new NumListener(internal, 1));
+		face.addNumberActionListener(2, new NumListener(internal, 2));
+		face.addNumberActionListener(3, new NumListener(internal, 3));
+		face.addNumberActionListener(4, new NumListener(internal, 4));
+		face.addNumberActionListener(5, new NumListener(internal, 5));
+		face.addNumberActionListener(6, new NumListener(internal, 6));
+		face.addNumberActionListener(7, new NumListener(internal, 7));
+		face.addNumberActionListener(8, new NumListener(internal, 8));
+		face.addNumberActionListener(9, new NumListener(internal, 9));
 		
-		// add code here that will have the effect of connecting
-		// the given face to your calculator
-		
-		
+		face.addActionListener('+', new OperatorListener(internal, '+'));
+		face.addActionListener('-', new OperatorListener(internal, '-'));
+		face.addActionListener('*', new OperatorListener(internal, '*'));
+		face.addActionListener('/', new OperatorListener(internal, '/'));
+		face.addActionListener('=', new OperatorListener(internal, '='));
+		face.addActionListener('.', new OperatorListener(internal, '.'));
+		face.addActionListener('C', new OperatorListener(internal, 'C'));
+		face.addPlusMinusActionListener(new PlusMinusListener(internal));
 	}
 	
 	
@@ -39,5 +52,5 @@ public class SetUp {
 	public static void main(String[] args) {
 		setUpCalculator(new PlainCalculatorFace());
 	}
-
+	
 }
