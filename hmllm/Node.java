@@ -6,17 +6,23 @@ package hmllm;
  *
  */
 public class Node {
-	
+	/**
+	 * The node being accessed
+	 */
 	private Node next;
-	
+	/**
+	 * The key associated with the node
+	 */
 	private String key;
-	
+	/**
+	 * The value associated with the key and node
+	 */
 	private String value;
 	
 	/**
 	 * Constructor for when there's no next node
-	 * @param key
-	 * @param value
+	 * @param key The specific key associated with this node
+	 * @param value The value associated with this key
 	 */
 	public Node(String key, String value) {
 		this.key = key;
@@ -25,9 +31,9 @@ public class Node {
 	}
 	/**
 	 * Constructor for when there's a next node
-	 * @param key
-	 * @param value
-	 * @param next
+	 * @param key The specific key associated with this node
+	 * @param value The value associated with this key
+	 * @param next The node after the current
 	 */
 	public Node(String key, String value, Node next) {
 		this.key = key;
@@ -43,7 +49,7 @@ public class Node {
 	}
 	/**
 	 * Method for getting the node
-	 * @return next
+	 * @return next The node after the current
 	 */
 	public Node getNext() {
 		return this.next;
@@ -58,7 +64,7 @@ public class Node {
 	}
 	/**
 	 * Method for getting the key
-	 * @return key
+	 * @return key The key of this node
 	 */
 	public String getKey() {
 		return this.key;
@@ -73,7 +79,7 @@ public class Node {
 	}
 	/**
 	 * Method for setting the key
-	 * @return value
+	 * @return value The value at this key
 	 */
 	public String getValue() {
 		return this.value;
