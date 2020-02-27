@@ -17,7 +17,7 @@ import java.util.HashMap;
 public class Room {
 	
 	private HashMap<String,Room> directionMap = new HashMap<String,Room>();
-	private ArrayList<Item> itemarray = new ArrayList<Item>();
+	private HashMap<String, Item> itemmap = new HashMap<String, Item>();
 
     /**
      * A description of this room
@@ -55,7 +55,7 @@ public class Room {
      * Method to add a key to the item inventory
      */
     public void addKey() {
-    	itemarray.add(new Key());
+    	itemmap.put("key", new Key());
     }
     
     /**
@@ -65,15 +65,24 @@ public class Room {
     public HashMap<String, Room> getMap(){
     	return directionMap;
     }
+    
     /**
      * Returns the item map
      * @return itemmap The HashMap of items in a room
      */
-    //public HashMap<String, Item> getItemMap() {
-    	//return itemmap;
-    //}
+    public HashMap<String, Item> getItemMap() {
+    	return itemmap;
+    }
     
+    /**
+     *
+     */
+    public HashMap<String, Item> getItemMap(){
+    	return itemmap;
+    }
     
-
+    public void removeItem(String item) {
+    	itemmap.remove(item);
+    }
 	
 }

@@ -22,8 +22,6 @@ public class Parser {
      */
     private Scanner keyboard;
     
-    private Room room;
-    
     private HashMap<String, Command> actions;
     
     private Player p1;
