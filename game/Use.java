@@ -27,4 +27,7 @@ public class Use implements Command {
 
 	}
 
+	@Override
+	public void doSomething(Player p1, String itemname) {}
+
 }

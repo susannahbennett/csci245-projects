@@ -33,4 +33,10 @@ public class Look implements Command {
 		}
 	}
 
+	@Override
+	public void doSomething(Player p1, String itemname) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
