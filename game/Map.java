@@ -14,7 +14,7 @@ public class Map implements Command {
 	private Player p1;
 	
 	/**
-	 * 
+	 * Constructor
 	 */
 	public Map(Player p1) {
 		this.p1 = p1;
