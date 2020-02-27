@@ -36,7 +36,7 @@ public class Room {
      */
     public void setDirection(String str,Room room) { 
     	directionMap.put(str,room);
-    	}
+    }
    
 	
     /**
@@ -66,6 +66,14 @@ public class Room {
     }
     
     /**
+     * Returns the item map
+     * @return itemmap The HashMap of items in a room
+     */
+    public HashMap<String, Item> getItemMap() {
+    	return itemmap;
+    }
+    
+    /**
      *
      */
     public HashMap<String, Item> getItemMap(){
@@ -75,10 +83,5 @@ public class Room {
     public void removeItem(String item) {
     	itemmap.remove(item);
     }
-    
-    
-    
-    
-
 	
 }

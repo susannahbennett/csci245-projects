@@ -35,4 +35,8 @@ public class Player {
 	public void addToInventory(String name, Item item) {
 		inventory.put(name, item);
 	}
+
+	public void setCurrentRoom(Room room) {
+		currentRoom = room;
+	}
 }
