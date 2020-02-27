@@ -32,7 +32,7 @@ public class Player {
 		return currentRoom;
 	}
 	
-	public void setCurrentRoom() {
-		
+	public void addToInventory(String name, Item item) {
+		inventory.put(name, item);
 	}
 }

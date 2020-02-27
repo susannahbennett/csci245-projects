@@ -3,9 +3,7 @@
  */
 package game;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
+import java.util.*;
 /**
  * @author stevenbarker
  *
@@ -15,28 +13,31 @@ public class PickUp implements Command {
 	/**
 	 * 
 	 */
-	public PickUp() {
-		// TODO Auto-generated constructor stub
+	private Player p1;
+
+	
+
+	/**
+	 * @param p1
+	 * @param itemname
+	 */
+	public PickUp(Player p1) {
+		this.p1 = p1;
 	}
 
 	/**
 	 * 
 	 */
-	@Override
-	public void doSomething(Player p1) {
+	public void doSomething(Player p1, String itemname) {
 		Room currentroom = p1.getCurrentRoom();
 		HashMap<String, Item> items = currentroom.getItemMap();
-		
-		String c;
-		//Item topickup = items.get(c);
-		//p1.pickup(topickup)
-		//currentroom.removeItem(c);
-		
-		
-		
-		
-		
+		Item tograb = items.get(itemname);
+		p1.addToInventory(itemname, tograb);
 
 	}
+
+
+	@Override
+	public void doSomething(Player p1) {}
 
 }
