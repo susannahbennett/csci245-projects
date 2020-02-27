@@ -3,19 +3,25 @@
  */
 package game;
 
+import java.util.HashMap;
+
 /**
  * @author susannahbennett
  *
  */
 public class DynamicMap {
 
-	private HashMap	
+	private HashMap<String, Room> seenRooms;	
 	
 	/**
 	 * 
 	 */
 	public DynamicMap() {
-		// TODO Auto-generated constructor stub
+		seenRooms = new HashMap<String, Room>();
+	}
+	
+	public HashMap<String, Room> returnMap (){
+		return seenRooms;
 	}
 
 }
