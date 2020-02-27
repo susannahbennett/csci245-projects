@@ -24,7 +24,13 @@ public class Use implements Command {
 			return;
 		}
 		items.get(item).function(p1);
+	}
 
+	/**
+	 * 
+	 */
+	public void doSomething(Player p1, String itemname) {
+		
 	}
 
 }
