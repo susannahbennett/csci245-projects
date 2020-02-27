@@ -46,4 +46,8 @@ public class Player {
 	public void updateMap (String str, Room room) {
 		seenRooms.returnMap().put(str, room);
 	}
+	
+	public DynamicMap returnDMap() {
+		return seenRooms;
+	}
 }

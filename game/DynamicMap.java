@@ -14,7 +14,7 @@ public class DynamicMap {
 	private HashMap<String, Room> seenRooms;	
 	
 	/**
-	 * 
+	 * Constructor
 	 */
 	public DynamicMap() {
 		seenRooms = new HashMap<String, Room>();
