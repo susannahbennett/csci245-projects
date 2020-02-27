@@ -37,6 +37,7 @@ public class Parser {
         actions.put("look", new Look(p1));
         actions.put("use", new Use(p1));
         actions.put("pick up", new PickUp(p1));
+        actions.put("map", new Map(p1));
     }
 
     /**
