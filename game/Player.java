@@ -32,7 +32,7 @@ public class Player {
 		return currentRoom;
 	}
 	
-	public void setCurrentRoom() {
-		
+	public void setCurrentRoom(Room room) {
+		currentRoom = room;
 	}
 }
