@@ -66,6 +66,7 @@ public class Parser {
             else
                 game.setCurrentRoom(nextRoom);
             	p1.setCurrentRoom(nextRoom);
+            	p1.updateMap(nextRoom.getDescription(), nextRoom);
         }else if(actions.containsKey(command)) {
         	actions.get(command).doSomething(p1);
         }
