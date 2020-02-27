@@ -65,9 +65,9 @@ public class Parser {
             if (nextRoom == null) 
                 System.out.println("There is no door in that direction.");
             else
+            	p1.updateMap(room.getDescription(), room);
                 game.setCurrentRoom(nextRoom);
             	p1.setCurrentRoom(nextRoom);
-            	p1.updateMap(nextRoom.getDescription(), nextRoom);
         }else if(actions.containsKey(command)) {
         	actions.get(command).doSomething(p1);
         }

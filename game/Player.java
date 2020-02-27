@@ -50,4 +50,8 @@ public class Player {
 	public DynamicMap returnDMap() {
 		return seenRooms;
 	}
+	
+	public Game getGame() {
+		return game;
+	}
 }
