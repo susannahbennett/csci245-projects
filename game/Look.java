@@ -31,6 +31,11 @@ public class Look implements Command {
 		while (i.hasNext()) {
 			System.out.println(i.next());
 		}
+		Iterator<String> j = room.getItemMap().keySet().iterator();
+		System.out.println("Available items: ");
+		while (j.hasNext()) {
+			System.out.println(j.next());
+		}
 	}
 
 }
