@@ -21,7 +21,8 @@ public class Look implements Command {
 	}
 
 	/**
-	 * 
+	 * Method to find available doors and items in the room.
+	 * @param p1, the player 
 	 */
 	public void doSomething(Player p1) {
 		Room room = p1.getCurrentRoom();
@@ -36,6 +37,10 @@ public class Look implements Command {
 		while (j.hasNext()) {
 			System.out.println(j.next());
 		}
+	}
+	
+	public void doSomething(Player p1, String itemname) {
+		
 	}
 
 }

@@ -73,12 +73,6 @@ public class Room {
     	return itemmap;
     }
     
-    /**
-     *
-     */
-    public HashMap<String, Item> getItemMap(){
-    	return itemmap;
-    }
     
     public void removeItem(String item) {
     	itemmap.remove(item);
