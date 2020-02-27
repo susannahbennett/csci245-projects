@@ -37,6 +37,7 @@ public class Parser {
         actions.put("look", new Look(p1));
         actions.put("use", new Use(p1));
         actions.put("pick up", new PickUp(p1));
+        actions.put("map", new Map(p1));
     }
 
     /**
@@ -65,6 +66,8 @@ public class Parser {
                 System.out.println("There is no door in that direction.");
             else
                 game.setCurrentRoom(nextRoom);
+            	p1.setCurrentRoom(nextRoom);
+            	p1.updateMap(nextRoom.getDescription(), nextRoom);
         }else if(actions.containsKey(command)) {
         	actions.get(command).doSomething(p1);
         }
