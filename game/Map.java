@@ -24,7 +24,7 @@ public class Map implements Command {
 	 *
 	 */
 	@Override
-	public void doSomething(Player p1) {
+	public void doSomething() {
 		Iterator<String> i = p1.returnDMap().returnMap().keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
 		while (i.hasNext()) {
@@ -36,7 +36,7 @@ public class Map implements Command {
 	 * 
 	 */
 	@Override
-	public void doSomething(Player p1, String itemname) {
+	public void doSomething(String itemname) {
 		// TODO Auto-generated method stub
 
 	}

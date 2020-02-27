@@ -28,7 +28,7 @@ public class PickUp implements Command {
 	/**
 	 * 
 	 */
-	public void doSomething(Player p1, String itemname) {
+	public void doSomething(String itemname) {
 		Room currentroom = p1.getCurrentRoom();
 		HashMap<String, Item> items = currentroom.getItemMap();
 		Item tograb = items.get(itemname);
@@ -38,6 +38,6 @@ public class PickUp implements Command {
 
 
 	@Override
-	public void doSomething(Player p1) {}
+	public void doSomething() {}
 
 }

@@ -17,6 +17,7 @@ public class Room {
 	
 	private HashMap<String,Room> directionMap = new HashMap<String,Room>();
 	private HashMap<String, Item> itemmap = new HashMap<String, Item>();
+	private Problem challenge;
 
     /**
      * A description of this room
@@ -27,8 +28,8 @@ public class Room {
      * Constructor.
      * @param description A String describing this room to the user.
      */
-    public Room(String description) { 
-    	
+    public Room(String description, Problem challenge) { 
+    	this.challenge = challenge;
     	this.description = description; }
     
     /**
@@ -76,6 +77,10 @@ public class Room {
     
     public void removeItem(String item) {
     	itemmap.remove(item);
+    }
+    
+    public Problem getProblem() {
+    	return challenge;
     }
 	
 }

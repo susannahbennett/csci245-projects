@@ -38,6 +38,7 @@ public class Parser {
         actions.put("use", new Use(p1));
         actions.put("pick up", new PickUp(p1));
         actions.put("map", new Map(p1));
+        actions.put("solve", new Solve(p1));
     }
 
     /**
@@ -69,7 +70,7 @@ public class Parser {
                 game.setCurrentRoom(nextRoom);
             	p1.setCurrentRoom(nextRoom);
         }else if(actions.containsKey(command)) {
-        	actions.get(command).doSomething(p1);
+        	actions.get(command).doSomething();
         }
         else
             System.out.println("I do not know how to " + command + ".");

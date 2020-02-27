@@ -21,12 +21,12 @@ public class Help implements Command {
 	/**
 	 * Method prints the list of possible commands
 	 */
-	public void doSomething(Player p1) {
+	public void doSomething() {
 		System.out.println("Available commands:\n help: gives a list of commands\nlook: describes the room");
 	}
 
 	@Override
-	public void doSomething(Player p1, String itemname) {
+	public void doSomething(String itemname) {
 		// TODO Auto-generated method stub
 		
 	}
