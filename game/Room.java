@@ -78,5 +78,9 @@ public class Room {
     public void removeItem(String item) {
     	itemmap.remove(item);
     }
+    
+    public Problem getProblem() {
+    	return challenge;
+    }
 	
 }
