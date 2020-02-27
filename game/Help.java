@@ -25,4 +25,10 @@ public class Help implements Command {
 		System.out.println("Available commands:\n help: gives a list of commands\nlook: describes the room");
 	}
 
+	@Override
+	public void doSomething(Player p1, String itemname) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
