@@ -1,7 +1,5 @@
-/**
- * 
- */
 package game;
+
 
 /**
  * Interface for all items in the game.

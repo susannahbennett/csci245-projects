@@ -28,16 +28,12 @@ public class PickUp implements Command {
 	/**
 	 * 
 	 */
-	public void doSomething(String itemname) {
-		Room currentroom = p1.getCurrentRoom();
-		HashMap<String, Item> items = currentroom.getItemMap();
-		Item tograb = items.get(itemname);
-		p1.addToInventory(itemname, tograb);
-
+	public void doSomething(String[] command) {
+		HashMap<String, Item> items = p1.getCurrentRoom().getItemMap();
+		if(items.containsKey(command[1]))
+			p1.addToInventory(command[1], items.get(command[1]));
+		else 
+			System.out.println("That item does not exist");
 	}
-
-
-	@Override
-	public void doSomething() {}
 
 }

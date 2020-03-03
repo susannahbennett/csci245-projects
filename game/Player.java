@@ -31,6 +31,12 @@ public class Player {
 		return inventory;
 	}
 	
+	public Item getItem(String itemname) {
+		return inventory.get(itemname);
+	}
+		
+		
+	
 	public Room getCurrentRoom() {
 		return currentRoom;
 	}

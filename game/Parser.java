@@ -36,9 +36,10 @@ public class Parser {
         actions.put("help", new Help(p1));
         actions.put("look", new Look(p1));
         actions.put("use", new Use(p1));
-        actions.put("pick up", new PickUp(p1));
+        actions.put("pickup", new PickUp(p1));
         actions.put("map", new Map(p1));
         actions.put("solve", new Solve(p1));
+        actions.put("read", new Read(p1));
     }
 
     /**
@@ -55,13 +56,14 @@ public class Parser {
 
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
+        String[] newcom = parseCommand(command);
 
 
-        if(room.getMap().containsKey(command)) {
+        if(room.getMap().containsKey(newcom[0])) {
 
             Room nextRoom;   // the room we're moving to
             
-            nextRoom = room.getDirection(command);
+            nextRoom = room.getDirection(newcom[0]);
           
             if (nextRoom == null) 
                 System.out.println("There is no door in that direction.");
@@ -69,12 +71,23 @@ public class Parser {
             	p1.updateMap(room.getDescription(), room);
                 game.setCurrentRoom(nextRoom);
             	p1.setCurrentRoom(nextRoom);
-        }else if(actions.containsKey(command)) {
-        	actions.get(command).doSomething();
-        }
+        }else if(actions.containsKey(newcom[0])) {
+        	actions.get(newcom[0]).doSomething(newcom);
+        }        	
         else
-            System.out.println("I do not know how to " + command + ".");
+            System.out.println("I do not know how to " + newcom[0] + ".");
 
+    }
+    
+    public String[] parseCommand(String command) {
+    	if(command.contains(" ")) {
+    		return command.split(" ");
+    	}else {
+    		String[] toreturn = {command};
+    		return toreturn;
+    	}
+    		
+    	
     }
 
 }

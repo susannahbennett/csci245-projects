@@ -16,8 +16,12 @@ import java.util.*;
 public class Room {
 	
 	private HashMap<String,Room> directionMap = new HashMap<String,Room>();
+
 	private HashMap<String, Item> itemmap = new HashMap<String, Item>();
+	
 	private Problem challenge;
+	
+	private boolean canmove;
 
     /**
      * A description of this room
@@ -30,7 +34,9 @@ public class Room {
      */
     public Room(String description, Problem challenge) { 
     	this.challenge = challenge;
-    	this.description = description; }
+    	this.description = description;
+    	canmove = false;
+    }
     
     /**
      * Methods for added "doors"-- directional connections to other rooms.
@@ -81,6 +87,10 @@ public class Room {
     
     public Problem getProblem() {
     	return challenge;
+    }
+    
+    public void problemSolved() {
+    	canmove = true;
     }
 	
 }

@@ -19,24 +19,16 @@ public class Solve implements Command {
 		this.p1 = p1;
 	}
 
-	/* (non-Javadoc)
-	 * @see game.Command#doSomething(game.Player)
-	 */
-	@Override
-	public void doSomething() {
-		
-
-	}
-
 	/**
 	 * 	 
 	 */
 	@Override
-	public void doSomething(String solution) {
+	public void doSomething(String[] command) {
 		Problem obstacle  = p1.getCurrentRoom().getProblem();
-		if(solution == obstacle.getSolution()) {
+		if(command[1].equals(obstacle.getSolution())) {
 			System.out.println("Good job! You solved the problem, you may now move");
-			obstacle.setSolved();
+			p1.getCurrentRoom().problemSolved();
+			
 		}else {
 			System.out.println("Try again");
 		}

@@ -16,7 +16,7 @@ public class Use implements Command {
 	}
 
 	@Override
-	public void doSomething() {
+	public void doSomething(String[] command) {
 		item = keyboard.nextLine().toLowerCase();
 		HashMap<String, Item> items = p1.getItemList();
 		if (!items.containsKey(item)) {
@@ -25,8 +25,5 @@ public class Use implements Command {
 		}
 		items.get(item).function(p1);
 	}
-
-	@Override
-	public void doSomething(String itemname) {}
 
 }
