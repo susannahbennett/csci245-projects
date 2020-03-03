@@ -13,6 +13,8 @@ public class Player {
 	
 	private Room currentRoom;
 	
+	private Room nextroom;
+	
 	private DynamicMap seenRooms;
 
 	/**
@@ -60,4 +62,14 @@ public class Player {
 	public Game getGame() {
 		return game;
 	}
+
+	public Room getNextRoom() {
+		return nextroom;
+	}
+
+	public void setNextRoom(Room nextroom) {
+		this.nextroom = nextroom;
+	}
+	
+	
 }

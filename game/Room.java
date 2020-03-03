@@ -22,6 +22,7 @@ public class Room {
 	private Problem challenge;
 	
 	private boolean canmove;
+	
 
     /**
      * A description of this room
@@ -33,7 +34,7 @@ public class Room {
      * @param description A String describing this room to the user.
      */
     public Room(String description, Problem challenge) { 
-    	this.challenge = challenge;
+    	this.challenge = new Riddle("use \"solve\" and \"pass\" to pass", "pass");
     	this.description = description;
     	canmove = false;
     }
@@ -91,6 +92,10 @@ public class Room {
     
     public void problemSolved() {
     	canmove = true;
+    }
+    
+    public boolean enterable() {
+    	return canmove;
     }
 	
 }

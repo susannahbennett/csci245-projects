@@ -25,6 +25,9 @@ public class Parser {
     private HashMap<String, Command> actions;
     
     private Player p1;
+    
+
+    
 
     /**
      * Plain constructor
@@ -56,38 +59,41 @@ public class Parser {
 
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
-        String[] newcom = parseCommand(command);
+        String[] parsedcom = parseCommand(command);
 
 
-        if(room.getMap().containsKey(newcom[0])) {
-
-            Room nextRoom;   // the room we're moving to
+        if(room.getMap().containsKey(parsedcom[0])) {
             
-            nextRoom = room.getDirection(newcom[0]);
-          
-            if (nextRoom == null) 
+        	p1.setNextRoom(room.getDirection(parsedcom[0]));
+        	Room nextroom = p1.getNextRoom();
+            
+        	if (nextroom == null) 
                 System.out.println("There is no door in that direction.");
-            else
+            else if(nextroom.enterable()) {
             	p1.updateMap(room.getDescription(), room);
-                game.setCurrentRoom(nextRoom);
-            	p1.setCurrentRoom(nextRoom);
-        }else if(actions.containsKey(newcom[0])) {
-        	actions.get(newcom[0]).doSomething(newcom);
-        }        	
+            	game.setCurrentRoom(nextroom);
+            	p1.setCurrentRoom(nextroom);
+            }else 
+            	System.out.println("You cannot move there yet");
+            	System.out.println("Running problem");
+        		nextroom.getProblem().runProblem();
+            	
+        }else if(actions.containsKey(parsedcom[0])) 
+        	actions.get(parsedcom[0]).doSomething(parsedcom);
+                	
         else
-            System.out.println("I do not know how to " + newcom[0] + ".");
+            System.out.println("I do not know how to " + parsedcom[0] + ".");
 
     }
     
     public String[] parseCommand(String command) {
-    	if(command.contains(" ")) {
-    		return command.split(" ");
-    	}else {
+    	if(!command.contains(" ")) {
     		String[] toreturn = {command};
     		return toreturn;
     	}
-    		
-    	
+    	return command.split(" ");	
     }
+    
+    
 
 }
