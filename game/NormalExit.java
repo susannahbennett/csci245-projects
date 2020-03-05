@@ -9,22 +9,14 @@ package game;
  */
 public class NormalExit implements Exit {
 
-	/**
-	 * 
-	 */
 	private Room nextroom;
 	
-	/**
-	 * 
-	 */
 	private boolean canuse = true;
 	
 	private Problem givenProblem;
 	
-	/**
-	 * 
-	 */
 	private Player p1;
+	
 	/**
 	 * @param nextroom
 	 */
@@ -63,7 +55,6 @@ public class NormalExit implements Exit {
 	 * 
 	 */
 	public void use(Player p1) {
-		
 		p1.setCurrentRoom(nextroom);
 		p1.getGame().setCurrentRoom(nextroom);
 		
