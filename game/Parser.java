@@ -39,6 +39,7 @@ public class Parser {
         actions.put("pick up", new PickUp(p1));
         actions.put("map", new Map(p1));
         actions.put("solve", new Solve(p1));
+        actions.put("travel",new Travel(p1));
     }
 
     /**
