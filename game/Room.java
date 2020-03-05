@@ -89,6 +89,7 @@ public class Room {
     public boolean enterable() {
     	return canmove;
     }
+<<<<<<< HEAD
     
     public void setEnterable(Boolean canEnter) {
     	canmove=canEnter;
@@ -97,5 +98,9 @@ public class Room {
     public void addItem(String str, Item item) {
     	itemmap.put(str, item);
     }
+=======
+   
+ 
+>>>>>>> b2441f8465af012e673e4dc65c9d3effe9b3536a
 	
 }

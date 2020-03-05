@@ -18,8 +18,20 @@ public class Message implements Item {
 		this.message = message;
 	}
 
-	
+	/**
+	 * 
+	 */
 	public void function(Player p1) {
 		System.out.println(message);
 	}
+
+
+	/**
+	 * 
+	 */
+	public void inspect(Player p1) {
+		 System.out.println("Nicholas Cage's fancy signature");
+	}
+	
+	
 }

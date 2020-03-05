@@ -47,12 +47,18 @@ public class NormalExit implements Exit {
 	 */
 	public void setCanUse() { canuse = !canuse; }
 	
+	/**
+	 * @return
+	 */
 	public Problem getProblem(){ return givenProblem; }
 
+	/**
+	 * @param a
+	 */
 	public void setCanUse(boolean a) { canuse = a; }
 	
 	/**
-	 * 
+	 * @param p1
 	 */
 	public void use(Player p1) {
 		p1.setCurrentRoom(nextroom);

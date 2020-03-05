@@ -38,7 +38,7 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-      
+
         
         Room[] rooms = new Room[5];
         for (int i = 0; i < rooms.length; i++)
@@ -53,13 +53,14 @@ public class Game {
         rooms[3].setExit("room 4", new NormalExit(rooms[4]));
         rooms[4].setExit("room 3", new NormalExit(rooms[3]));//from room 4 back to room 3
         rooms[4].setExit("to infinity and beyond", null);
+
         
         
         
         over = false;
         currentRoom = rooms[0];
         
- 
+
     }
     
     /**
