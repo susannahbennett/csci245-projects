@@ -51,8 +51,7 @@ public class Game {
         rooms[3].setExit("west", new NormalExit(rooms[4]));
         rooms[4].setExit("east", new NormalExit(rooms[3]));//from room 4 back to room 3
         rooms[4].setExit("to infinity and beyond", null);
-        
-        
+      
         
         over = false;
         currentRoom = rooms[0];
