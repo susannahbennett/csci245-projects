@@ -42,7 +42,7 @@ public class Parser {
         actions.put("pickup", new PickUp(p1));
         actions.put("map", new Map(p1));
         actions.put("solve", new Solve(p1));
-        //actions.put("travel",new Travel(p1));
+        actions.put("travel",new Travel(p1));
         actions.put("read", new Read(p1));
         actions.put("move", new Move(p1));
 
@@ -80,7 +80,13 @@ public class Parser {
      * @return String[] containing the words in the command separated by the first space
      */ 
     public String[] parse(String c) {
-    	String[] toreturn = {c.substring(0, c.indexOf(" ")), c.substring(c.indexOf(" ")+1, c.length())};
+    	String[] toreturn = new String[2];
+    	if(c.contains(" ")) {
+    	toreturn[0] = c.substring(0, c.indexOf(" "));
+    	toreturn[1]	=c.substring(c.indexOf(" ")+1, c.length());
+    	}else {
+    		toreturn[0] = c;
+    	}
     	return toreturn;
     }
     

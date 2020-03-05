@@ -6,8 +6,13 @@ package game;
 import java.util.HashMap;
 
 /**
- * @author stevenbarker
+ * Move.java
+ * 
+ * Move command that implements the Command interface.
+ * This class "moves" the player to a room and works with the exit links.
  *
+ * @author Steven Barker, Susannah Bennett, and Kali Grose
+ * Wheaton College, CS 245, Spring 2020
  */
 public class Move implements Command {
 
@@ -32,11 +37,19 @@ public class Move implements Command {
 		HashMap<String, Exit> map = r.getExitMap();
 		Exit link= map.get(command[1]);
 		
-		System.out.println("Commnand " + command[1]);
-		if(link != null)
+		
+		if(link != null) {
+			if(r.enterable()) {
+			p1.updateMap(r.getDescription(), r);
 			link.use(p1);
-		else
-			System.out.println("You cannot move there");
+			}else {
+				System.out.println("This room is locked.");
+				//we will have to have a problem here
+			}
+		}
+		else {
+			System.out.println("You cannot move there.");
+		}
 	}
 
 }

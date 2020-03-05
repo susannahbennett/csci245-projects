@@ -2,8 +2,13 @@ package game;
 import java.util.*;
 
 /**
- * @author stevenbarker
+ * Player.java
+ * 
+ * Player class that has a reference to the classes: Game, Room, and DynamicMap.
  *
+ * @author Steven Barker, Susannah Bennett, and Kali Grose
+ * Wheaton College, CS 245, Spring 2020
+ * 
  */
 public class Player {
 
@@ -50,6 +55,7 @@ public class Player {
 
 	public void setCurrentRoom(Room room) {
 		currentRoom = room;
+		
 	}
 	
 	public void updateMap (String str, Room room) {

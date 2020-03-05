@@ -15,8 +15,6 @@ public class PickUp implements Command {
 	 */
 	private Player p1;
 
-	
-
 	/**
 	 * @param p1
 	 * @param itemname
