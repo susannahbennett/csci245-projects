@@ -23,12 +23,6 @@ public class Room {
 	
 	private Problem challenge;
 	
-	private boolean canmove;
-	
-
-    /**
-     * A description of this room
-     */
     private String description;
 
     /**
@@ -38,16 +32,10 @@ public class Room {
     public Room(String description) { 
     	this.challenge = new Riddle("use \"solve\" and \"pass\" to pass", "pass");
     	this.description = description;
-    	canmove = false;
     }
     
     /**
-     * Methods for added "doors"-- dirnew Help(p1));
-        actions.put("look", new Look(p1));
-        actions.put("use", new Use(p1));
-        actions.put("pickup", new PickUp(p1));
-        actions.put("map", new Map(p1));
-        actions.put("solve", new Solve(p1));ectional connections to other rooms.
+     * Methods for added "doors"-- directional connections to other rooms.
      */
     public void setDirection(String str,Room room) { 
     	directionMap.put(str,room);
@@ -65,6 +53,10 @@ public class Room {
      */
 	public HashMap<String, Exit> getExitMap() {
 		return exitmap;
+	}
+	
+	public Exit getExit() {
+		return exitmap.get(description);
 	}
     /**
      * Retrieve a description of this room (to the user).
@@ -108,14 +100,5 @@ public class Room {
     public Problem getProblem() {
     	return challenge;
     }
-    
-    public void problemSolved() {
-    	canmove = true;
-    }
-    
-    public boolean enterable() {
-    	return canmove;
-    }
-    
 	
 }

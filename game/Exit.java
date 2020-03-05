@@ -16,7 +16,7 @@ public interface Exit {
 	
 	public boolean canUse();
 	
-	public void setCanUse(boolean a);
+	public void setCanUse();
 	
 	public void use(Player p1);
 	
