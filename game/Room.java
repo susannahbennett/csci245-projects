@@ -81,26 +81,11 @@ public class Room {
     public Problem getProblem() {
     	return challenge;
     }
-    
-    public void problemSolved() {
-    	canmove = true;
-    }
-    
-    public boolean enterable() {
-    	return canmove;
-    }
-<<<<<<< HEAD
-    
-    public void setEnterable(Boolean canEnter) {
-    	canmove=canEnter;
-    }
+   
     
     public void addItem(String str, Item item) {
     	itemmap.put(str, item);
     }
-=======
-   
- 
->>>>>>> b2441f8465af012e673e4dc65c9d3effe9b3536a
+
 	
 }
