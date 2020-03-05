@@ -36,4 +36,10 @@ public class DynamicMap implements Item{
 		
 	}
 
+	@Override
+	public void inspect(Player p1) {
+		System.out.println("Cool clues");
+		
+	}
+
 }
