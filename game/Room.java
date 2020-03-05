@@ -21,13 +21,8 @@ public class Room {
 	
 	private Problem challenge;
 	
-	private boolean canmove;
-	
-
-    /**
-     * A description of this room
-     */
     private String description;
+
 
     /**
      * Constructor.
@@ -36,10 +31,8 @@ public class Room {
     public Room(String description) { 
     	this.challenge = new Riddle("use \"solve\" and \"pass\" to pass", "pass");
     	this.description = description;
-    	canmove = true;
     }
-    
-    
+
     /**
      * Testing Exit idea
      */
@@ -52,6 +45,10 @@ public class Room {
      */
 	public HashMap<String, Exit> getExitMap() {
 		return exitmap;
+	}
+	
+	public Exit getExit() {
+		return exitmap.get(description);
 	}
     /**
      * Retrieve a description of this room (to the user).
@@ -81,11 +78,15 @@ public class Room {
     public Problem getProblem() {
     	return challenge;
     }
-   
-    
+
+    public void inspect() {
+    	System.out.println("This will do interesting functionality");
+    }
+
+
     public void addItem(String str, Item item) {
     	itemmap.put(str, item);
     }
 
-	
+
 }
