@@ -82,8 +82,10 @@ public class Room {
     	System.out.println("This will do interesting functionality");
     }
 
+
     public void addItem(String str, Item item) {
     	itemmap.put(str, item);
     }
+
 
 }
