@@ -38,24 +38,6 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-      
-    	/*
-    	Room[] rooms = new Room[4];
-        for (int i = 0; i < rooms.length; i++)
-            rooms[i] = new Room("room "+i);
-        rooms[0].setDirection("down",rooms[1]);
-        rooms[1].setDirection("up",rooms[0]);
-        rooms[1].setDirection("east",rooms[2]);
-        rooms[2].setDirection("west",rooms[1]);
-        rooms[2].setDirection("south",rooms[3]);
-        rooms[3].setDirection("north",rooms[2]);
-        rooms[3].setDirection("west",rooms[0]);
-        rooms[0].setDirection("east",rooms[3]);
-        over = false;
-        currentRoom = rooms[0];
-        
-        Room r1 = new Room("This is the first room");
-    	*/
         
         Room[] rooms = new Room[5];
         for (int i = 0; i < rooms.length; i++)
@@ -70,26 +52,11 @@ public class Game {
         rooms[4].setExit("east", new NormalExit(rooms[3]));//from room 4 back to room 3
         rooms[4].setExit("to infinity and beyond", null);
         
-        rooms[0].setDirection("down",rooms[1]);
-        rooms[1].setDirection("up",rooms[0]);
-        rooms[1].setDirection("east",rooms[2]);
-        rooms[2].setDirection("west",rooms[1]);
-        rooms[2].setDirection("south",rooms[3]);
-        rooms[3].setDirection("north",rooms[2]);
-        rooms[3].setDirection("west",rooms[4]);
-        rooms[4].setDirection("east", rooms[3]);
-        
-        rooms[0].setEnterable(false);
-        rooms[1].setEnterable(false);
-        rooms[2].setEnterable(false);
-        rooms[3].setEnterable(false);
-        rooms[4].setEnterable(false);
         
         
         over = false;
         currentRoom = rooms[0];
-        
-        Room r1 = new Room("This is the first room");
+     
     }
     
     /**

@@ -89,10 +89,7 @@ public class Room {
     public boolean enterable() {
     	return canmove;
     }
-    
-    public void setEnterable(Boolean canEnter) {
-    	canmove=canEnter;
-    }
-    
+   
+ 
 	
 }
