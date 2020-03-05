@@ -52,8 +52,7 @@ public class NormalExit implements Exit {
 	 * 
 	 */
 	public void use(Player p1) {
-		System.out.println(nextroom.getDescription());
-		System.out.println(p1.name);
+		
 		p1.setCurrentRoom(nextroom);
 		p1.getGame().setCurrentRoom(nextroom);
 	}

@@ -32,7 +32,7 @@ public class Move implements Command {
 		HashMap<String, Exit> map = r.getExitMap();
 		Exit link= map.get(command[1]);
 		
-		System.out.println("Commnand " + command[1]);
+		
 		if(link != null)
 			link.use(p1);
 		else
