@@ -38,53 +38,29 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-      
-    	/*
-    	Room[] rooms = new Room[4];
-        for (int i = 0; i < rooms.length; i++)
-            rooms[i] = new Room("room "+i);
-        rooms[0].setDirection("down",rooms[1]);
-        rooms[1].setDirection("up",rooms[0]);
-        rooms[1].setDirection("east",rooms[2]);
-        rooms[2].setDirection("west",rooms[1]);
-        rooms[2].setDirection("south",rooms[3]);
-        rooms[3].setDirection("north",rooms[2]);
-        rooms[3].setDirection("west",rooms[0]);
-        rooms[0].setDirection("east",rooms[3]);
-        over = false;
-        currentRoom = rooms[0];
-        
-        Room r1 = new Room("This is the first room");
-    	*/
+
         
         Room[] rooms = new Room[5];
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("room "+i);
-        rooms[0].setExit("down", new NormalExit(rooms[1]));
-        rooms[1].setExit("up", new NormalExit(rooms[0]));//from room 1 back to room 0
-        rooms[1].setExit("east", new NormalExit(rooms[2]));
-        rooms[2].setExit("west", new NormalExit(rooms[1]));//from room 2 back to room 1
-        rooms[1].setExit("south", new NormalExit(rooms[3]));
-        rooms[3].setExit("north", new NormalExit(rooms[1]));//from room 3 back to room 1
-        rooms[3].setExit("west", new NormalExit(rooms[4]));
-        rooms[4].setExit("east", new NormalExit(rooms[3]));//from room 4 back to room 3
+        rooms[0].setExit("room 1", new NormalExit(rooms[1]));
+        rooms[1].setExit("room 0", new NormalExit(rooms[0]));//from room 1 back to room 0
+        rooms[1].addItem("dynamic map",new DynamicMap());
+        rooms[1].setExit("room 2", new NormalExit(rooms[2]));
+        rooms[2].setExit("room 1", new NormalExit(rooms[1]));//from room 2 back to room 1
+        rooms[1].setExit("room 3", new NormalExit(rooms[3]));
+        rooms[3].setExit("room 2", new NormalExit(rooms[1]));//from room 3 back to room 1
+        rooms[3].setExit("room 4", new NormalExit(rooms[4]));
+        rooms[4].setExit("room 3", new NormalExit(rooms[3]));//from room 4 back to room 3
         rooms[4].setExit("to infinity and beyond", null);
-        
-        rooms[0].setDirection("down",rooms[1]);
-        rooms[1].setDirection("up",rooms[0]);
-        rooms[1].setDirection("east",rooms[2]);
-        rooms[2].setDirection("west",rooms[1]);
-        rooms[2].setDirection("south",rooms[3]);
-        rooms[3].setDirection("north",rooms[2]);
-        rooms[3].setDirection("west",rooms[4]);
-        rooms[4].setDirection("east", rooms[3]);
+
         
         
         
         over = false;
         currentRoom = rooms[0];
         
-        Room r1 = new Room("This is the first room");
+
     }
     
     /**

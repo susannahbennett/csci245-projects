@@ -39,11 +39,16 @@ public class Move implements Command {
 		
 		
 		if(link != null) {
+			if(r.enterable()) {
 			p1.updateMap(r.getDescription(), r);
 			link.use(p1);
+			}else {
+				System.out.println("This room is locked.");
+				//we will have to have a problem here
+			}
 		}
 		else {
-			System.out.println("You cannot move there");
+			System.out.println("You cannot move there.");
 		}
 	}
 

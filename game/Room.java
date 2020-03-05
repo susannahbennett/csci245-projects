@@ -16,14 +16,13 @@ import java.util.*;
 public class Room {
 	
 	private HashMap<String, Exit> exitmap = new HashMap<>();
-	
-	private HashMap<String,Room> directionMap = new HashMap<String,Room>();
 
 	private HashMap<String, Item> itemmap = new HashMap<String, Item>();
 	
 	private Problem challenge;
 	
     private String description;
+
 
     /**
      * Constructor.
@@ -33,14 +32,7 @@ public class Room {
     	this.challenge = new Riddle("use \"solve\" and \"pass\" to pass", "pass");
     	this.description = description;
     }
-    
-    /**
-     * Methods for added "doors"-- directional connections to other rooms.
-     */
-    public void setDirection(String str,Room room) { 
-    	directionMap.put(str,room);
-    }
-    
+
     /**
      * Testing Exit idea
      */
@@ -64,24 +56,10 @@ public class Room {
     public String getDescription() { return description; }
     
     /**
-     * Methods to determine the rooms to which various
-     * doors-- if they exist-- lead.
-     */
-    public Room getDirection(String str) { return directionMap.get(str); }
-    
-    /**
      * Method to add a key to the item inventory
      */
     public void addKey() {
     	itemmap.put("key", new Key());
-    }
-    
-    /**
-     * Method to retrieve direction map
-     * @return the map containing the available directions
-     */
-    public HashMap<String, Room> getMap(){
-    	return directionMap;
     }
     
     /**
@@ -100,5 +78,9 @@ public class Room {
     public Problem getProblem() {
     	return challenge;
     }
-	
+
+    public void addItem(String str, Item item) {
+    	itemmap.put(str, item);
+    }
+
 }

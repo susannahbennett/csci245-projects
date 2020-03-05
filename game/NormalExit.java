@@ -41,7 +41,7 @@ public class NormalExit implements Exit {
 	 */
 	public Problem getProblem(){ return null; }
 	/**
-	 * Moves the player to room after the exit (always unlocked)
+	 * @param p1
 	 */
 	public void use(Player p1) {
 		p1.setCurrentRoom(nextRoom);
