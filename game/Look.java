@@ -3,6 +3,7 @@
  */
 package game;
 
+import java.util.HashMap;
 import java.util.Iterator;
 
 /**
@@ -26,11 +27,12 @@ public class Look implements Command {
 	 */
 	public void doSomething(String[] command) {
 		Room room = p1.getCurrentRoom();
+		HashMap<String, Exit> exitmap = room.getExitMap();
 		
-		Iterator<String> i = room.getMap().keySet().iterator();
+		Iterator<String> i = room.getExitMap().keySet().iterator();
 		System.out.println("Surrounding rooms: ");
 		while (i.hasNext()) {
-			System.out.println(i.next());
+			System.out.println(exitmap.get(i.next()).destination().getDescription());
 		}
 		Iterator<String> j = room.getItemMap().keySet().iterator();
 		System.out.println("Available items: ");

@@ -16,8 +16,6 @@ import java.util.*;
 public class Room {
 	
 	private HashMap<String, Exit> exitmap = new HashMap<>();
-	
-	private HashMap<String,Room> directionMap = new HashMap<String,Room>();
 
 	private HashMap<String, Item> itemmap = new HashMap<String, Item>();
 	
@@ -41,17 +39,6 @@ public class Room {
     	canmove = false;
     }
     
-    /**
-     * Methods for added "doors"-- dirnew Help(p1));
-        actions.put("look", new Look(p1));
-        actions.put("use", new Use(p1));
-        actions.put("pickup", new PickUp(p1));
-        actions.put("map", new Map(p1));
-        actions.put("solve", new Solve(p1));ectional connections to other rooms.
-     */
-    public void setDirection(String str,Room room) { 
-    	directionMap.put(str,room);
-    }
     
     /**
      * Testing Exit idea
@@ -72,24 +59,10 @@ public class Room {
     public String getDescription() { return description; }
     
     /**
-     * Methods to determine the rooms to which various
-     * doors-- if they exist-- lead.
-     */
-    public Room getDirection(String str) { return directionMap.get(str); }
-    
-    /**
      * Method to add a key to the item inventory
      */
     public void addKey() {
     	itemmap.put("key", new Key());
-    }
-    
-    /**
-     * Method to retrieve direction map
-     * @return the map containing the available directions
-     */
-    public HashMap<String, Room> getMap(){
-    	return directionMap;
     }
     
     /**
