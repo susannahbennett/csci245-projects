@@ -15,4 +15,6 @@ public interface Exit {
 	
 	public void setCanUse();
 	
+	public Problem getProblem();
+	
 }

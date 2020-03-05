@@ -19,10 +19,15 @@ public class NormalExit implements Exit {
 	 */
 	private boolean canuse = true;
 	
+	private Problem givenProblem;
+	
 	/**
 	 * @param nextroom
 	 */
-	public NormalExit(Room nextroom) { this.nextroom = nextroom; }
+	public NormalExit(Room nextroom, Problem givenProblem) { 
+		this.nextroom = nextroom;
+		this.givenProblem = givenProblem;
+		}
 
 	/** 
 	 * @return 
@@ -40,5 +45,7 @@ public class NormalExit implements Exit {
 	 * 
 	 */
 	public void setCanUse() { canuse = !canuse; }
+	
+	public Problem getProblem(){ return givenProblem; }
 
 }

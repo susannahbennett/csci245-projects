@@ -51,8 +51,6 @@ public class Game {
         rooms[0].setDirection("east",rooms[3]);
         over = false;
         currentRoom = rooms[0];
-        
-        Room r1 = new Room("This is the first room");
     }
     
     /**
