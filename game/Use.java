@@ -17,13 +17,15 @@ public class Use implements Command {
 
 	@Override
 	public void doSomething(String[] command) {
-		item = keyboard.nextLine().toLowerCase();
+		//item = keyboard.nextLine().toLowerCase();
 		HashMap<String, Item> items = p1.getItemList();
 		if (!items.containsKey(command[1])) {
 			System.out.println("Inventory does not contain this item");
 			return;
 		}
-		items.get(item).function(p1);
+		System.out.println("contains item");
+		Item itemFunction = items.get(command[1]);
+		itemFunction.function(p1);
 	}
 
 }

@@ -45,6 +45,7 @@ public class Parser {
         actions.put("travel",new Travel(p1));
         actions.put("read", new Read(p1));
         actions.put("move", new Move(p1));
+        //actions.put("inspect", new Inspect(p1));
 
     }
 

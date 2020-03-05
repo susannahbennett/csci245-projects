@@ -28,14 +28,19 @@ public class Travel implements Command {
 
 	@Override
 	public void doSomething(String[] command) {
-		HashMap<String, Room> seenRooms = p1.returnDMap().returnMap();
-		if(seenRooms.containsKey(command[1])) {
-			Room nextRoom = seenRooms.get(command[1]);
-			game.setCurrentRoom(nextRoom);
-			p1.setCurrentRoom(nextRoom);
+		
+		if(p1.getItemList().containsKey("dynamic map")) {
+			HashMap<String, Room> seenRooms = p1.returnDMap().returnMap();
+			if(seenRooms.containsKey(command[1])) {
+				Room nextRoom = seenRooms.get(command[1]);
+				game.setCurrentRoom(nextRoom);
+				p1.setCurrentRoom(nextRoom);
+			}else {
+				System.out.println("Not an accessible room");
+				return;
+			}
 		}else {
-			System.out.println("Not an accessible room");
-			return;
+			System.out.println("I do not know how to travel without a Map.");
 		}
 	}
 

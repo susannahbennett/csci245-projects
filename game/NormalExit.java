@@ -4,59 +4,48 @@
 package game;
 
 /**
- * @author stevenbarker
+ * Class representing the normal way (always unlocked) to exit a room
  *
  */
 public class NormalExit implements Exit {
-
-	private Room nextroom;
-	
-	private boolean canuse = true;
-	
-	private Problem givenProblem;
-	
-	private Player p1;
-	
 	/**
-	 * @param nextroom
+	 * Holds the reference to the room behind the exit
 	 */
-	public NormalExit(Room nextroom, Problem givenProblem) { 
-		this.nextroom = nextroom;
-		this.givenProblem = givenProblem;
-	}
-	
+	private Room nextRoom;
+	/**
+	 * Indicates whether the room has been unlocked yet
+	 */
+	private boolean canUse = true;
+
+	/**
+	 * Constructor
+	 * @param nextroom The room after the exit
+	 */
 	public NormalExit(Room nextroom) { 
-		this.nextroom = nextroom; 
-		//this.p1 = p1;
+		this.nextRoom = nextroom; 
 	}
-
-	/** 
-	 * @return 
-	 */
-	@Override
-	public Room destination() { return nextroom; }
-
 	/**
-	 * @return 
+	 * Returns the room after the exit
 	 */
-	@Override
-	public boolean canUse() { return canuse; }
-	
+	public Room destination() { return nextRoom; }
 	/**
-	 * 
+	 * Returns whether the door has been unlocked
 	 */
-	public void setCanUse() { canuse = !canuse; }
-	
-	public Problem getProblem(){ return givenProblem; }
-
-	public void setCanUse(boolean a) { canuse = a; }
-	
+	public boolean canUse() { return canUse; }
 	/**
-	 * 
+	 * Changes door to unlocked
+	 */
+	public void setCanUse() { canUse = true; }
+	/**
+	 * Returns the problem associated with the exit
+	 */
+	public Problem getProblem(){ return null; }
+	/**
+	 * @param p1
 	 */
 	public void use(Player p1) {
-		p1.setCurrentRoom(nextroom);
-		p1.getGame().setCurrentRoom(nextroom);
+		p1.setCurrentRoom(nextRoom);
+		p1.getGame().setCurrentRoom(nextRoom);
 		
 	}
 }
