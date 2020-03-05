@@ -6,8 +6,13 @@ package game;
 import java.util.HashMap;
 
 /**
- * @author stevenbarker
+ * Move.java
+ * 
+ * Move command that implements the Command interface.
+ * This class "moves" the player to a room and works with the exit links.
  *
+ * @author Steven Barker, Susannah Bennett, and Kali Grose
+ * Wheaton College, CS 245, Spring 2020
  */
 public class Move implements Command {
 
