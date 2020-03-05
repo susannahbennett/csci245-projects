@@ -12,10 +12,10 @@ public class Player {
 	private HashMap<String, Item> inventory;
 	
 	private Room currentRoom;
-	
-	private Room nextroom;
-	
+		
 	private DynamicMap seenRooms;
+	
+	public String name;
 
 	/**
 	 * @param game
@@ -27,6 +27,7 @@ public class Player {
 		this.inventory = inventory;
 		this.currentRoom = currentRoom;
 		this.seenRooms = seenRooms;
+		name = "Eric";
 	}
 	
 	public HashMap<String, Item>  getItemList () {
@@ -62,14 +63,6 @@ public class Player {
 	
 	public Game getGame() {
 		return game;
-	}
-
-	public Room getNextRoom() {
-		return nextroom;
-	}
-
-	public void setNextRoom(Room nextroom) {
-		this.nextroom = nextroom;
 	}
 	
 	

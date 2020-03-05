@@ -15,7 +15,7 @@ import java.util.*;
 
 public class Room {
 	
-	private HashMap<String, Exit> linkmap = new HashMap<>();
+	private HashMap<String, Exit> exitmap = new HashMap<>();
 	
 	private HashMap<String,Room> directionMap = new HashMap<String,Room>();
 
@@ -42,7 +42,12 @@ public class Room {
     }
     
     /**
-     * Methods for added "doors"-- directional connections to other rooms.
+     * Methods for added "doors"-- dirnew Help(p1));
+        actions.put("look", new Look(p1));
+        actions.put("use", new Use(p1));
+        actions.put("pickup", new PickUp(p1));
+        actions.put("map", new Map(p1));
+        actions.put("solve", new Solve(p1));ectional connections to other rooms.
      */
     public void setDirection(String str,Room room) { 
     	directionMap.put(str,room);
@@ -51,10 +56,16 @@ public class Room {
     /**
      * Testing Exit idea
      */
-    public void setLink(String str, Exit e) {
-    	linkmap.put(str, e);
+    public void setExit(String str, Exit e) {
+    	exitmap.put(str, e);
     }
-	
+    
+    /**
+     * 
+     */
+	public HashMap<String, Exit> getExitMap() {
+		return exitmap;
+	}
     /**
      * Retrieve a description of this room (to the user).
      */
