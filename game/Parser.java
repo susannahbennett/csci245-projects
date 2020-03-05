@@ -24,7 +24,7 @@ public class Parser {
     
     private HashMap<String, Command> actions;
     
-    public static Player p1;
+    private Player p1;
     
 
     
@@ -42,8 +42,10 @@ public class Parser {
         actions.put("pickup", new PickUp(p1));
         actions.put("map", new Map(p1));
         actions.put("solve", new Solve(p1));
+        //actions.put("travel",new Travel(p1));
         actions.put("read", new Read(p1));
         actions.put("move", new Move(p1));
+
     }
 
     /**
