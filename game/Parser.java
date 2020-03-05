@@ -86,6 +86,13 @@ public class Parser {
 
     }
     
+    
+    /**
+     * Parses the command to a usable String[] to do different operation on each word in the command.
+     * Commands will always either be one or two words.
+     * @param command The command given
+     * @return String[] containing the words in the command separated by spaces
+     */
     public String[] parseCommand(String command) {
     	if(!command.contains(" ")) {
     		String[] toreturn = {command};
