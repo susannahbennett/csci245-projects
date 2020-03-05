@@ -22,8 +22,6 @@ public class Help implements Command {
 	 * Method prints the list of possible commands
 	 */
 	public void doSomething(String[] command) {
-		System.out.println("Available commands:\n help: gives a list of commands\nlook: describes the room");
+		System.out.println("Available commands:\n help: gives a list of commands\n look: describes the room\n use: use the item for its intended function\n map: display the rooms that have already been traversed by player\n pickup: get specified object from room");
 	}
-
-
 }

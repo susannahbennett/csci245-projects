@@ -18,4 +18,6 @@ public interface Exit {
 	public void use(Player p1);
 	
 	
+	public Problem getProblem();
+	
 }

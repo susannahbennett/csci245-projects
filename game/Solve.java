@@ -8,7 +8,6 @@ package game;
  *
  */
 public class Solve implements Command {
-
 	
 	private Player p1;
 	
@@ -22,9 +21,10 @@ public class Solve implements Command {
 	/**
 	 * 	 
 	 */
-	@Override
 	public void doSomething(String[] command) {
-		
+		if (command[1].equals(nextexit().getProblem().getSolution())) {
+			
+		}
 	}
 
 }
