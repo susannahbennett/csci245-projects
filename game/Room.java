@@ -36,7 +36,7 @@ public class Room {
     public Room(String description) { 
     	this.challenge = new Riddle("use \"solve\" and \"pass\" to pass", "pass");
     	this.description = description;
-    	canmove = false;
+    	canmove = true;
     }
     
     
@@ -94,5 +94,8 @@ public class Room {
     	canmove=canEnter;
     }
     
+    public void addItem(String str, Item item) {
+    	itemmap.put(str, item);
+    }
 	
 }
