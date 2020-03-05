@@ -117,5 +117,9 @@ public class Room {
     	return canmove;
     }
     
+    public void setEnterable(Boolean canEnter) {
+    	canmove=canEnter;
+    }
+    
 	
 }
