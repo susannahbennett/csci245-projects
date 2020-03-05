@@ -50,6 +50,7 @@ public class Player {
 
 	public void setCurrentRoom(Room room) {
 		currentRoom = room;
+		
 	}
 	
 	public void updateMap (String str, Room room) {
