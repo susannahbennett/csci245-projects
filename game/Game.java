@@ -79,8 +79,8 @@ public class Game {
         rooms[3].setDirection("west",rooms[4]);
         rooms[4].setDirection("east", rooms[3]);
         
-        rooms[0].setEnterable(false);
-        rooms[1].setEnterable(false);
+       // rooms[0].setEnterable(false);
+       // rooms[1].setEnterable(false);
         rooms[2].setEnterable(false);
         rooms[3].setEnterable(false);
         rooms[4].setEnterable(false);
