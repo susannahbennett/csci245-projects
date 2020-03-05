@@ -21,7 +21,7 @@ public class Room {
 
 	private HashMap<String, Item> itemmap = new HashMap<String, Item>();
 	
-	private Problem challenge;
+	private Problem roomchallenge;
 	
 	private boolean canmove;
 	
@@ -36,7 +36,7 @@ public class Room {
      * @param description A String describing this room to the user.
      */
     public Room(String description) { 
-    	this.challenge = new Riddle("use \"solve\" and \"pass\" to pass", "pass");
+    	this.roomchallenge = new Riddle("use \"solve\" and \"pass\" to pass", "pass");
     	this.description = description;
     	canmove = false;
     }
@@ -106,7 +106,7 @@ public class Room {
     }
     
     public Problem getProblem() {
-    	return challenge;
+    	return roomchallenge;
     }
     
     public void problemSolved() {
@@ -117,7 +117,7 @@ public class Room {
     	return canmove;
     }
     
-    public void setEnterable(Boolean canEnter) {
+    public void setEnterable(boolean canEnter) {
     	canmove=canEnter;
     }
     

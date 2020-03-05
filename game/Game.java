@@ -56,7 +56,12 @@ public class Game {
         
         Room r1 = new Room("This is the first room");
     	*/
-        
+    	final String ANSI_RESET = "\u001B[0m";
+    	final String ANSI_RED = "\u001B[31m";
+    	
+    	
+    	
+    	System.out.println(ANSI_RED + "This text is red!" + ANSI_RESET);
         Room[] rooms = new Room[5];
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("room "+i);
