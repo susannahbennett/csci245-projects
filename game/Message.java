@@ -29,8 +29,8 @@ public class Message implements Item {
 	/**
 	 * 
 	 */
-	public String getInspection() {
-		return "Nicholas Cage's fancy signature";
+	public void inspect(Player p1) {
+		 System.out.println("Nicholas Cage's fancy signature");
 	}
 	
 	

@@ -9,5 +9,5 @@ public interface Item {
 
 	public void function(Player p1);
 
-	public String getInspection();
+	public void inspect(Player p1);
 }

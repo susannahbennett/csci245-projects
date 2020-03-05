@@ -18,8 +18,8 @@ public class Key implements Item {
 	
 	}
 	
-	public String getInspection() {
-		return "This is what you get when you inspect this key";
+	public void inspect(Player p1) {
+		System.out.println("This is what you get when you inspect this key");
 	}
 
 }

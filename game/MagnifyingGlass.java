@@ -23,9 +23,8 @@ public class MagnifyingGlass implements Item {
 
 	}
 	
-	public String getInspection() {
+	public void inspect(Player p1) {
 		System.out.println("You are using the magnifying glass... to inspect the magnifying glass");
-		return "...";
 	}
 
 }
