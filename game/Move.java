@@ -38,10 +38,13 @@ public class Move implements Command {
 		Exit link= map.get(command[1]);
 		
 		
-		if(link != null)
+		if(link != null) {
+			p1.updateMap(r.getDescription(), r);
 			link.use(p1);
-		else
+		}
+		else {
 			System.out.println("You cannot move there");
+		}
 	}
 
 }
