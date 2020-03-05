@@ -3,17 +3,22 @@
  */
 package game;
 
+import java.util.Iterator;
+
 /**
  * @author kaligrose
  *
  */
 public class CheckBag implements Command {
 
+	private Player p1;
+
+	
 	/**
 	 * 
 	 */
-	public CheckBag() {
-		// TODO Auto-generated constructor stub
+	public CheckBag(Player p1) {
+		this.p1 = p1;
 	}
 
 	/* (non-Javadoc)
@@ -21,7 +26,12 @@ public class CheckBag implements Command {
 	 */
 	@Override
 	public void doSomething(String[] command) {
-		// TODO Auto-generated method stub
+		Iterator<String> i = p1.getItemList().keySet().iterator();
+		System.out.println("Your Inventory:");
+		while(i.hasNext()) {
+			System.out.println(Game.BLUE + i.next() + Game.RESET);
+		}
+		
 
 	}
 

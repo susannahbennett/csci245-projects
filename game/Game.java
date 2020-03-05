@@ -23,6 +23,11 @@ public class Game {
      * the state by representing the user's current location.
      */
     private Room currentRoom;
+    
+    public static final String RED = "\u001B[31m";
+	public static final String RESET = "\u001B[0m";
+	public static final String BLUE = "\u001B[34m";
+	public static final String GREEN = "\u001B[32m";
 
     /**
      * Keeps track of whether this game is over or not.
@@ -41,8 +46,11 @@ public class Game {
 
       
     	
-    	final String RESET = "\u001B[0m";
     	final String RED = "\u001B[31m";
+    	final String RESET = "\u001B[0m";
+    	final String BLUE = "\u001B[34m";
+    	
+    	
     	
     
         Room[] rooms = new Room[5];
