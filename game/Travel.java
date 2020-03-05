@@ -56,4 +56,10 @@ public class Travel implements Command {
 
 	}
 
+	@Override
+	public void doSomething(String[] command) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }

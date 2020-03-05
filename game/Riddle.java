@@ -3,7 +3,6 @@
  */
 package game;
 
-import java.util.*;
 
 /**
  * @author stevenbarker
@@ -37,25 +36,17 @@ public class Riddle implements Problem {
 	 * @see game.Problem#obstruct()
 	 */
 	@Override
-	public void runProblem() {
-		System.out.println(riddle);
+	public void runProblem() { System.out.println(riddle); }
 		
-		
-	}
 
 	@Override
-	public boolean isSolved() {
-		return solved;
-	}
+	public boolean isSolved() { return solved; }
+		
 	
 	@Override
-	public void setSolved() {
-		solved = true;
-	}
+	public void setSolved() { solved = true; }
 	
 	@Override
-	public String getSolution() {
-		return solution;
-	}
+	public String getSolution() { return solution; }
 
 }

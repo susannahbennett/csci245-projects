@@ -9,8 +9,7 @@ package game;
  */
 public interface Command { 
 	
-	public void doSomething();
 	
-	public void doSomething(String itemname);
+	public void doSomething(String[] command);
 	
 }

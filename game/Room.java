@@ -15,9 +15,16 @@ import java.util.*;
 
 public class Room {
 	
+	private HashMap<String, Exit> linkmap = new HashMap<>();
+	
 	private HashMap<String,Room> directionMap = new HashMap<String,Room>();
+
 	private HashMap<String, Item> itemmap = new HashMap<String, Item>();
+	
 	private Problem challenge;
+	
+	private boolean canmove;
+	
 
     /**
      * A description of this room
@@ -28,9 +35,11 @@ public class Room {
      * Constructor.
      * @param description A String describing this room to the user.
      */
-    public Room(String description, Problem challenge) { 
-    	this.challenge = challenge;
-    	this.description = description; }
+    public Room(String description) { 
+    	this.challenge = new Riddle("use \"solve\" and \"pass\" to pass", "pass");
+    	this.description = description;
+    	canmove = false;
+    }
     
     /**
      * Methods for added "doors"-- directional connections to other rooms.
@@ -38,7 +47,13 @@ public class Room {
     public void setDirection(String str,Room room) { 
     	directionMap.put(str,room);
     }
-   
+    
+    /**
+     * Testing Exit idea
+     */
+    public void setLink(String str, Exit e) {
+    	linkmap.put(str, e);
+    }
 	
     /**
      * Retrieve a description of this room (to the user).
@@ -82,5 +97,14 @@ public class Room {
     public Problem getProblem() {
     	return challenge;
     }
+    
+    public void problemSolved() {
+    	canmove = true;
+    }
+    
+    public boolean enterable() {
+    	return canmove;
+    }
+    
 	
 }

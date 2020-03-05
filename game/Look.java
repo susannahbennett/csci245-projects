@@ -24,7 +24,7 @@ public class Look implements Command {
 	 * Method to find available doors and items in the room.
 	 * @param p1, the player 
 	 */
-	public void doSomething() {
+	public void doSomething(String[] command) {
 		Room room = p1.getCurrentRoom();
 		
 		Iterator<String> i = room.getMap().keySet().iterator();
@@ -37,12 +37,6 @@ public class Look implements Command {
 		while (j.hasNext()) {
 			System.out.println(j.next());
 		}
-	}
-	
-	@Override
-	public void doSomething(String itemname) {
-		// TODO Auto-generated method stub
-		
 	}
 
 }

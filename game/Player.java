@@ -13,6 +13,8 @@ public class Player {
 	
 	private Room currentRoom;
 	
+	private Room nextroom;
+	
 	private DynamicMap seenRooms;
 
 	/**
@@ -30,6 +32,12 @@ public class Player {
 	public HashMap<String, Item>  getItemList () {
 		return inventory;
 	}
+	
+	public Item getItem(String itemname) {
+		return inventory.get(itemname);
+	}
+		
+		
 	
 	public Room getCurrentRoom() {
 		return currentRoom;
@@ -54,4 +62,14 @@ public class Player {
 	public Game getGame() {
 		return game;
 	}
+
+	public Room getNextRoom() {
+		return nextroom;
+	}
+
+	public void setNextRoom(Room nextroom) {
+		this.nextroom = nextroom;
+	}
+	
+	
 }
