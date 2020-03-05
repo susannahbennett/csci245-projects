@@ -79,6 +79,10 @@ public class Room {
     	return challenge;
     }
 
+    public void inspect() {
+    	System.out.println("This will do interesting functionality");
+    }
+
     public void addItem(String str, Item item) {
     	itemmap.put(str, item);
     }
