@@ -89,6 +89,10 @@ public class Room {
     public boolean enterable() {
     	return canmove;
     }
+    
+    public void inspect() {
+    	System.out.println("This will do interesting functionality");
+    }
    
  
 	
