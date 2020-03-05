@@ -24,7 +24,7 @@ public class Parser {
     
     private HashMap<String, Command> actions;
     
-    private Player p1;
+    public static Player p1;
     
 
     
@@ -43,6 +43,7 @@ public class Parser {
         actions.put("map", new Map(p1));
         actions.put("solve", new Solve(p1));
         actions.put("read", new Read(p1));
+        actions.put("move", new Move(p1));
     }
 
     /**
@@ -59,26 +60,9 @@ public class Parser {
 
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
-        String[] parsedcom = parseCommand(command);
+        String[] parsedcom = parse(command);
 
-
-        if(room.getMap().containsKey(parsedcom[0])) {
-            
-        	p1.setNextRoom(room.getDirection(parsedcom[0]));
-        	Room nextroom = p1.getNextRoom();
-            
-        	if (nextroom == null) 
-                System.out.println("There is no door in that direction.");
-            else if(nextroom.enterable()) {
-            	p1.updateMap(room.getDescription(), room);
-            	game.setCurrentRoom(nextroom);
-            	p1.setCurrentRoom(nextroom);
-            }else 
-            	System.out.println("You cannot move there yet");
-            	System.out.println("Running problem");
-        		nextroom.getProblem().runProblem();
-            	
-        }else if(actions.containsKey(parsedcom[0])) 
+        if(actions.containsKey(parsedcom[0])) 
         	actions.get(parsedcom[0]).doSomething(parsedcom);
                 	
         else
@@ -91,14 +75,11 @@ public class Parser {
      * Parses the command to a usable String[] to do different operation on each word in the command.
      * Commands will always either be one or two words.
      * @param command The command given
-     * @return String[] containing the words in the command separated by spaces
-     */
-    public String[] parseCommand(String command) {
-    	if(!command.contains(" ")) {
-    		String[] toreturn = {command};
-    		return toreturn;
-    	}
-    	return command.split(" ");	
+     * @return String[] containing the words in the command separated by the first space
+     */ 
+    public String[] parse(String c) {
+    	String[] toreturn = {c.substring(0, c.indexOf(" ")), c.substring(c.indexOf(" ")+1, c.length())};
+    	return toreturn;
     }
     
     
