@@ -19,7 +19,7 @@ public class Use implements Command {
 	public void doSomething(String[] command) {
 		item = keyboard.nextLine().toLowerCase();
 		HashMap<String, Item> items = p1.getItemList();
-		if (!items.containsKey(item)) {
+		if (!items.containsKey(command[1])) {
 			System.out.println("Inventory does not contain this item");
 			return;
 		}
