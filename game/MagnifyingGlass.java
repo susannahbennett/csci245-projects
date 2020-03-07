@@ -24,7 +24,7 @@ public class MagnifyingGlass implements Item {
 	}
 	
 	public void inspect(Player p1) {
-		System.out.println("You are using the magnifying glass... to inspect the magnifying glass");
+		System.out.println("You are using the" + Game.BLUE + "magnifying glass" + Game.RESET + "to inspect the" + Game.BLUE + "magnifying glass" + Game.RESET);
 	}
 
 }

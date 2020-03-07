@@ -7,13 +7,15 @@ package game;
 public class Key implements Item {
 
 	
+	
+	
 	/**
-	 * 
+	 * @param name
 	 */
 	public Key() {
 		
 	}
-	
+
 	public void function(Player p1) {
 	
 	}
@@ -21,5 +23,6 @@ public class Key implements Item {
 	public void inspect(Player p1) {
 		System.out.println("This is what you get when you inspect this key");
 	}
+
 
 }

@@ -24,10 +24,10 @@ public class Game {
      */
     private Room currentRoom;
     
-    public static final String RED = "\u001B[31m";
-	public static final String RESET = "\u001B[0m";
-	public static final String BLUE = "\u001B[34m";
-	public static final String GREEN = "\u001B[32m";
+    public static final String RED = "\u001B[31m";//For dangers or maybe something else?
+	public static final String RESET = "\u001B[0m";//To reset
+	public static final String BLUE = "\u001B[34m";//For items
+	public static final String GREEN = "\u001B[32m";//For movable places in descriptions/look texts
 
     /**
      * Keeps track of whether this game is over or not.
@@ -43,16 +43,7 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-
-      
     	
-    	final String RED = "\u001B[31m";
-    	final String RESET = "\u001B[0m";
-    	final String BLUE = "\u001B[34m";
-    	
-    	
-    	
-    
         Room[] rooms = new Room[5];
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("room "+i);
