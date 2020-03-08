@@ -56,16 +56,17 @@ public class LockedDoorExit implements Exit {
 	@Override
 	public void use(Player p1) {
 		if(p1.getItemList().containsValue(key)) {
-			System.out.println("You have unlocked the door");
+			System.out.println("You have unlocked the door with the key");
 			p1.setCurrentRoom(nextroom);
 			p1.getGame().setCurrentRoom(nextroom);
-		}
+		}else
+			System.out.println("You do not have the right key");
 
 	}
 
 	@Override
 	public Problem getProblem() {
-		// TODO Auto-generated method stub
+		
 		return null;
 	}
 

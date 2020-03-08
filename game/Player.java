@@ -35,38 +35,56 @@ public class Player {
 		name = "Eric";
 	}
 	
-	public HashMap<String, Item>  getItemList () {
-		return inventory;
-	}
+	/**
+	 * 
+	 * @return
+	 */
+	public HashMap<String, Item>  getItemList () { return inventory; }
 	
-	public Item getItem(String itemname) {
-		return inventory.get(itemname);
-	}
+	/**
+	 * 
+	 * @param itemname
+	 * @return
+	 */
+	public Item getItem(String itemname) { return inventory.get(itemname);	}
 	
-	public Room getCurrentRoom() {
-		return currentRoom;
-	}
+	/**
+	 * 
+	 * @return
+	 */
+	public Room getCurrentRoom() { return currentRoom; }
 	
-	public void addToInventory(String name, Item item) {
-		inventory.put(name, item);
-	}
-
-	public void setCurrentRoom(Room room) {
-		currentRoom = room;
-		
-	}
+	/**
+	 * 
+	 * @param name
+	 * @param item
+	 */
+	public void addToInventory(String name, Item item) { inventory.put(name, item); }
 	
-	public void updateMap (String str, Room room) {
-		seenRooms.returnMap().put(str, room);
-	}
+	/**
+	 * 
+	 * @param room
+	 */
+	public void setCurrentRoom(Room room) { currentRoom = room;	}
 	
-	public DynamicMap returnDMap() {
-		return seenRooms;
-	}
+	/**
+	 * 
+	 * @param str
+	 * @param room
+	 */
+	public void updateMap (String str, Room room) {	seenRooms.returnMap().put(str, room); }
 	
-	public Game getGame() {
-		return game;
-	}
+	/**
+	 * 
+	 * @return
+	 */
+	public DynamicMap returnDMap() { return seenRooms; }
+	
+	/**
+	 * 
+	 * @return
+	 */
+	public Game getGame() { return game; }
 	
 	
 }
