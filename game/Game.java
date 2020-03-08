@@ -69,7 +69,7 @@ public class Game {
         //testing keys and locked doors
         rooms[1].setExit("to room 2", new LockedDoorExit(rooms[2], keytoroom2));
         //testing Puzzle exits
-        rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Password is passowrd", "password")));
+        rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Password is password", "password")));
         rooms[3].setExit("to room 4", new NormalExit(rooms[4]));
         rooms[4].setExit("null", new NormalExit(null));
        

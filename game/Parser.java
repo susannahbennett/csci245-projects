@@ -60,7 +60,6 @@ public class Parser {
         Room room = game.getCurrentRoom();
 
         System.out.println("You are in " + room.getDescription());
-        p1.setCurrentProblem(room.getProblem());
 
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command

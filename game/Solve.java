@@ -25,6 +25,9 @@ public class Solve implements Command {
 	 * 	 
 	 */
 	public void doSomething(String[] command) {
+		if(p1 == null)
+			System.out.println("Player is null");
+		
 		if(p1.getProblem() != null) {//p1.getProblem is null
 			if(p1.getProblem().getSolution().equals(command[1])) {
 				System.out.println("Congrats, you solved the problem");
@@ -33,7 +36,7 @@ public class Solve implements Command {
 				System.out.println("Wrong");
 			}
 		}else {
-			System.out.println("There is no problem");
+			System.out.println("p1.getProblem is null");
 		}
 		
 	}
