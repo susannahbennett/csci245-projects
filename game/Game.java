@@ -71,7 +71,7 @@ public class Game {
         //testing Puzzle exits
         rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Password is password", "password")));
         rooms[3].setExit("to room 4", new NormalExit(rooms[4]));
-        rooms[4].setExit("null", new NormalExit(null));
+        rooms[4].setExit("null", new NullExit());
        
         rooms[1].addItem("key to room 2", keytoroom2);
         rooms[1].addItem("dynamic map", new DynamicMap());

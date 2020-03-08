@@ -55,7 +55,6 @@ public class ProblemExit implements Exit {
 	 * Method for moving the player forward if the door is unlocked
 	 */
 	public void use(Player p1) {
-		System.out.println("If givenproblem in ProblemExit is null: " + givenproblem == null);
 		p1.setCurrentProblem(givenproblem);
 		if (canUse) {
 			p1.setCurrentRoom(nextRoom);

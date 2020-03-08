@@ -29,8 +29,6 @@ public class PickUp implements Command {
 	public void doSomething(String[] command) {
 		HashMap<String, Item> items = p1.getCurrentRoom().getItemMap();
 		
-		System.out.println(command[1]);
-		
 		if(items.containsKey(command[1])) {
 			p1.addToInventory(command[1], items.get(command[1]));
 			p1.getCurrentRoom().removeItem(command[1]);
