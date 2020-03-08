@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 /**
@@ -18,30 +15,27 @@ public class Solve implements Command {
 	 * Current player
 	 */
 	private Player p1;
-	/**
-	 * The solution to the current problem
-	 */
-	private String correctsol;
 	
 	/**
-	 * Constructor to initialize player and the correct solution
+	 * Constructor to initialize player
 	 */
-	public Solve(Player p1) {
-		this.p1 = p1;
-		correctsol = p1.getCurrentRoom().getProblem().getSolution();
-	}
+	public Solve(Player p1) { this.p1 = p1; }
 
 	/**
 	 * 	 
 	 */
 	public void doSomething(String[] command) {
-		if (command[1].equals(correctsol)) {
-			p1.getCurrentRoom().getExit().setCanUse();
-			
-			System.out.println("Correct answer! You can move forward now.");
-		} else {
-			System.out.println("The entered solution is not correct.");
+		if(p1.getProblem() != null) {//p1.getProblem is null
+			if(p1.getProblem().getSolution().equals(command[1])) {
+				System.out.println("Congrats, you solved the problem");
+				p1.getProblem().solve();
+			}else {
+				System.out.println("Wrong");
+			}
+		}else {
+			System.out.println("There is no problem");
 		}
+		
 	}
 
 }

@@ -1,6 +1,3 @@
-/**
- * 
- */
 package game;
 
 /**
@@ -9,30 +6,49 @@ package game;
  */
 public class Puzzle implements Problem {
 
-	private boolean solved;
+	
+	/**
+	 * 
+	 */
+	private String puzzle;
+	
+	/**
+	 * 
+	 */
+	private String solution;
+	
+	/**
+	 * 
+	 */
+	private Exit exit;
+	
 	
 	/**
 	 * Constructor
 	 */
-	public Puzzle() {
-		this.solved = false;
+	public Puzzle(String puzzle, String solution) {
+		this.puzzle = puzzle;
+		this.solution = solution;
 	}
 
-	public void runProblem() {
+	/**
+	 * 
+	 */
+	public void runProblem() { System.out.println(puzzle); }
 
-	}
+	/**
+	 * 
+	 */
+	public String getSolution() { return solution; }
 
-	public boolean isSolved() {
-		return solved;
-	}
+	@Override
+	public void solve() { exit.setCanUse(); }
+	
+	/**
+	 * 
+	 */
+	public void setExit(Exit e) { exit = e; }
+	
 
-	public String getSolution() {
-		return null;
-	}
-
-	public void setSolved() {
-		// TODO Auto-generated method stub
-		
-	}
-
+	
 }

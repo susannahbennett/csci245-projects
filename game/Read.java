@@ -18,7 +18,7 @@ private Player p1;
 		this.p1 = p1;
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see game.Command#doSomething(java.lang.String)
 	 */
 	@Override

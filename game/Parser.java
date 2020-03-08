@@ -45,7 +45,7 @@ public class Parser {
         actions.put("travel",new Travel(p1));
         actions.put("read", new Read(p1));
         actions.put("move", new Move(p1));
-        //actions.put("inspect", new Inspect(p1));
+        actions.put("inspect", new Inspect(p1));
 
     }
 
@@ -60,6 +60,7 @@ public class Parser {
         Room room = game.getCurrentRoom();
 
         System.out.println("You are in " + room.getDescription());
+        p1.setCurrentProblem(room.getProblem());
 
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command

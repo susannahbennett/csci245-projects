@@ -24,21 +24,23 @@ public class Move implements Command {
 	/**
 	 * 
 	 */
-	public Move(Player p1) {
-		this.p1 = p1;
-	}
+	public Move(Player p1) { this.p1 = p1; }
 
 	public void doSomething(String[] command) {
 		Room r = p1.getCurrentRoom();
-		HashMap<String, Exit> map = r.getExitMap();
-		Exit link= map.get(command[1]);
+		HashMap<String, Exit> exitmap = r.getExitMap();
+		Exit link= exitmap.get(command[1]);
 		
 		
-		if(link != null) {
-			p1.updateMap(r.getDescription(), r);
-			link.use(p1);
-		} else {
-			System.out.println("You cannot move there.");
+		if(!r.getCanMove())
+			System.out.println("You cannot move, there is a problem you need to solve");	
+		else {
+			if(link != null) {
+				p1.updateMap(r.getDescription(), r);
+				link.use(p1);
+			} else 
+				System.out.println("You cannot move there.");
+			
 		}
 	}
 

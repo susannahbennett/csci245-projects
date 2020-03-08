@@ -21,6 +21,8 @@ public class Player {
 	private DynamicMap seenRooms;
 	
 	public String name;
+	
+	public Problem currentproblem;
 
 	/**
 	 * @param game
@@ -86,5 +88,15 @@ public class Player {
 	 */
 	public Game getGame() { return game; }
 	
+	/**
+	 * 
+	 * @return
+	 */
+	public Problem getProblem() { return currentproblem; }
+	
+	/**
+	 * 
+	 */
+	public void setCurrentProblem(Problem p) { currentproblem = p; }
 	
 }

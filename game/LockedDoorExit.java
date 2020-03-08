@@ -17,10 +17,7 @@ public class LockedDoorExit implements Exit {
 	 * Indicates whether the room has been unlocked yet
 	 */
 	private boolean canuse = false;
-	/**
-	 * The problem associated with the exit
-	 */
-	private Problem givenProblem;
+	
 	
 	/**
 	 * 
@@ -32,9 +29,8 @@ public class LockedDoorExit implements Exit {
 	 * @param givenProblem
 	 * @param key
 	 */
-	public LockedDoorExit(Room n, Problem p, Key k) {
+	public LockedDoorExit(Room n, Key k) {
 		nextroom = n;
-		givenProblem = p;
 		key = k;
 	}
 
