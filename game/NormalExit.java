@@ -19,33 +19,40 @@ public class NormalExit implements Exit {
 
 	/**
 	 * Constructor
+	 * 
 	 * @param nextroom The room after the exit
 	 */
-	public NormalExit(Room nextroom) { 
-		this.nextroom = nextroom; 
+	public NormalExit(Room n) { 
+		nextroom = n; 
 	}
+	
 	/**
 	 * Returns the room after the exit
 	 */
 	public Room destination() { return nextroom; }
+	
 	/**
 	 * Returns whether the door has been unlocked
 	 */
 	public boolean canUse() { return canUse; }
+	
 	/**
 	 * Changes door to unlocked
 	 */
 	public void setCanUse() { canUse = true; }
+	
 	/**
 	 * Returns the problem associated with the exit
 	 */
-	public Problem getProblem(){ return null; }
+	public Problem getProblem() { return null; }
+	
 	/**
+	 * The method to use the exit that actually moves the player
 	 * @param p1
 	 */
 	public void use(Player p1) {
 		p1.setCurrentRoom(nextroom);
 		p1.getGame().setCurrentRoom(nextroom);
-		
 	}
+	
 }

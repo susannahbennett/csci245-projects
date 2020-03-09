@@ -66,12 +66,19 @@ public class Game {
        
         //making sure I didnt break anything
         rooms[0].setExit("to room 1", new NormalExit(rooms[1]));
+        rooms[0].setExit("back", new NullExit());
         //testing keys and locked doors
         rooms[1].setExit("to room 2", new LockedDoorExit(rooms[2], keytoroom2));
+        rooms[1].setExit("back", new NormalExit(rooms[0]));
         //testing Puzzle exits
         rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Password is password", "password")));
+        rooms[2].setExit("back", new NormalExit(rooms[1]));
+        
         rooms[3].setExit("to room 4", new NormalExit(rooms[4]));
+        rooms[3].setExit("back", new NormalExit(rooms[2]));
+       
         rooms[4].setExit("null", new NullExit());
+        rooms[4].setExit("back", new NormalExit(rooms[3]));
        
         rooms[1].addItem("key to room 2", keytoroom2);
         rooms[1].addItem("dynamic map", new DynamicMap());

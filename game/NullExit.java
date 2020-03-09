@@ -27,7 +27,7 @@ public class NullExit implements Exit {
 	
 
 	@Override
-	public void use(Player p1) { System.out.println("You cannot move that way"); }
+	public void use(Player p1) { System.out.println("You have hit a wall"); }
 
 	@Override
 	public Problem getProblem() { return null; }

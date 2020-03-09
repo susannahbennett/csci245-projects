@@ -47,7 +47,8 @@ public class Room {
 	 * @return
 	 */
 	public Exit getExit() { return exitmap.get(description); }
-    /**
+    
+	/**
      * Retrieve a description of this room (to the user).
      */
     public String getDescription() { return description; }
@@ -77,12 +78,6 @@ public class Room {
 
     /**
      * 
-     * @param canEnter
-     */
-    public void setEnterable(boolean canEnter) { canmove=canEnter; }
-
-    /**
-     * 
      * @param str
      * @param item
      */
@@ -97,6 +92,9 @@ public class Room {
     	roomchallenge = p;
     }
     
+    /**
+     * 
+     */
     public boolean getCanMove() { return canmove; }
 
 

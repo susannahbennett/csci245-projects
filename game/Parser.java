@@ -32,9 +32,9 @@ public class Parser {
     /**
      * Plain constructor
      */
-    public Parser(Player p1) {
+    public Parser(Player p) {
         keyboard = new Scanner(System.in);
-        this.p1 = p1;
+        p1 = p;
         actions = new HashMap<String, Command>(); 
         actions.put("help", new Help(p1));
         actions.put("look", new Look(p1));

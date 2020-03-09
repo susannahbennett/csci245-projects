@@ -25,15 +25,15 @@ public class Player {
 	public Problem currentproblem;
 
 	/**
-	 * @param game
-	 * @param inventory
+	 * @param g
+	 * @param i
 	 * @param currentroom
 	 */
-	public Player(Game game, HashMap<String, Item> inventory, DynamicMap seenRooms, Room currentRoom) {
-		this.game = game;
-		this.inventory = inventory;
-		this.currentRoom = currentRoom;
-		this.seenRooms = seenRooms;
+	public Player(Game g, HashMap<String, Item> i, DynamicMap s, Room c) {
+		game = g;
+		inventory = i;
+		currentRoom = c;
+		seenRooms = s;
 		name = "Eric";
 	}
 	
