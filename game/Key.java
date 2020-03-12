@@ -24,5 +24,8 @@ public class Key implements Item {
 		System.out.println("This is what you get when you inspect this key");
 	}
 
+	@Override
+	public void addFunctionality(Player p1) {}
+
 
 }

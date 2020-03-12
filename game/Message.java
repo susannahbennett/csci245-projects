@@ -32,6 +32,9 @@ public class Message implements Item {
 	public void inspect(Player p1) {
 		 System.out.println("Nicholas Cage's fancy signature");
 	}
+
+	@Override
+	public void addFunctionality(Player p1) {}
 	
 	
 }

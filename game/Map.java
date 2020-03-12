@@ -30,7 +30,7 @@ public class Map implements Command {
 	@Override
 
 	public void doSomething(String[] command) {
-		HashMap<String, Room> seenRooms = p1.returnDMap().returnMap();
+		HashMap<String, Room> seenRooms = p1.returnMap();
 		Iterator<String> i = seenRooms.keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
 		while (i.hasNext()) {

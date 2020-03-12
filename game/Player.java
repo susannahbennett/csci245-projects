@@ -18,7 +18,7 @@ public class Player {
 	
 	private Room currentRoom;
 		
-	private DynamicMap seenRooms;
+	private HashMap<String, Room> seenRooms;
 	
 	public String name;
 	
@@ -29,11 +29,11 @@ public class Player {
 	 * @param i
 	 * @param currentroom
 	 */
-	public Player(Game g, HashMap<String, Item> i, DynamicMap s, Room c) {
+	public Player(Game g, HashMap<String, Item> i, HashMap<String, Room> m, Room c) {
 		game = g;
 		inventory = i;
 		currentRoom = c;
-		seenRooms = s;
+		seenRooms = m;
 		name = "Eric";
 	}
 	
@@ -74,13 +74,13 @@ public class Player {
 	 * @param str
 	 * @param room
 	 */
-	public void updateMap (String str, Room room) {	seenRooms.returnMap().put(str, room); }
+	public void updateMap (String str, Room room) {	seenRooms.put(str, room); }
 	
 	/**
 	 * 
 	 * @return
 	 */
-	public DynamicMap returnDMap() { return seenRooms; }
+	public HashMap<String, Room> returnMap() { return seenRooms; }
 	
 	/**
 	 * 

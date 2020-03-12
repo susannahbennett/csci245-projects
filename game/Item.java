@@ -10,4 +10,6 @@ public interface Item {
 	public void function(Player p1);
 
 	public void inspect(Player p1);
+
+	public void addFunctionality(Player p1);
 }

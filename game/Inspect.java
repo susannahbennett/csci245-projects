@@ -26,15 +26,11 @@ public class Inspect implements Command {
 	 */
 	@Override
 	public void doSomething(String[] command) {
-		if(!p1.getItemList().containsKey("Magnifying Glass"))
-			System.out.println("I do not know how to inspect");
-		else {
-			if (p1.getItemList().get(command[1]) == null)
+		if (p1.getItemList().get(command[1]) == null)
 			System.out.println("I cannot inspect " + command[1]);
 		else if (command[1].equals("this room"))
 			p1.getCurrentRoom().inspect();
 		else
 			p1.getItemList().get(command[1]).inspect(p1);
-		}
 	}
 }

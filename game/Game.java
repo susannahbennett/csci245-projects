@@ -24,6 +24,8 @@ public class Game {
      */
     private Room currentRoom;
     
+    private Parser parser;
+    
     public static final String RED = "\u001B[31m";//For dangers or maybe something else?
 	public static final String RESET = "\u001B[0m";//To reset
 	public static final String BLUE = "\u001B[34m";//For items
@@ -81,7 +83,7 @@ public class Game {
         rooms[4].setExit("back", new NormalExit(rooms[3]));
        
         rooms[1].addItem("key to room 2", keytoroom2);
-        rooms[1].addItem("dynamic map", new DynamicMap());
+        rooms[1].addItem("dynamic map", new DynamicMap(parser));
         
         over = false;
         currentRoom = rooms[0];
@@ -103,5 +105,13 @@ public class Game {
      * Indicate that the game is now over.
      */
     public void finishGame() { over = true; }
+    
+    /**
+     * Used to give a reference to the parser to the item classes for dynamically
+     * adding functionality as the player collects items
+     */
+    public void giveParser(Parser p) {
+    	parser = p;
+    }
     
 }
