@@ -36,7 +36,8 @@ public class Help implements Command {
 		HashMap<String, Command> commands = p.getCommands();
 		Iterator<String> i = commands.keySet().iterator();
 		while(i.hasNext()) {
-			System.out.println(Game.CYAN + i.next() + Game.RESET + ": " + commands.get(i.next()).getDescription());
+			String com = i.next();
+			System.out.println(Game.CYAN + com + Game.RESET + ": " + commands.get(com).getDescription());
 		}
 	}
 
