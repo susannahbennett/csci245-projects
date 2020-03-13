@@ -41,4 +41,7 @@ public class Look implements Command {
 		}
 	}
 
+	@Override
+	public String getDescription() { return "Find out more about your surroundings"; }
+
 }

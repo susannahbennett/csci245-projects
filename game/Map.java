@@ -34,11 +34,14 @@ public class Map implements Command {
 		Iterator<String> i = seenRooms.keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
 		while (i.hasNext()) {
-			System.out.println(i.next());
+			System.out.println(Game.GREEN + i.next() + Game.RESET);
 		}
 		
 		
 	}
+
+	@Override
+	public String getDescription() {return "List out rooms that you have visited"; }
 
 	
 }

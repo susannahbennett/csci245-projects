@@ -31,4 +31,7 @@ private Player p1;
 		
 	}
 
+	@Override
+	public String getDescription() {return "Read a message or writting that may be arounf"; }
+
 }

@@ -25,7 +25,6 @@ public class Key implements Item {
 	}
 
 	@Override
-	public void addFunctionality(Player p1) {}
-
+	public void addFunctionality(Player p1, Parser p) {}
 
 }

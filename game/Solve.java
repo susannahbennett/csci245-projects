@@ -38,4 +38,7 @@ public class Solve implements Command {
 		
 	}
 
+	@Override
+	public String getDescription() {return "Solve a puzzle that you are currently facing"; }
+
 }

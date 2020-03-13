@@ -33,4 +33,7 @@ public class Inspect implements Command {
 		else
 			p1.getItemList().get(command[1]).inspect(p1);
 	}
+
+	@Override
+	public String getDescription() { return "Further inspect a room or object"; }
 }

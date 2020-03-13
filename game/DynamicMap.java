@@ -30,7 +30,7 @@ public class DynamicMap implements Item{
 
 	@Override
 	public void function(Player p1) {
-		HashMap<String, Room> seenRooms = p1.returnMap();
+		seenRooms = p1.returnMap();
 		Iterator<String> i = seenRooms.keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
 		while (i.hasNext()) {
@@ -45,8 +45,9 @@ public class DynamicMap implements Item{
 	}
 
 	@Override
-	public void addFunctionality(Player p1) {
+	public void addFunctionality(Player p1, Parser p) {
 		p.addCommand("travel", new Travel(p1));
+		
 		
 	}
 		

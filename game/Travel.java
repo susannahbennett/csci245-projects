@@ -44,4 +44,7 @@ public class Travel implements Command {
 		}
 	}
 
+	@Override
+	public String getDescription() {return "Travel to any room you have visted immediatley"; }
+
 }

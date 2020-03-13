@@ -14,13 +14,19 @@ public class PickUp implements Command {
 	 * 
 	 */
 	private Player p1;
-
+	
+	/**
+	 * 
+	 */
+	private Parser p;
+	
 	/**
 	 * @param p1
 	 * @param itemname
 	 */
-	public PickUp(Player p1) {
+	public PickUp(Player p1, Parser p) {
 		this.p1 = p1;
+		this.p = p;
 	}
 
 	/**
@@ -31,12 +37,15 @@ public class PickUp implements Command {
 		
 		if(items.containsKey(command[1])) {
 			p1.addToInventory(command[1], items.get(command[1]));
-			items.get(command[1]).addFunctionality(p1);
+			items.get(command[1]).addFunctionality(p1, p);
 			p1.getCurrentRoom().removeItem(command[1]);
 		}
 		else {
 			System.out.println("That item does not exist");
 		}
 	}
+
+	@Override
+	public String getDescription() { return "pick up a specific item in the room"; }
 
 }

@@ -30,6 +30,7 @@ public class Game {
 	public static final String RESET = "\u001B[0m";//To reset
 	public static final String BLUE = "\u001B[34m";//For items
 	public static final String GREEN = "\u001B[32m";//For movable places in descriptions/look texts
+	public static final String CYAN = "\u001B[36m";
 
     /**
      * Keeps track of whether this game is over or not.

@@ -10,6 +10,8 @@ package game;
 public interface Command { 
 	
 	
-	public void doSomething(String[] command);
+	void doSomething(String[] command);
+	
+	String getDescription();
 	
 }

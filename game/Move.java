@@ -44,4 +44,7 @@ public class Move implements Command {
 		}
 	}
 
+	@Override
+	public String getDescription() { return "Move to another place"; }
+
 }

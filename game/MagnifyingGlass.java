@@ -14,8 +14,8 @@ public class MagnifyingGlass implements Item {
 	/**
 	 * 
 	 */
-	public MagnifyingGlass(Parser p) {
-		this.p = p;
+	public MagnifyingGlass() {
+	
 	}
 
 	
@@ -29,8 +29,7 @@ public class MagnifyingGlass implements Item {
 		System.out.println("You are using the" + Game.BLUE + "magnifying glass" + Game.RESET + "to inspect the" + Game.BLUE + "magnifying glass" + Game.RESET);
 	}
 
-
 	@Override
-	public void addFunctionality(Player p1) { p.addCommand("inspect", new Inspect(p1)); }
+	public void addFunctionality(Player p1, Parser p) { p.addCommand("inspect", new Inspect(p1)); }
 
 }
