@@ -9,27 +9,30 @@ package game;
  */
 public class MagnifyingGlass implements Item {
 
-	private Parser p;
 	
 	/**
 	 * 
 	 */
-	public MagnifyingGlass() {
-	
-	}
+	public MagnifyingGlass() {}
 
 	
-	@Override
+	/**
+	 * 
+	 */
 	public void function(Player p1) {
 		System.out.println("You can use the inspect command to use the magnifying glass to inspect items");
-
 	}
 	
+	/**
+	 * 
+	 */
 	public void inspect(Player p1) {
-		System.out.println("You are using the" + Game.BLUE + "magnifying glass" + Game.RESET + "to inspect the" + Game.BLUE + "magnifying glass" + Game.RESET);
+		System.out.println("You are using the" + Game.BLUE + " magnifying glass " + Game.RESET + "to inspect the" + Game.BLUE + "magnifying glass" + Game.RESET);
 	}
 
-	@Override
+	/**
+	 * 
+	 */
 	public void addFunctionality(Player p1, Parser p) { p.addCommand("inspect", new Inspect(p1)); }
 
 }

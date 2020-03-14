@@ -24,6 +24,8 @@ public class Room {
     private String description;
     
     private boolean canmove = true;
+    
+    private String inspection = "Inspection";
 
 
     /**
@@ -79,14 +81,16 @@ public class Room {
     /**
      * 
      */
-    public void inspect() { System.out.println("This will do something interesting"); }
+    public void inspect() { System.out.println(inspection); }
 
     /**
      * 
      * @param str
      * @param item
      */
-    public void addItem(String str, Item item) { itemmap.put(str, item); }
+    public void addItem(String str, Item item) { 
+    	System.out.println("Item being added: " + str);
+    	itemmap.put(str, item); }
     
     /**
      * 
@@ -101,6 +105,10 @@ public class Room {
      * 
      */
     public boolean getCanMove() { return canmove; }
-
+    
+    /**
+     * 
+     */
+    public void setInspection(String s) { inspection = s; }
 
 }

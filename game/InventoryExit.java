@@ -1,5 +1,7 @@
 package game;
 
+import java.util.*;
+
 /**
  * Similar to a locked door with a key except you need to have a 
  * bunch of specified items in your inventory to pass.
@@ -7,15 +9,17 @@ package game;
  * @author stevenbarker
  *
  */
-public class InventoryDoorExit implements Exit {
+public class InventoryExit implements Exit {
 	/**
 	 * Holds the reference to the room behind the exit
 	 */
 	private Room nextroom;
+	
 	/**
 	 * Indicates whether the room has been unlocked yet
 	 */
 	private boolean canuse = false;
+	
 	/**
 	 * The problem associated with the exit
 	 */
@@ -24,10 +28,14 @@ public class InventoryDoorExit implements Exit {
 	/**
 	 * 
 	 */
-	public InventoryDoorExit(Room r, Problem p) {
+	private HashMap<String, Item> requireditems;
+	/**
+	 * 
+	 */
+	public InventoryExit(Room r, Problem p, HashMap<String, Item> i) {
 		nextroom = r;
 		givenproblem = p;
-		givenproblem.setExit(this);
+		requireditems = i;
 		
 	}
 
@@ -42,7 +50,19 @@ public class InventoryDoorExit implements Exit {
 
 	@Override
 	public void use(Player p1) {
-		//TBD
+		HashMap<String, Item> inventory = p1.getItemList();
+		Iterator<String> i = requireditems.keySet().iterator();
+		while(i.hasNext()) {
+			if(!inventory.containsKey(i.next())) {
+				System.out.println("You don't have all of the neccesary items");
+				return;
+			}
+		}
+		System.out.println("You had everything you needed");
+		p1.setCurrentRoom(nextroom);
+		p1.getGame().setCurrentRoom(nextroom);
+		setCanUse();
+		
 
 	}
 

@@ -1,5 +1,7 @@
 package game;
 
+import java.util.HashMap;
+
 /**
  * Game.java
  * 
@@ -24,7 +26,6 @@ public class Game {
      */
     private Room currentRoom;
     
-    private Parser parser;
     
     public static final String RED = "\u001B[31m";//For dangers or maybe something else?
 	public static final String RESET = "\u001B[0m";//To reset
@@ -47,10 +48,10 @@ public class Game {
      */
     public Game() {
     	
-    	Key keytoroom2 = new Key();
+    	
         Room[] rooms = new Room[6];
         for (int i = 0; i < rooms.length; i++)
-            rooms[i] = new Room("room" + i);
+            rooms[i] = new Room("room " + i);
         
         /*needed simpler world for testing but didnt want to delete this
         rooms[0].setExit("room 1", new LockedDoorExit(rooms[1], keytoroom1));
@@ -71,25 +72,40 @@ public class Game {
         rooms[0].setExit("to room 1", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
         //testing keys and locked doors
+        
+        Key keytoroom2 = new Key();
         rooms[1].setExit("to room 2", new LockedDoorExit(rooms[2], keytoroom2));
         rooms[1].setExit("back", new NormalExit(rooms[0]));
+        rooms[1].addItem("key to room 2", keytoroom2);
+        
         //testing Puzzle exits
         rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Password is password", "password")));
         rooms[2].setExit("back", new NormalExit(rooms[1]));
-        
+       
+        //testing magnifying glass
         rooms[3].setExit("to room 4", new NormalExit(rooms[4]));
         rooms[3].setExit("back", new NormalExit(rooms[2]));
+        MagnifyingGlass m = new MagnifyingGlass();
+        rooms[3].addItem("magnifying glass", m);
+        rooms[3].setInspection("The room's inspection");
        
-        rooms[4].setExit("to room 5", new NormalExit(rooms[5]));
+        //testing dynamic map
+        HashMap<String, Item> exitlist = new HashMap<>();
+        exitlist.put("magnifying glass", m);
+        exitlist.put("key to room 2", keytoroom2);
+        rooms[4].setExit("to room 5", new InventoryExit(rooms[5], null, exitlist));
         rooms[4].setExit("back", new NormalExit(rooms[3]));
+        rooms[4].addItem("dynamic map", new DynamicMap());
         
+        //testing null exits
         rooms[5].setExit("null", new NullExit(rooms[5]));
         rooms[5].setExit("back", new NormalExit(rooms[4]));
-       
-        rooms[1].addItem("key to room 2", keytoroom2);
-        rooms[1].addItem("dynamic map", new DynamicMap());
         
-        rooms[3].addItem("Magnifying glass", new MagnifyingGlass());
+  
+       
+        
+        
+        
         
         
         over = false;
@@ -112,13 +128,5 @@ public class Game {
      * Indicate that the game is now over.
      */
     public void finishGame() { over = true; }
-    
-    /**
-     * Used to give a reference to the parser to the item classes for dynamically
-     * adding functionality as the player collects items
-     */
-    public void giveParser(Parser p) {
-    	parser = p;
-    }
     
 }
