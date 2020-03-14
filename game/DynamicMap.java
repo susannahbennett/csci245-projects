@@ -14,14 +14,14 @@ public class DynamicMap implements Item{
 
 	private HashMap<String, Room> seenRooms;	
 	
-	private Parser p;
+	//private Parser p;
 	
 	/**
 	 * Constructor
 	 */
-	public DynamicMap(Parser p) {
-		seenRooms = new HashMap<String, Room>();
-		this.p = p;
+	public DynamicMap() {
+		//seenRooms = new HashMap<String, Room>();
+		//this.p = p;
 	}
 	
 	public HashMap<String, Room> returnMap (){

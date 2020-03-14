@@ -34,7 +34,7 @@ public class Map implements Command {
 		Iterator<String> i = seenRooms.keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
 		while (i.hasNext()) {
-			System.out.println(Game.GREEN + i.next() + Game.RESET);
+			System.out.println(i.next());
 		}
 		
 		

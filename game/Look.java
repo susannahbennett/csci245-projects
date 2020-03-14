@@ -32,7 +32,9 @@ public class Look implements Command {
 		Iterator<String> i = room.getExitMap().keySet().iterator();
 		System.out.println("Surrounding rooms: ");
 		while (i.hasNext()) {
-			System.out.println(Game.GREEN + exitmap.get(i.next()).destination().getDescription() + Game.RESET);
+			Exit e = exitmap.get(i.next());
+			if(!(e instanceof NullExit)) 
+				System.out.println(Game.GREEN + e.destination().getDescription() + Game.RESET);	
 		}
 		Iterator<String> j = room.getItemMap().keySet().iterator();
 		System.out.println("Available items: ");

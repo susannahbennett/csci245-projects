@@ -30,7 +30,7 @@ public class Game {
 	public static final String RESET = "\u001B[0m";//To reset
 	public static final String BLUE = "\u001B[34m";//For items
 	public static final String GREEN = "\u001B[32m";//For movable places in descriptions/look texts
-	public static final String CYAN = "\u001B[36m";
+	public static final String CYAN = "\u001B[36m";//for commands
 
     /**
      * Keeps track of whether this game is over or not.
@@ -48,9 +48,9 @@ public class Game {
     public Game() {
     	
     	Key keytoroom2 = new Key();
-        Room[] rooms = new Room[5];
+        Room[] rooms = new Room[6];
         for (int i = 0; i < rooms.length; i++)
-            rooms[i] = new Room("room "+i);
+            rooms[i] = new Room("room" + i);
         
         /*needed simpler world for testing but didnt want to delete this
         rooms[0].setExit("room 1", new LockedDoorExit(rooms[1], keytoroom1));
@@ -69,7 +69,7 @@ public class Game {
        
         //making sure I didnt break anything
         rooms[0].setExit("to room 1", new NormalExit(rooms[1]));
-        rooms[0].setExit("back", new NullExit());
+        rooms[0].setExit("back", new NullExit(rooms[0]));
         //testing keys and locked doors
         rooms[1].setExit("to room 2", new LockedDoorExit(rooms[2], keytoroom2));
         rooms[1].setExit("back", new NormalExit(rooms[0]));
@@ -80,11 +80,17 @@ public class Game {
         rooms[3].setExit("to room 4", new NormalExit(rooms[4]));
         rooms[3].setExit("back", new NormalExit(rooms[2]));
        
-        rooms[4].setExit("null", new NullExit());
+        rooms[4].setExit("to room 5", new NormalExit(rooms[5]));
         rooms[4].setExit("back", new NormalExit(rooms[3]));
+        
+        rooms[5].setExit("null", new NullExit(rooms[5]));
+        rooms[5].setExit("back", new NormalExit(rooms[4]));
        
         rooms[1].addItem("key to room 2", keytoroom2);
-        rooms[1].addItem("dynamic map", new DynamicMap(parser));
+        rooms[1].addItem("dynamic map", new DynamicMap());
+        
+        rooms[3].addItem("Magnifying glass", new MagnifyingGlass());
+        
         
         over = false;
         currentRoom = rooms[0];

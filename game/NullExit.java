@@ -12,12 +12,17 @@ public class NullExit implements Exit {
 	/**
 	 * 
 	 */
-	public NullExit() {
+	private Room thatroom;
+	/**
+	 * 
+	 */
+	public NullExit(Room r) {
+		thatroom = r;
 		
 	}
 
 	@Override
-	public Room destination() { return null; }
+	public Room destination() { return thatroom; }
 
 	@Override
 	public boolean canUse() { return true; }
@@ -27,7 +32,7 @@ public class NullExit implements Exit {
 	
 
 	@Override
-	public void use(Player p1) { System.out.println("You have hit a wall"); }
+	public void use(Player p1) { System.out.println("You cannot move that way"); }
 
 	@Override
 	public Problem getProblem() { return null; }

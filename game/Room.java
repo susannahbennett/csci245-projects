@@ -54,6 +54,11 @@ public class Room {
     public String getDescription() { return description; }
     
     /**
+     * 
+     */
+    public void setDescription(String s) { description = s; }
+    
+    /**
      * Returns the item map
      * @return itemmap The HashMap of items in a room
      */
