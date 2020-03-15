@@ -85,17 +85,20 @@ public class Game {
         //testing magnifying glass
         rooms[3].setExit("to room 4", new NormalExit(rooms[4]));
         rooms[3].setExit("back", new NormalExit(rooms[2]));
-        MagnifyingGlass m = new MagnifyingGlass();
-        rooms[3].addItem("magnifying glass", m);
+        MagnifyingGlass glass = new MagnifyingGlass();
+        DynamicMap m = new DynamicMap();
+        rooms[3].addItem("magnifying glass", glass);
+        rooms[3].addItem("dynamic map", m);
         rooms[3].setInspection("The room's inspection");
        
         //testing dynamic map
         HashMap<String, Item> exitlist = new HashMap<>();
-        exitlist.put("magnifying glass", m);
+        exitlist.put("magnifying glass", glass);
         exitlist.put("key to room 2", keytoroom2);
+        exitlist.put("dynamic map", m);
         rooms[4].setExit("to room 5", new InventoryExit(rooms[5], null, exitlist));
         rooms[4].setExit("back", new NormalExit(rooms[3]));
-        rooms[4].addItem("dynamic map", new DynamicMap());
+        
         
         //testing null exits
         rooms[5].setExit("null", new NullExit(rooms[5]));

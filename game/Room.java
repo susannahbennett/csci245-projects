@@ -88,9 +88,7 @@ public class Room {
      * @param str
      * @param item
      */
-    public void addItem(String str, Item item) { 
-    	System.out.println("Item being added: " + str);
-    	itemmap.put(str, item); }
+    public void addItem(String str, Item item) { itemmap.put(str, item); }
     
     /**
      * 

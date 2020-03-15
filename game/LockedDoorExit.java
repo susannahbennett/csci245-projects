@@ -55,6 +55,7 @@ public class LockedDoorExit implements Exit {
 			System.out.println("You have unlocked the door with the key");
 			p1.setCurrentRoom(nextroom);
 			p1.getGame().setCurrentRoom(nextroom);
+			setCanUse();
 		}else
 			System.out.println("You do not have the right key");
 

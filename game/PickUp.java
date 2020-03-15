@@ -33,15 +33,14 @@ public class PickUp implements Command {
 	 * 
 	 */
 	public void doSomething(String[] command) {
-		HashMap<String, Item> items = p1.getCurrentRoom().getItemMap();		
+		HashMap<String, Item> items = p1.getCurrentRoom().getItemMap();	
 		if(command[1].equals("all")) {
 			Iterator<String> i = items.keySet().iterator();
 			while(i.hasNext()) {
 				String s = i.next();
-				Item thing = items.get(s);
-				p1.addToInventory(s, thing);
-				thing.addFunctionality(p1, p);
-				p1.getCurrentRoom().removeItem(s);
+				p1.addToInventory(s, items.get(s));
+				items.get(s).addFunctionality(p1, p);
+				i.remove();				
 			}
 		}else {
 			System.out.println(command[1]);
