@@ -91,7 +91,7 @@ public class Room {
     public void addItem(String str, Item item) { itemmap.put(str, item); }
     
     /**
-     * 
+     * Sets the 
      * @param p
      */
     public void setRoomProblem(Problem p) {

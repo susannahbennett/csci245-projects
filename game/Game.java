@@ -26,12 +26,19 @@ public class Game {
      */
     private Room currentRoom;
     
-    
-    public static final String RED = "\u001B[31m";//For dangers or maybe something else?
-	public static final String RESET = "\u001B[0m";//To reset
-	public static final String BLUE = "\u001B[34m";//For items
-	public static final String GREEN = "\u001B[32m";//For movable places in descriptions/look texts
-	public static final String CYAN = "\u001B[36m";//for commands
+    /**
+     * Each of these are used for color coding output to help the user
+     * RED: Unused as of now
+     * RESET: used after each colored word to keep other text from being colored
+     * BLUE: Used for useable, gettable items
+     * GREEN: Used for movable places
+     * CYAN: Used for executable commands
+     */
+    public static final String RED = "\u001B[31m";
+	public static final String RESET = "\u001B[0m";
+	public static final String BLUE = "\u001B[34m";
+	public static final String GREEN = "\u001B[32m";
+	public static final String CYAN = "\u001B[36m";
 
     /**
      * Keeps track of whether this game is over or not.
@@ -91,12 +98,12 @@ public class Game {
         rooms[3].addItem("dynamic map", m);
         rooms[3].setInspection("The room's inspection");
        
-        //testing dynamic map
-        HashMap<String, Item> exitlist = new HashMap<>();
-        exitlist.put("magnifying glass", glass);
-        exitlist.put("key to room 2", keytoroom2);
-        exitlist.put("dynamic map", m);
-        rooms[4].setExit("to room 5", new InventoryExit(rooms[5], null, exitlist));
+
+        HashMap<String, Item> requireditems = new HashMap<>();
+        requireditems.put("magnifying glass", glass);
+        requireditems.put("key to room 2", keytoroom2);
+        requireditems.put("dynamic map", m);
+        rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
         rooms[4].setExit("back", new NormalExit(rooms[3]));
         
         

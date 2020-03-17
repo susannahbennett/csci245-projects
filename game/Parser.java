@@ -1,6 +1,6 @@
 package game;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Parser.java
@@ -12,8 +12,6 @@ import java.util.HashMap;
  * Lab 5
  * Feb 8, 2007
  */
-
-import java.util.Scanner;
 
 public class Parser {
 
@@ -84,11 +82,10 @@ public class Parser {
     public String[] parse(String c) {
     	String[] toreturn = new String[2];
     	if(c.contains(" ")) {
-    	toreturn[0] = c.substring(0, c.indexOf(" "));
-    	toreturn[1]	=c.substring(c.indexOf(" ")+1, c.length());
-    	}else {
+	    	toreturn[0] = c.substring(0, c.indexOf(" "));
+	    	toreturn[1]	=c.substring(c.indexOf(" ")+1, c.length());
+    	}else 
     		toreturn[0] = c;
-    	}
     	return toreturn;
     }
     

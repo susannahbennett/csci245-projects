@@ -1,17 +1,22 @@
-/**
- * 
- */
 package game;
 
 /**
- * Class representing the normal way (always unlocked) to exit a room
+ * NormalExit.java 
+ * 
+ * This class represents the normal way (always unlocked) to exit a room
  *
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
  */
 public class NormalExit implements Exit {
+	
 	/**
 	 * Holds the reference to the room behind the exit
 	 */
 	private Room nextroom;
+	
 	/**
 	 * Indicates whether the room has been unlocked yet
 	 */
@@ -20,11 +25,11 @@ public class NormalExit implements Exit {
 	/**
 	 * Constructor
 	 * 
+	 * Initializes the next room
+	 * 
 	 * @param nextroom The room after the exit
 	 */
-	public NormalExit(Room n) { 
-		nextroom = n; 
-	}
+	public NormalExit(Room n) { nextroom = n; }
 	
 	/**
 	 * Returns the room after the exit
@@ -48,6 +53,7 @@ public class NormalExit implements Exit {
 	
 	/**
 	 * The method to use the exit that actually moves the player
+	 * 
 	 * @param p1
 	 */
 	public void use(Player p1) {

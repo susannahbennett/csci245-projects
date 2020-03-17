@@ -1,36 +1,46 @@
-/**
- * 
- */
 package game;
 
 import java.util.*;
 /**
- * @author stevenbarker
- *
+ * PickUp.java
+ * 
+ * This class is the command to pick up items
+ * 
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020   
  */
 public class PickUp implements Command {
 
 	/**
-	 * 
+	 * The reference to the player
 	 */
 	private Player p1;
 	
 	/**
-	 * 
+	 * The reference to the parser
 	 */
 	private Parser p;
 	
 	/**
+	 * Constructor
+	 * 
+	 * Initiates The player and parser
+	 * 
 	 * @param p1
 	 * @param itemname
 	 */
-	public PickUp(Player p1, Parser p) {
-		this.p1 = p1;
-		this.p = p;
+	public PickUp(Player player, Parser parser) {
+		p1 = player;
+		p = parser;
 	}
 
 	/**
+	 * Looks for the inputed item in the room, if the user input "all" then it picks up everything, otherwise
+	 * it will add the desired item to the player's inventory and remove the reference from the room. 
 	 * 
+	 * @param command The complete command in a String array
 	 */
 	public void doSomething(String[] command) {
 		HashMap<String, Item> items = p1.getCurrentRoom().getItemMap();	
@@ -54,9 +64,7 @@ public class PickUp implements Command {
 		}
 	}
 
-	/**
-	 * 
-	 */
+	
 	public String getDescription() { return "pick up a specific item in the room"; }
 
 }
