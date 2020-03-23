@@ -72,18 +72,6 @@ public class Room {
      */
     public void removeItem(String item) { itemmap.remove(item); }
     
-    public Problem getProblem() {
-    	return challenge;
-    }
-    
-    public void setRiddle(String riddle, String solution) {
-    	challenge = new Riddle(riddle, solution);
-    }
-
-    public void inspect() {
-    	System.out.println("This will do interesting functionality");
-    }
-
     /**
      * 
      * @return
