@@ -19,60 +19,58 @@ public class Room {
 
 	private HashMap<String, Item> itemmap = new HashMap<String, Item>();
 	
-	private Problem challenge;
+	private Problem roomchallenge;
 	
     private String description;
+    
+    private boolean canmove = true;
+    
+    private String inspection = "Inspection";
 
 
     /**
      * Constructor.
      * @param description A String describing this room to the user.
      */
-    public Room(String description) { 
-    	this.challenge = new Riddle("use \"solve\" and \"pass\" to pass", "pass");
-    	this.description = description;
-    }
+    public Room(String description) { this.description = description; }
 
     /**
      * Testing Exit idea
      */
-    public void setExit(String str, Exit e) {
-    	exitmap.put(str, e);
-    }
+    public void setExit(String str, Exit e) { exitmap.put(str, e); }
     
     /**
      * 
      */
-	public HashMap<String, Exit> getExitMap() {
-		return exitmap;
-	}
+	public HashMap<String, Exit> getExitMap() { return exitmap; }
 	
-	public Exit getExit() {
-		return exitmap.get(description);
-	}
-    /**
+	/**
+	 * 
+	 * @return
+	 */
+	public Exit getExit() { return exitmap.get(description); }
+    
+	/**
      * Retrieve a description of this room (to the user).
      */
     public String getDescription() { return description; }
     
     /**
-     * Method to add a key to the item inventory
+     * 
      */
-    public void addKey() {
-    	itemmap.put("key", new Key());
-    }
+    public void setDescription(String s) { description = s; }
     
     /**
      * Returns the item map
      * @return itemmap The HashMap of items in a room
      */
-    public HashMap<String, Item> getItemMap() {
-    	return itemmap;
-    }
+    public HashMap<String, Item> getItemMap() { return itemmap; }
     
-    public void removeItem(String item) {
-    	itemmap.remove(item);
-    }
+    /**
+     * 
+     * @param item
+     */
+    public void removeItem(String item) { itemmap.remove(item); }
     
     public Problem getProblem() {
     	return challenge;
@@ -86,10 +84,41 @@ public class Room {
     	System.out.println("This will do interesting functionality");
     }
 
+    /**
+     * 
+     * @return
+     */
+    public Problem getProblem() { return roomchallenge; }
+    
+    /**
+     * 
+     */
+    public void inspect() { System.out.println(inspection); }
 
-    public void addItem(String str, Item item) {
-    	itemmap.put(str, item);
+    /**
+     * 
+     * @param str
+     * @param item
+     */
+    public void addItem(String str, Item item) { itemmap.put(str, item); }
+    
+    /**
+     * Sets the 
+     * @param p
+     */
+    public void setRoomProblem(Problem p) {
+    	canmove = false;
+    	roomchallenge = p;
     }
-
+    
+    /**
+     * 
+     */
+    public boolean getCanMove() { return canmove; }
+    
+    /**
+     * 
+     */
+    public void setInspection(String s) { inspection = s; }
 
 }

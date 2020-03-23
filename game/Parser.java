@@ -1,6 +1,6 @@
 package game;
 
-import java.util.HashMap;
+import java.util.*;
 
 /**
  * Parser.java
@@ -12,8 +12,6 @@ import java.util.HashMap;
  * Lab 5
  * Feb 8, 2007
  */
-
-import java.util.Scanner;
 
 public class Parser {
 
@@ -32,21 +30,20 @@ public class Parser {
     /**
      * Plain constructor
      */
-    public Parser(Player p1) {
+    public Parser(Player p) {
         keyboard = new Scanner(System.in);
-        this.p1 = p1;
+        p1 = p;
         actions = new HashMap<String, Command>(); 
-        actions.put("help", new Help(p1));
+        actions.put("help", new Help(p1, this));
         actions.put("look", new Look(p1));
         actions.put("use", new Use(p1));
-        actions.put("pickup", new PickUp(p1));
+        actions.put("pickup", new PickUp(p1, this));
         actions.put("map", new Map(p1));
         actions.put("solve", new Solve(p1));
-        actions.put("travel",new Travel(p1));
         actions.put("read", new Read(p1));
         actions.put("move", new Move(p1));
-        actions.put("inspect", new Inspect(p1));
-
+        actions.put("inventory", new Inventory(p1));
+        
     }
 
     /**
@@ -60,6 +57,8 @@ public class Parser {
         Room room = game.getCurrentRoom();
 
         System.out.println("You are in " + room.getDescription());
+        if(room.getProblem() != null)
+        	p1.setCurrentProblem(room.getProblem());
 
         System.out.print("Enter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
@@ -83,13 +82,24 @@ public class Parser {
     public String[] parse(String c) {
     	String[] toreturn = new String[2];
     	if(c.contains(" ")) {
-    	toreturn[0] = c.substring(0, c.indexOf(" "));
-    	toreturn[1]	=c.substring(c.indexOf(" ")+1, c.length());
-    	}else {
+	    	toreturn[0] = c.substring(0, c.indexOf(" "));
+	    	toreturn[1]	=c.substring(c.indexOf(" ")+1, c.length());
+    	}else 
     		toreturn[0] = c;
-    	}
     	return toreturn;
     }
+    
+    /**
+     * 
+     * @param s
+     * @param c
+     */
+    public void addCommand(String s, Command c) { actions.put(s, c); }
+    
+    /**
+     * 
+     */
+    public HashMap<String, Command> getCommands(){ return actions; }
     
     
 

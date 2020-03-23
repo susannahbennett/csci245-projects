@@ -1,29 +1,38 @@
-/**
- * 
- */
 package game;
 
-import java.util.HashMap;
-import java.util.Iterator;
+import java.util.*;
+
 
 /**
- * @author susannahbennett
- *
+ * Look.java
+ * 
+ * This class represents the command to look at all available rooms and items
+ * 
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
  */
 public class Look implements Command {
 
+	/**
+	 * The reference to the player
+	 */
 	private Player p1;
 	
 	/**
 	 * Constructor
+	 * 
+	 * Initializes the player
+	 * 
+	 * @param p1 The reference to the player
 	 */
-	public Look(Player p1) {
-		this.p1 = p1;
-	}
+	public Look(Player p1) { this.p1 = p1; }
 
 	/**
-	 * Method to find available doors and items in the room.
-	 * @param p1, the player 
+	 * Will find and list out all available rooms and available items.
+	 * 
+	 * @param p1 The reference to the player 
 	 */
 	public void doSomething(String[] command) {
 		Room room = p1.getCurrentRoom();
@@ -32,13 +41,17 @@ public class Look implements Command {
 		Iterator<String> i = room.getExitMap().keySet().iterator();
 		System.out.println("Surrounding rooms: ");
 		while (i.hasNext()) {
-			System.out.println(exitmap.get(i.next()).destination().getDescription());
+			Exit e = exitmap.get(i.next());
+			if(!(e instanceof NullExit)) 
+				System.out.println(Game.GREEN + e.destination().getDescription() + Game.RESET);	
 		}
 		Iterator<String> j = room.getItemMap().keySet().iterator();
 		System.out.println("Available items: ");
-		while (j.hasNext()) {
-			System.out.println(j.next());
-		}
+		while (j.hasNext()) 
+			System.out.println(Game.BLUE + j.next() + Game.RESET);
 	}
+
+
+	public String getDescription() { return "Find out more about your surroundings"; }
 
 }

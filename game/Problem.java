@@ -1,14 +1,20 @@
 package game;
 
+/**
+ * Problem.java
+ * 
+ * This is the supertype for all problems tbat
+ *
+ */
 public interface Problem {
 	
 	void runProblem();
 	
-	boolean isSolved();
-
 	String getSolution();
-
-	void setSolved();
+	
+	void solve();
+	
+	void setExit(Exit e);
 
 
 }

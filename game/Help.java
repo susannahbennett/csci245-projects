@@ -1,27 +1,49 @@
-/**
- * 
- */
 package game;
 
+import java.util.*;
+
 /**
- * @author susannahbennett
+ * Help,java
+ * 
+ * This class represent the Help command which lists out all possible commands
+ * currently available to the player.
+ * 
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
  *
  */
 public class Help implements Command {
-
-	private Player p1;
 	
 	/**
-	 * Constructor
+	 * The reference to the parser to get the HashMap of commands.
 	 */
-	public Help(Player p1) {
-		this.p1 = p1;
+	private Parser p;
+	
+	/**
+	 * Constructor 
+	 * 
+	 * Initializes the reference to the player.
+	 */
+	public Help(Player p1, Parser p) { this.p = p; }
+
+	/**
+	 * Prints the list of possible commands.
+	 */
+	public void doSomething(String[] command) {
+		HashMap<String, Command> commands = p.getCommands();
+		Iterator<String> i = commands.keySet().iterator();
+		while(i.hasNext()) {
+			String com = i.next();
+			System.out.println(Game.CYAN + com + Game.RESET + ": " + commands.get(com).getDescription());
+		}
 	}
 
 	/**
-	 * Method prints the list of possible commands
+	 * Gets the description of this command.
+	 * 
+	 * @return The description of the Help command
 	 */
-	public void doSomething(String[] command) {
-		System.out.println("Available commands:\n look: describes the room\n use: use the item for its intended function\n map: display the rooms that have already been traversed by player\n pickup: get specified object from room");
-	}
+	public String getDescription() { return "Lists out all known commands" ; }
 }

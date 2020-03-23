@@ -30,7 +30,7 @@ public class Travel implements Command {
 	public void doSomething(String[] command) {
 		
 		if(p1.getItemList().containsKey("dynamic map")) {
-			HashMap<String, Room> seenRooms = p1.returnDMap().returnMap();
+			HashMap<String, Room> seenRooms = p1.returnMap();
 			if(seenRooms.containsKey(command[1])) {
 				Room nextRoom = seenRooms.get(command[1]);
 				game.setCurrentRoom(nextRoom);
@@ -43,5 +43,8 @@ public class Travel implements Command {
 			System.out.println("I do not know how to travel without a Map.");
 		}
 	}
+
+	@Override
+	public String getDescription() {return "Travel to any room you have visted immediatley"; }
 
 }

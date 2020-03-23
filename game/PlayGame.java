@@ -19,7 +19,7 @@ public class PlayGame {
         System.out.println("Welcome to the game");
         Game game = new Game();   // reference to the game object
         HashMap<String, Item>  inventory = new HashMap<String, Item> ();
-        DynamicMap seenRooms = new DynamicMap();
+        HashMap<String, Room> seenRooms = new HashMap<String, Room> ();
         Room currentRoom = game.getCurrentRoom();
         Parser parser = new Parser(new Player(game, inventory, seenRooms, currentRoom));
 

@@ -28,4 +28,7 @@ public class Use implements Command {
 		itemFunction.function(p1);
 	}
 
+	@Override
+	public String getDescription() {return "Use an item in your inventory"; }
+
 }

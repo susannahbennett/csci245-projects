@@ -4,11 +4,12 @@ import java.util.*;
 /**
  * Player.java
  * 
- * Player class that has a reference to the classes: Game, Room, and DynamicMap.
+ * The class that represents the Player
  *
- * @author Steven Barker, Susannah Bennett, and Kali Grose
- * Wheaton College, CS 245, Spring 2020
- * 
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
  */
 public class Player {
 
@@ -18,55 +19,99 @@ public class Player {
 	
 	private Room currentRoom;
 		
-	private DynamicMap seenRooms;
+	private HashMap<String, Room> seenRooms;
 	
 	public String name;
+	
+	public Problem currentproblem;
 
 	/**
-	 * @param game
-	 * @param inventory
-	 * @param currentroom
+	 * Constructor
+	 * 
+	 * Builds an instance representing the player
+	 * 
+	 * @param g The reference to the Game
+	 * @param i The player's inventory
+	 * @param c The player's current room
 	 */
-	public Player(Game game, HashMap<String, Item> inventory, DynamicMap seenRooms, Room currentRoom) {
-		this.game = game;
-		this.inventory = inventory;
-		this.currentRoom = currentRoom;
-		this.seenRooms = seenRooms;
+	public Player(Game g, HashMap<String, Item> i, HashMap<String, Room> m, Room c) {
+		game = g;
+		inventory = i;
+		currentRoom = c;
+		seenRooms = m;
 		name = "Eric";
 	}
 	
-	public HashMap<String, Item>  getItemList () {
-		return inventory;
-	}
+	/**
+	 * Gets the inventory
+	 * 
+	 * @return The player's inventory
+	 */
+	public HashMap<String, Item>  getItemList () { return inventory; }
 	
-	public Item getItem(String itemname) {
-		return inventory.get(itemname);
-	}
+	/**
+	 * Gets an item out of the inventory
+	 * 
+	 * @param itemname The String name of the desired item
+	 * @return The Item
+	 */
+	public Item getItem(String itemname) { return inventory.get(itemname);	}
 	
-	public Room getCurrentRoom() {
-		return currentRoom;
-	}
+	/**
+	 * Gets the current room that the player is in
+	 * 
+	 * @return the Room
+	 */
+	public Room getCurrentRoom() { return currentRoom; }
 	
-	public void addToInventory(String name, Item item) {
-		inventory.put(name, item);
-	}
-
-	public void setCurrentRoom(Room room) {
-		currentRoom = room;
-		
-	}
+	/**
+	 * Adds an item to the player's inventory
+	 * @param name The String that is the name of the item
+	 * @param item The reference to the instance of Item
+	 */
+	public void addToInventory(String name, Item item) { inventory.put(name, item); }
 	
-	public void updateMap (String str, Room room) {
-		seenRooms.returnMap().put(str, room);
-	}
+	/**
+	 * Sets the reference of the current room to keep track of where the player is
+	 * 
+	 * @param room the instance of Room to be set to the current room
+	 */
+	public void setCurrentRoom(Room room) { currentRoom = room;	}
 	
-	public DynamicMap returnDMap() {
-		return seenRooms;
-	}
+	/**
+	 * Updates the map of previously visited rooms
+	 * 
+	 * @param str the name of the room
+	 * @param room the reference to the room
+	 */
+	public void updateMap (String str, Room room) {	seenRooms.put(str, room); }
 	
-	public Game getGame() {
-		return game;
-	}
+	/**
+	 * Gets the map of previously visited rooms
+	 * 
+	 * @return a HashMap of the previously visited rooms
+	 */
+	public HashMap<String, Room> returnMap() { return seenRooms; }
 	
+	/**
+	 * Gets a reference to the game
+	 * 
+	 * @return the Game
+	 */
+	public Game getGame() { return game; }
+	
+	/**
+	 * Gets the current problem the player is facing
+	 * 
+	 * @return the current problem
+	 */
+	public Problem getProblem() { return currentproblem; }
+	
+	/**
+	 * Sets the current problem the player is facing
+	 * 
+	 * @param p The current problem
+	 */
+	public void setCurrentProblem(Problem p) { currentproblem = p; }
 	
 }
