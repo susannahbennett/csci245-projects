@@ -107,6 +107,11 @@ public class Room {
     /**
      * 
      */
+    public void setCanMove() { canmove = true; } 
+    
+    /**
+     * 
+     */
     public void setInspection(String s) { inspection = s; }
 
 }

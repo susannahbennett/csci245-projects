@@ -14,12 +14,12 @@ public class Puzzle {
 
 	
 	/**
-	 * 
+	 * This is what will be displayed when the player is presented the puzzle
 	 */
 	private String puzzle;
 	
 	/**
-	 * 
+	 * This is the 
 	 */
 	private String solution;
 	
@@ -28,13 +28,18 @@ public class Puzzle {
 	 */
 	private Exit exit;
 	
+	/**
+	 * 
+	 */
+	private Room room;
 	
 	/**
 	 * Constructor
 	 */
-	public Puzzle(String puzzle, String solution) {
-		this.puzzle = puzzle;
-		this.solution = solution;
+	public Puzzle(String p, String s, Room r) {
+		puzzle = p;
+		solution = s;
+		room = r;
 	}
 
 	/**
@@ -50,7 +55,12 @@ public class Puzzle {
 	/**
 	 * 
 	 */
-	public void solve() { exit.setCanUse(); }
+	public void solve() { 
+		if(exit != null)
+			exit.setCanUse();
+		else
+			room.setCanMove();
+	}
 	
 	/**
 	 * 

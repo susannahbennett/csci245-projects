@@ -93,7 +93,7 @@ public class Game {
         rooms[1].addItem("key to room 2", keytoroom2);
         
         //testing Puzzle exits
-        rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Password is password", "password")));
+        rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Password is password", "password", null)));
         rooms[2].setExit("back", new NormalExit(rooms[1]));
        
         //testing magnifying glass
