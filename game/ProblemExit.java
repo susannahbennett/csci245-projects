@@ -24,12 +24,12 @@ public class ProblemExit implements Exit {
 	/**
 	 * The problem associated with the exit
 	 */
-	private Problem givenproblem;
+	private Puzzle givenproblem;
 
 	/**
 	 * Constructor to set the next room and the given problem
 	 */
-	public ProblemExit(Room r, Problem p) {
+	public ProblemExit(Room r, Puzzle p) {
 		nextroom = r;
 		givenproblem = p;
 		givenproblem.setExit(this);
@@ -38,9 +38,8 @@ public class ProblemExit implements Exit {
 	/**
 	 * Returns the room the player want to enter that is after the exit
 	 */
-	public Room destination() {
-		return nextroom;
-	}
+	public Room destination() { return nextroom; }
+	
 	/**
 	 * Returns whether the door has been unlocked
 	 */
@@ -68,6 +67,6 @@ public class ProblemExit implements Exit {
 	/**
 	 * Returns the problem associated with the exit
 	 */
-	public Problem getProblem() { return givenproblem; }
+	public Puzzle getProblem() { return givenproblem; }
 
 }

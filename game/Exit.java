@@ -43,6 +43,6 @@ public interface Exit {
 	 * 
 	 * @return the instance of Problem associated with the exit.
 	 */
-	public Problem getProblem();
+	public Puzzle getProblem();
 	
 }

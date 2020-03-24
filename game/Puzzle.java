@@ -1,10 +1,16 @@
 package game;
 
 /**
- * @author stevenbarker
- *
+ * Puzzle.java
+ * 
+ * Makes all puzzles or riddles or problems
+ * 
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
  */
-public class Puzzle implements Problem {
+public class Puzzle {
 
 	
 	/**
@@ -41,7 +47,9 @@ public class Puzzle implements Problem {
 	 */
 	public String getSolution() { return solution; }
 
-	@Override
+	/**
+	 * 
+	 */
 	public void solve() { exit.setCanUse(); }
 	
 	/**

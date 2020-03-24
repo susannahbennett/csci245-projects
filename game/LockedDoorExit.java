@@ -78,6 +78,6 @@ public class LockedDoorExit implements Exit {
 	}
 	
 
-	public Problem getProblem() { return null; }
+	public Puzzle getProblem() { return null; }
 
 }
