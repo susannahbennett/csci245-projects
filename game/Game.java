@@ -54,19 +54,7 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-    	NormalExit exit0S = new NormalExit(rooms[1]);
-    	NormalExit exit1N = new NormalExit(rooms[0]);
-    	NormalExit exit2E = new NormalExit(rooms[2]);
-    	NormalExit exit2W = new NormalExit(rooms[1]);
-    	
-        Room[] rooms = new Room[5];
-        for (int i = 0; i < rooms.length; i++)
-            rooms[i] = new Room("room "+i);
-        rooms[0].setExit("room 1", exit0S);
-        rooms[1].setExit("room 0", exit1N);//from room 1 back to room 0
-        rooms[1].addItem("dynamic map",new DynamicMap());
-        rooms[1].setExit("room 2", room2E);
-        rooms[2].setExit("room 1", );//from room 2 back to room 1
+ 
     	
     	
         Room[] rooms = new Room[6];
