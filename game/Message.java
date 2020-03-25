@@ -54,6 +54,13 @@ public class Message implements Item {
 	 */
 	public void addInspection(String s) { inspection = s; }
 
-	
+	/**
+	 * Gives the message's description
+	 * 
+	 * @return String description
+	 */
+	public String getDescription() {
+		return "Will print out the message when the read command or use command is used";
+	}
 	
 }

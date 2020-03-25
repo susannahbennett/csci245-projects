@@ -38,6 +38,6 @@ public class Inventory implements Command {
 			System.out.println(Game.BLUE + i.next() + Game.RESET);		
 	}
 
-	public String getDescription() { return "view all items currently in your inventory"; }
+	public String getDescription() { return "View all items currently in your inventory"; }
 
 }
