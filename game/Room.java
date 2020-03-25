@@ -19,7 +19,7 @@ public class Room {
 
 	private HashMap<String, Item> itemmap = new HashMap<String, Item>();
 	
-	private Problem roomchallenge;
+	private Puzzle roomchallenge;
 	
     private String description;
     
@@ -76,7 +76,7 @@ public class Room {
      * 
      * @return
      */
-    public Problem getProblem() { return roomchallenge; }
+    public Puzzle getProblem() { return roomchallenge; }
     
     /**
      * 
@@ -94,7 +94,7 @@ public class Room {
      * Sets the 
      * @param p
      */
-    public void setRoomProblem(Problem p) {
+    public void setRoomProblem(Puzzle p) {
     	canmove = false;
     	roomchallenge = p;
     }
@@ -103,6 +103,11 @@ public class Room {
      * 
      */
     public boolean getCanMove() { return canmove; }
+    
+    /**
+     * 
+     */
+    public void setCanMove() { canmove = true; } 
     
     /**
      * 

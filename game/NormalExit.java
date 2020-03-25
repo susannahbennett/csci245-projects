@@ -49,7 +49,7 @@ public class NormalExit implements Exit {
 	/**
 	 * Returns the problem associated with the exit
 	 */
-	public Problem getProblem() { return null; }
+	public Puzzle getProblem() { return null; }
 	
 	/**
 	 * The method to use the exit that actually moves the player

@@ -23,7 +23,7 @@ public class Player {
 	
 	public String name;
 	
-	public Problem currentproblem;
+	public Puzzle currentproblem;
 
 	/**
 	 * Constructor
@@ -105,13 +105,13 @@ public class Player {
 	 * 
 	 * @return the current problem
 	 */
-	public Problem getProblem() { return currentproblem; }
+	public Puzzle getProblem() { return currentproblem; }
 	
 	/**
 	 * Sets the current problem the player is facing
 	 * 
 	 * @param p The current problem
 	 */
-	public void setCurrentProblem(Problem p) { currentproblem = p; }
+	public void setCurrentProblem(Puzzle p) { currentproblem = p; }
 	
 }
