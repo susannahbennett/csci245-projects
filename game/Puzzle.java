@@ -1,19 +1,25 @@
 package game;
 
 /**
- * @author stevenbarker
- *
+ * Puzzle.java
+ * 
+ * Makes all puzzles or riddles or problems
+ * 
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
  */
-public class Puzzle implements Problem {
+public class Puzzle {
 
 	
 	/**
-	 * 
+	 * This is what will be displayed when the player is presented the puzzle
 	 */
 	private String puzzle;
 	
 	/**
-	 * 
+	 * This is the 
 	 */
 	private String solution;
 	
@@ -22,13 +28,18 @@ public class Puzzle implements Problem {
 	 */
 	private Exit exit;
 	
+	/**
+	 * 
+	 */
+	private Room room;
 	
 	/**
 	 * Constructor
 	 */
-	public Puzzle(String puzzle, String solution) {
-		this.puzzle = puzzle;
-		this.solution = solution;
+	public Puzzle(String p, String s, Room r) {
+		puzzle = p;
+		solution = s;
+		room = r;
 	}
 
 	/**
@@ -41,8 +52,15 @@ public class Puzzle implements Problem {
 	 */
 	public String getSolution() { return solution; }
 
-	@Override
-	public void solve() { exit.setCanUse(); }
+	/**
+	 * 
+	 */
+	public void solve() { 
+		if(exit != null)
+			exit.setCanUse();
+		else
+			room.setCanMove();
+	}
 	
 	/**
 	 * 

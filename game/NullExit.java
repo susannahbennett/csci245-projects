@@ -49,6 +49,6 @@ public class NullExit implements Exit {
 	public void use(Player p1) { System.out.println("You cannot move that way"); }
 
 
-	public Problem getProblem() { return null; }
+	public Puzzle getProblem() { return null; }
 
 }

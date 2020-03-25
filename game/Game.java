@@ -54,9 +54,21 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
+
         Room[] rooms = new Room[6];
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("room " + i);
+
+        Room[] rooms = new Room[5];
+        for (int i = 0; i < rooms.length; i++)
+            rooms[i] = new Room("room "+i);
+      /*
+        rooms[0].setExit("room 1", exit0S);
+        rooms[1].setExit("room 0", exit1N);//from room 1 back to room 0
+        rooms[1].addItem("dynamic map",new DynamicMap());
+        rooms[1].setExit("room 2", room2E);
+        rooms[2].setExit("room 1", );//from room 2 back to room 1
+    	*/
         
         /*needed simpler world for testing but didnt want to delete this
         rooms[0].setExit("room 1", new LockedDoorExit(rooms[1], keytoroom1));
@@ -84,7 +96,7 @@ public class Game {
         rooms[1].addItem("key to room 2", keytoroom2);
         
         //testing Puzzle exits
-        rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Password is password", "password")));
+        rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Password is password", "password", null)));
         rooms[2].setExit("back", new NormalExit(rooms[1]));
        
         //testing magnifying glass
