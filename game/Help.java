@@ -32,11 +32,23 @@ public class Help implements Command {
 	 * Prints the list of possible commands.
 	 */
 	public void doSomething(String[] command) {
-		HashMap<String, Command> commands = p.getCommands();
-		Iterator<String> i = commands.keySet().iterator();
-		while(i.hasNext()) {
-			String com = i.next();
-			System.out.println(Game.CYAN + com + Game.RESET + ": " + commands.get(com).getDescription());
+		if (command[1] == null) {
+			HashMap<String, Command> commands = p.getCommands();
+			Iterator<String> i = commands.keySet().iterator();
+			while(i.hasNext()) {
+				String com = i.next();
+				System.out.println(Game.CYAN + com + Game.RESET + ": " + commands.get(com).getDescription());
+			}
+		} else {
+			String item = command[1];
+			HashMap<String, Item> items = p.getItems();
+			Iterator<String> i = items.keySet().iterator();
+			while (i.hasNext()) {
+				if (item == i.next()) {
+					System.out.println(Game.CYAN + item + Game.RESET + ": " + items.get(item).getDescription());
+				}
+				
+			}
 		}
 	}
 

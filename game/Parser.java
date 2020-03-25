@@ -22,6 +22,8 @@ public class Parser {
     
     private HashMap<String, Command> actions;
     
+    private HashMap<String, Item> items;
+    
     private Player p1;
     
 
@@ -44,6 +46,9 @@ public class Parser {
         actions.put("move", new Move(p1));
         actions.put("inventory", new Inventory(p1));
         actions.put("drop", new Drop(p1)); 
+
+        items = p1.getItemList();
+
     }
 
     /**
@@ -101,6 +106,5 @@ public class Parser {
      */
     public HashMap<String, Command> getCommands(){ return actions; }
     
-    
-
+    public HashMap<String, Item> getItems() { return items; }
 }

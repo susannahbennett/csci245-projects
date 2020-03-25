@@ -47,7 +47,7 @@ public class Player {
 	 * 
 	 * @return The player's inventory
 	 */
-	public HashMap<String, Item>  getItemList () { return inventory; }
+	public HashMap<String, Item> getItemList () { return inventory; }
 	
 	/**
 	 * Gets an item out of the inventory

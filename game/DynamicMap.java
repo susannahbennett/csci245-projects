@@ -19,14 +19,14 @@ public class DynamicMap implements Item{
 	/**
 	 * What will be printed upon inspection
 	 */
-	private String inspection = "Cool clues";
+	private String inspection;
 	
 	/**
 	 * Constructor
 	 * 
 	 * Builds an instance of the DynamicMap.
 	 */
-	public DynamicMap() {}
+	public DynamicMap() { }
 	
 
 	/**
@@ -66,5 +66,14 @@ public class DynamicMap implements Item{
 	 * @param s the new String
 	 */
 	public void addInspection(String s) { inspection = s; }
+	
+	/**
+	 * Gives the DynamicMap's description
+	 * 
+	 * @return String description
+	 */
+	public String getDescription() {
+		return "Lists all of the previously seen rooms, letting the player know that those room are now available";
+	}
 
 }

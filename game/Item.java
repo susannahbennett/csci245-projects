@@ -43,4 +43,10 @@ public interface Item {
 	 * @param s The string that will print out
 	 */
 	void addInspection(String s);
+	
+	/**
+	 * Will return the description of each item for the Help feature.
+	 * @return A description of the item.
+	 */
+	String getDescription();
 }
