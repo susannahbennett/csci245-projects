@@ -55,7 +55,10 @@ public class Game {
      */
     public Game() {
 
-    	
+        Room[] rooms = new Room[6];
+        for (int i = 0; i < rooms.length; i++)
+            rooms[i] = new Room("room " + i);
+
         Room[] rooms = new Room[5];
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("room "+i);
@@ -66,7 +69,6 @@ public class Game {
         rooms[1].setExit("room 2", room2E);
         rooms[2].setExit("room 1", );//from room 2 back to room 1
     	*/
-
         
         /*needed simpler world for testing but didnt want to delete this
         rooms[0].setExit("room 1", new LockedDoorExit(rooms[1], keytoroom1));
@@ -123,8 +125,6 @@ public class Game {
         
         over = false;
         currentRoom = rooms[0];
-        
-
     }
     
     /**
