@@ -71,10 +71,7 @@ public class Room {
      * @param item
      */
     public void removeItem(String item) { itemmap.remove(item); }
-    
-    public void setRiddle(String riddle, String solution) {
-    	challenge = new Riddle(riddle, solution);
-    }
+   
 
     /**
      * 
