@@ -43,7 +43,7 @@ public class Parser {
         actions.put("read", new Read(p1));
         actions.put("move", new Move(p1));
         actions.put("inventory", new Inventory(p1));
-        
+        actions.put("drop", new Drop(p1)); 
     }
 
     /**

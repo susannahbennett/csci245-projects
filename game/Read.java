@@ -43,6 +43,6 @@ public class Read implements Command {
 	}
 
 	
-	public String getDescription() {return "Read a message or writting that may be arounf"; }
+	public String getDescription() {return "Read a message or writting that may be around"; }
 
 }

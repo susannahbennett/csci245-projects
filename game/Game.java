@@ -91,6 +91,8 @@ public class Game {
         Key keytoroom2 = new Key();
         rooms[1].setExit("to room 2", new LockedDoorExit(rooms[2], keytoroom2));
         rooms[1].setExit("back", new NormalExit(rooms[0]));
+        DynamicMap m = new DynamicMap();
+        rooms[1].addItem("dynamic map", m);
         rooms[1].addItem("key to room 2", keytoroom2);
         
         //testing Puzzle exits
@@ -101,9 +103,9 @@ public class Game {
         rooms[3].setExit("to room 4", new NormalExit(rooms[4]));
         rooms[3].setExit("back", new NormalExit(rooms[2]));
         MagnifyingGlass glass = new MagnifyingGlass();
-        DynamicMap m = new DynamicMap();
+        //DynamicMap m = new DynamicMap();
         rooms[3].addItem("magnifying glass", glass);
-        rooms[3].addItem("dynamic map", m);
+       // rooms[3].addItem("dynamic map", m);
         rooms[3].setInspection("The room's inspection");
        
 
@@ -111,13 +113,13 @@ public class Game {
         requireditems.put("magnifying glass", glass);
         requireditems.put("key to room 2", keytoroom2);
         requireditems.put("dynamic map", m);
-        rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
+   //     rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
         rooms[4].setExit("back", new NormalExit(rooms[3]));
         
         
         //testing null exits
-        rooms[5].setExit("null", new NullExit(rooms[5]));
-        rooms[5].setExit("back", new NormalExit(rooms[4]));
+    //    rooms[5].setExit("null", new NullExit(rooms[5]));
+     //   rooms[5].setExit("back", new NormalExit(rooms[4]));
         
         over = false;
         currentRoom = rooms[0];
