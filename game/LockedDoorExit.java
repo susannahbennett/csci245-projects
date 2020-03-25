@@ -68,7 +68,11 @@ public class LockedDoorExit implements Exit {
 	 * @param p1 The reference to the player
 	 */
 	public void use(Player p1) {
-		if(p1.getItemList().containsValue(key)) {
+		if(canuse) {
+			p1.setCurrentRoom(nextroom);
+			p1.getGame().setCurrentRoom(nextroom);
+		}
+		else if(p1.getItemList().containsValue(key)) {
 			setCanUse();
 			System.out.println("You have unlocked the door with the key");
 			p1.setCurrentRoom(nextroom);
