@@ -55,7 +55,7 @@ public class Game {
      */
     public Game() {
 
-        Room[] rooms = new Room[7];
+        Room[] rooms = new Room[9];
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("room " + i + ":");
 
@@ -136,7 +136,6 @@ public class Game {
         requireditems.put("key to room 2", keytoroom2);
         requireditems.put("dynamic map", m);
 
-        /**
         // rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
 
         rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
@@ -148,7 +147,6 @@ public class Game {
         
         over = false;
         currentRoom = rooms[0];
-        */
     }
     
     /**
