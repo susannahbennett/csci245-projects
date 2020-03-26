@@ -44,23 +44,28 @@ public class PickUp implements Command {
 	 */
 	public void doSomething(String[] command) {
 		HashMap<String, Item> items = p1.getCurrentRoom().getItemMap();	
-		if(command[1].equals("all")) {
-			Iterator<String> i = items.keySet().iterator();
-			while(i.hasNext()) {
-				String s = i.next();
-				p1.addToInventory(s, items.get(s));
-				items.get(s).addFunctionality(p1, p);
-				i.remove();				
+		
+		if(items.size() <= 6) {
+			if(command[1].equals("all")) {
+				Iterator<String> i = items.keySet().iterator();
+				while(i.hasNext()) {
+					String s = i.next();
+					p1.addToInventory(s, items.get(s));
+					items.get(s).addFunctionality(p1, p);
+					i.remove();				
+				}
+			}else {
+				System.out.println(command[1]);
+				if(items.containsKey(command[1])) {
+					p1.addToInventory(command[1], items.get(command[1]));
+					items.get(command[1]).addFunctionality(p1, p);
+					p1.getCurrentRoom().removeItem(command[1]);
+				}
+				else 
+					System.out.println("That item does not exist");
 			}
 		}else {
-			System.out.println(command[1]);
-			if(items.containsKey(command[1])) {
-				p1.addToInventory(command[1], items.get(command[1]));
-				items.get(command[1]).addFunctionality(p1, p);
-				p1.getCurrentRoom().removeItem(command[1]);
-			}
-			else 
-				System.out.println("That item does not exist");
+			System.out.println("You have reached carrying capacity.  Please drop an item before picking another up.");
 		}
 	}
 

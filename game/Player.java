@@ -71,6 +71,8 @@ public class Player {
 	 */
 	public void addToInventory(String name, Item item) { inventory.put(name, item); }
 	
+
+	
 	/**
 	 * Sets the reference of the current room to keep track of where the player is
 	 * 
