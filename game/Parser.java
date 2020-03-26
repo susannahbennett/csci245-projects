@@ -47,7 +47,7 @@ public class Parser {
         actions.put("inventory", new Inventory(p1));
         actions.put("drop", new Drop(p1)); 
 
-        items = p1.getItemList()
+        items = p1.getItemList();
 
     }
 
