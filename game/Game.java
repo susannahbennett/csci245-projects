@@ -57,7 +57,7 @@ public class Game {
 
         Room[] rooms = new Room[7];
         for (int i = 0; i < rooms.length; i++)
-            rooms[i] = new Room("room " + i);
+            rooms[i] = new Room("room " + i + ":");
 
       /*
         rooms[0].setExit("room 1", exit0S);
@@ -83,7 +83,9 @@ public class Game {
         */
        
         //making sure I didnt break anything
-        rooms[0].setExit("to room 1", new NormalExit(rooms[1]));
+        //outside the house
+      
+        rooms[0].setExit("to the entryway", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
         //testing keys and locked doors
         
@@ -111,7 +113,7 @@ public class Game {
         rooms[4].setExit("back", new NormalExit(rooms[3]));
         //rooms[4].setExit("to gameover1", new DeathExit());
         Paper scrambledWord = new Paper("ATEPLHEN");
-        rooms[4].addItem("scrambled word", word);
+        rooms[4].addItem("scrambled word", scrambledWord);
         Key keytohiddenexit = new Key();
         rooms[4].addItem("key to hidden exit", keytohiddenexit);
         

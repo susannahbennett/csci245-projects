@@ -59,4 +59,10 @@ public class Paper implements Item {
 		readable=!readable;
 	}
 
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return "Miscellaneous paper that can have hints to be used later on";
+	}
+
 }

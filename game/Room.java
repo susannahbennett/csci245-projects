@@ -23,6 +23,8 @@ public class Room {
 	
     private String description;
     
+    private String instructions;
+    
     private boolean canmove = true;
     
     private String inspection = "Inspection";
@@ -30,7 +32,7 @@ public class Room {
 
     /**
      * Constructor.
-     * @param description A String describing this room to the user.
+     * @param name A String naming this room.
      */
     public Room(String description) { this.description = description; }
 
@@ -114,5 +116,19 @@ public class Room {
      * 
      */
     public void setInspection(String s) { inspection = s; }
+
+	/**
+	 * @return the instructions
+	 */
+	public String getInstructions() {
+		return instructions;
+	}
+
+	/**
+	 * @param instructions the instructions to set
+	 */
+	public void setInstructions(String instructions) {
+		this.instructions = instructions;
+	}
 
 }

@@ -59,4 +59,11 @@ public class MagnifyingGlass implements Item {
 	 */
 	public void addInspection(String s) { inspection = s; }
 
+
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return "Will give the player the ability to inspect items and rooms";
+	}
+
 }
