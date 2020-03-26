@@ -55,7 +55,7 @@ public class Game {
      */
     public Game() {
 
-        Room[] rooms = new Room[7];
+        Room[] rooms = new Room[9];
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("room " + i + ":");
 
@@ -85,7 +85,7 @@ public class Game {
         //making sure I didnt break anything
         //outside the house
       
-        rooms[0].setExit("to the entryway", new NormalExit(rooms[1]));
+        rooms[0].setExit("to room 1", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
         //testing keys and locked doors
         
