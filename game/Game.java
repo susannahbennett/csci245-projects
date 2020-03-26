@@ -119,7 +119,7 @@ public class Game {
         
         rooms[5].setExit("to room 7", new NormalExit(rooms[6]));
         rooms[5].setExit("back", new NormalExit(rooms[4]));
-        rooms[5].setExit("to room 6, deadend", new NormalExit(rooms[6]));
+        rooms[5].setExit("to room 6", new NormalExit(rooms[6]));
         Paper clue1 = new Paper("What is greater than God,\nmore evil than the devil,\nthe poor have it,\nthe rich need it,\nand if you eat it, you'll die?");
         rooms[5].addItem("clue1", clue1);
         
@@ -136,7 +136,6 @@ public class Game {
         requireditems.put("key to room 2", keytoroom2);
         requireditems.put("dynamic map", m);
 
-        /**
         // rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
 
         rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
@@ -148,7 +147,6 @@ public class Game {
         
         over = false;
         currentRoom = rooms[0];
-        */
     }
     
     /**
