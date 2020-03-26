@@ -109,11 +109,11 @@ public class Game {
        // rooms[3].addItem("dynamic map", m);
         rooms[3].setInspection("The room's inspection");
         
-        rooms[4].setExit("to room 5", new ProblemExit(rooms[5], new Puzzle("Unscramble given letters. (Hint: find paper item in room)", "ELEPHANT", null)))
+        rooms[4].setExit("to room 5", new ProblemExit(rooms[5], new Puzzle("Unscramble given letters. (Hint: find paper item in room)", "ELEPHANT", null)));
         rooms[4].setExit("back", new NormalExit(rooms[3]));
         //rooms[4].setExit("to gameover1", new DeathExit());
         Paper scrambledWord = new Paper("ATEPLHEN");
-        rooms[4.addItem("scrambled word", word);
+        rooms[4].addItem("scrambled word", scrambledWord);
         Key keytohiddenexit = new Key();
         rooms[4].addItem("key to hidden exit", keytohiddenexit);
         
