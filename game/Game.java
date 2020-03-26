@@ -107,17 +107,17 @@ public class Game {
        // rooms[3].addItem("dynamic map", m);
         rooms[3].setInspection("The room's inspection");
         
-        rooms[4].setExit("to room 5", new ProblemExit(rooms[5], new Puzzle("Unscramble given letters. (Hint: find paper item in room)", "ELEPHANT", null)))
+        rooms[4].setExit("to room 5", new ProblemExit(rooms[5], new Puzzle("Unscramble given letters. (Hint: find paper item in room)", "ELEPHANT", null)));
         rooms[4].setExit("back", new NormalExit(rooms[3]));
         //rooms[4].setExit("to gameover1", new DeathExit());
         Paper scrambledWord = new Paper("ATEPLHEN");
-        rooms[4.addItem("scrambled word", word);
+        rooms[4].addItem("scrambled word", word);
         Key keytohiddenexit = new Key();
         rooms[4].addItem("key to hidden exit", keytohiddenexit);
         
         rooms[5].setExit("to room 7", new NormalExit(rooms[6]));
         rooms[5].setExit("back", new NormalExit(rooms[4]));
-        rooms[5].setExit("to room 6, deadend", new NormalExit(rooms[6]));
+        rooms[5].setExit("to room 6", new NormalExit(rooms[6]));
         Paper clue1 = new Paper("What is greater than God,\nmore evil than the devil,\nthe poor have it,\nthe rich need it,\nand if you eat it, you'll die?");
         rooms[5].addItem("clue1", clue1);
         
