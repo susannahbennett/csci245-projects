@@ -62,10 +62,10 @@ public class PickUp implements Command {
 					p1.getCurrentRoom().removeItem(command[1]);
 				}
 				else 
-					System.out.println("That item does not exist");
+					System.out.println("\nThat item does not exist");
 			}
 		}else {
-			System.out.println("You have reached carrying capacity.  Please drop an item before picking another up.");
+			System.out.println("\nYou have reached carrying capacity.  Please drop an item before picking another up.");
 		}
 	}
 

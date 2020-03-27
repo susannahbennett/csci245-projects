@@ -41,7 +41,7 @@ public class MagnifyingGlass implements Item {
 	 * @param p1 The reference to the player
 	 */
 	public void inspect(Player p1) {
-		System.out.println(inspection);
+		System.out.println("\n" + inspection);
 	}
 
 	/**
@@ -52,6 +52,11 @@ public class MagnifyingGlass implements Item {
 	 */
 	public void addFunctionality(Player p1, Parser p) { p.addCommand("inspect", new Inspect(p1)); }
 
+	/**
+	 * Magnifying glass does not need to be edited
+	 */
+	public void editItem() {}
+	
 	/**
 	 * Gives a new String to be printed out upon inspection
 	 * 

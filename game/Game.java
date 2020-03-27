@@ -55,10 +55,21 @@ public class Game {
      */
     public Game() {
 
-        Room[] rooms = new Room[9];
-        for (int i = 0; i < rooms.length; i++)
-            rooms[i] = new Room("room " + i + ":");
-       
+        Room[] rooms = new Room[10];
+        rooms[0] = new Room("room 0:\n", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
+        rooms[1] = new Room("room 1:\n", "Now, you’re in the house. You look around the entryway. Across the room, you notice what looks like a map and a key.\n\n"
+        		+ "To pick up the map, enter "+ Game.CYAN + "pickup dynamic map" + Game.RESET + ".\nTo pick up the key, enter " + Game.CYAN + "pickup key to room 2" + Game.RESET + ".\n"
+        		+ "From now on, use the "  + Game.CYAN + "look" + Game.RESET + " command (to see what rooms and items are nearby) and the " + Game.CYAN + "move" + Game.RESET + " command (to move to one of the listed rooms). "
+        		+ "To get further descriptions of available commands, use the " + Game.CYAN + "help" + Game.RESET + " command.\n");
+        rooms[2] = new Room("room 2:\n", " ");
+        rooms[3] = new Room("room 3:\n", " ");
+        rooms[4] = new Room("room 4:\n", " ");
+        rooms[5] = new Room("room 5:\n", " ");
+        rooms[6] = new Room("room 6:\n", " ");
+        rooms[7] = new Room("room 7:\n", " ");
+        rooms[8] = new Room("room 8:\n", " ");
+        rooms[9] = new Room("room 9:\n", " ");
+        
         //outside the house
       
         rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
@@ -73,7 +84,7 @@ public class Game {
         rooms[1].addItem("key to room 2", keytoroom2);
 
         //testing Puzzle exits
-        rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Locked door: password is password", "password", null)));
+        rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Answer this riddle to unlock the door: password is password", "password", null)));
         rooms[2].setExit("back", new NormalExit(rooms[1]));
        
         //testing magnifying glass
@@ -85,27 +96,34 @@ public class Game {
        // rooms[3].addItem("dynamic map", m);
         rooms[3].setInspection("The room's inspection");
         
-        rooms[4].setExit("to room 5", new ProblemExit(rooms[5], new Puzzle("Locked door: unscramble given letters (Hint: find paper item in room)", "ELEPHANT", null)));
+        rooms[4].setExit("to room 5", new ProblemExit(rooms[5], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)", "elephant", null)));
         rooms[4].setExit("back", new NormalExit(rooms[3]));
         //rooms[4].setExit("to gameover1", new DeathExit());
-        Paper scrambledWord = new Paper("ATEPLHEN");
+        Paper scrambledWord = new Paper("ateplhen", true);
         rooms[4].addItem("paper with scrambled word", scrambledWord);
         Key keytohiddenexit = new Key();
         rooms[4].addItem("key to hidden exit", keytohiddenexit);
         
-        rooms[5].setExit("to room 7", new NormalExit(rooms[6]));
+        rooms[5].setExit("to room 7", new NormalExit(rooms[7]));
         rooms[5].setExit("back", new NormalExit(rooms[4]));
         rooms[5].setExit("to room 6", new NormalExit(rooms[6]));
-        Paper clue1 = new Paper("Locked door: \nWhat is greater than God,\nmore evil than the devil,\nthe poor have it,\nthe rich need it,\nand if you eat it, you'll die?");
+        Paper clue1 = new Paper("\nRiddle: What is greater than God,\nmore evil than the devil,\nthe poor have it,\nthe rich need it,\nand if you eat it, you'll die?", true);
         rooms[5].addItem("clue1", clue1);
         
-        //dead end room, so only one exit (back)
-        //rooms[6].setExit("back", new NormalExit(rooms[5]));
+        rooms[6].setExit("back", new NormalExit(rooms[5]));
         
         rooms[7].setExit("back", new NormalExit(rooms[5]));
         //rooms[7].setExit("to gameover2", new DeathExit());
         //rooms[7].setExit("to gameover3", new DeathExit());
-        rooms[7].setExit("to room 8", new ProblemExit(rooms[8], new Puzzle("Answer the riddle that was already given", "Nothing", null)));
+        rooms[7].setExit("to room 8", new ProblemExit(rooms[8], new Puzzle("Answer the riddle that was already given", "nothing", null)));
+        Paper hiddenMessage = new Paper("A great treasure lies behind this door; knock to enter", false);
+        rooms[7].addItem("hidden message", hiddenMessage);
+        
+        rooms[8].setExit("back", new NormalExit(rooms[7]));
+        rooms[8].setExit("to room 9", new ProblemExit(rooms[9], new Puzzle("When life gives you lemons...", "knock", null)));
+        Lemon lemon = new Lemon();
+        rooms[8].addItem("lemon", lemon);
+        
         
         HashMap<String, Item> requireditems = new HashMap<>();
         requireditems.put("magnifying glass", glass);

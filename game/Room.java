@@ -32,9 +32,13 @@ public class Room {
 
     /**
      * Constructor.
-     * @param name A String naming this room.
+     * @param description A String naming this room.
+     * @param instruction Sets the scene of the room and provides instruction
      */
-    public Room(String description) { this.description = description; }
+    public Room(String description, String instructions) { 
+    	this.description = description; 
+    	this.instructions = instructions;
+    }
 
     /**
      * Testing Exit idea

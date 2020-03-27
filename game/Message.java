@@ -44,8 +44,9 @@ public class Message implements Item {
 	 */
 	public void inspect(Player p1) { System.out.println(inspection); }
 
-
 	public void addFunctionality(Player p1, Parser p) {}
+	
+	public void editItem() { }
 
 	/**
 	 * Gives a new String to be printed out upon inspection

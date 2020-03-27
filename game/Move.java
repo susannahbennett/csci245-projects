@@ -45,6 +45,7 @@ public class Move implements Command {
 			if(link != null) {
 				p1.updateMap(r.getDescription(), r);
 				link.use(p1);
+				System.out.println(r.getInstructions());
 			}else 
 				System.out.println("You cannot move there.");	
 		}

@@ -35,12 +35,17 @@ public class Key implements Item {
 	 * 
 	 * @param p1 the reference to the player
 	 */
-	public void inspect(Player p1) { System.out.println(inspection); }
+	public void inspect(Player p1) { System.out.println("\n" + inspection); }
 	
 	/**
 	 * Keys do not give any added ability
 	 */
 	public void addFunctionality(Player p1, Parser p) {}
+	
+	/**
+	 * Keys do not need to be edited
+	 */
+	public void editItem() { }
 	
 	/**
 	 * Gives a new String to be printed out upon inspection

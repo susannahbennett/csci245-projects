@@ -37,10 +37,10 @@ public class DynamicMap implements Item{
 	 */
 	public void function(Player p1) {
 		HashMap<String, Room> seenRooms = p1.returnMap();
-		Room treehouse = new Room("a treehouse");
-		Room dungeon = new Room("a dungeon");
+		Room treehouse = new Room("a treehouse", " ");
+		Room dungeon = new Room("a dungeon", " ");
 		seenRooms.put("treehouse", treehouse );
-		Item letter = new Paper("Welcome to the secret treehouse");
+		Item letter = new Paper("Welcome to the secret treehouse", true);
 		treehouse.addItem("letter", letter);
 		seenRooms.put("trapdoor", dungeon);
 		Iterator<String> i = seenRooms.keySet().iterator();
@@ -50,7 +50,7 @@ public class DynamicMap implements Item{
 	}
 	
 	
-	public void inspect(Player p1) { System.out.println(inspection); }
+	public void inspect(Player p1) { System.out.println("\n" + inspection); }
 
 	/**
 	 * Gives the user the ability to travel when the map is in the player's inventory.
@@ -59,6 +59,11 @@ public class DynamicMap implements Item{
 	 * @param p The reference to the parser to add the command.
 	 */
 	public void addFunctionality(Player p1, Parser p) {	p.addCommand("travel", new Travel(p1)); }
+	
+	/**
+	 * Dynamic Map has no edits to be implemented or changed
+	 */
+	public void editItem() { }
 		
 	/**
 	 * Gives a new String to be printed out upon inspection

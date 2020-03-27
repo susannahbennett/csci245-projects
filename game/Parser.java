@@ -65,7 +65,7 @@ public class Parser {
         if(room.getProblem() != null)
         	p1.setCurrentProblem(room.getProblem());
 
-        System.out.print("Enter command--> ");
+        System.out.print("\nEnter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
         String[] parsedcom = parse(command);
 

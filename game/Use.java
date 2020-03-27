@@ -24,8 +24,7 @@ public class Use implements Command {
 			return;
 		}
 		System.out.println("contains item");
-		Item itemFunction = items.get(command[1]);
-		itemFunction.function(p1);
+		items.get(command[1]).function(p1);
 	}
 
 	@Override

@@ -27,7 +27,6 @@ public interface Item {
 	 */
 	void inspect(Player p1);
 	
-	
 	/**
 	 * This will add any additional abilities to the HashMap of commands if the item requires new functionality,
 	 * otherwise this will be empty.
@@ -36,6 +35,12 @@ public interface Item {
 	 * @param p The reference to the parser to add the new command to the HashMap of commands.
 	 */
 	void addFunctionality(Player p1, Parser p);
+	
+	/**
+	 * This will add additional information to items to make them usable or readable
+	 * 
+	 */
+	void editItem();
 	
 	/**
 	 * This gives each instance of an item a specific message to print when inspected
@@ -49,4 +54,6 @@ public interface Item {
 	 * @return A description of the item.
 	 */
 	String getDescription();
+
+
 }

@@ -16,8 +16,8 @@ import java.util.*;
 public class PlayGame {
 	
     public static void main(String[] args) {
-        System.out.println("Welcome to the game!"+ "\n" + "You are a treasurehunter searching for the Declaration of Independence. All your years of hunting have led you to this house. ");
-        System.out.println("we will add instructions on how to use commands and to avoid trapdoors etc.");
+        System.out.println("Welcome to the game!"+ "\n\n" + "You are a treasure hunter searching for the Declaration of Independence. All of your years of hunting have led you to this house. "
+        		+ "You walk up a hill to an old colonial abandoned house.\n");
         Game game = new Game();   // reference to the game object
         HashMap<String, Item>  inventory = new HashMap<String, Item> ();
         HashMap<String, Room> seenRooms = new HashMap<String, Room> ();

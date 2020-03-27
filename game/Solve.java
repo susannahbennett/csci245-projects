@@ -27,7 +27,7 @@ public class Solve implements Command {
 	public void doSomething(String[] command) {
 		if(p1.getProblem() != null) {
 			if(p1.getProblem().getSolution().equals(command[1])) {
-				System.out.println("Congrats, you solved the problem");
+				System.out.println("\nCongrats, you solved the problem");
 				p1.getProblem().solve();
 			}else {
 				System.out.println("Wrong");

@@ -18,15 +18,16 @@ public class Paper implements Item {
 	/**
 	 * Determines whether or not the words on the paper are readable.  Will be false if the contents are hidden.
 	 */
-	Boolean readable;
+	boolean readable;
 
 	/**
 	 * Constructor to initializes the contents of the paper
 	 */
-	public Paper(String s) {
+	public Paper(String s, boolean readable) {
 		contents=s;
+		this.readable = readable;
 	}
-
+	
 	@Override
 	public void function(Player p1) {
 		if(readable) {
@@ -38,14 +39,20 @@ public class Paper implements Item {
 
 	@Override
 	public void inspect(Player p1) {
-		System.out.println(contents);
+		System.out.println("\n" + contents);
 
 	}
 
-	@Override
-	public void addFunctionality(Player p1, Parser p) {
-		// TODO Auto-generated method stub
-
+	/**
+	 * Paper does not add any new commands for player to use
+	 */
+	public void addFunctionality(Player p1, Parser p) {	}
+	
+	/**
+	 * Will make message now readable, if it previously was not
+	 */
+	public void editItem() {
+		readable = true;
 	}
 
 	@Override
@@ -54,10 +61,6 @@ public class Paper implements Item {
 
 	}
 	
-	public void setReadable() {
-		readable=!readable;
-	}
-
 	@Override
 	public String getDescription() {
 		// TODO Auto-generated method stub
