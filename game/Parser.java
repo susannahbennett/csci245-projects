@@ -60,8 +60,9 @@ public class Parser {
     public void executeTurn(Game game) {
         // The room that the user is in.
         Room room = game.getCurrentRoom();
+        System.out.println(room.getDescription());
 
-        System.out.println("You are in " + room.getDescription() + "\n" + room.getInstructions());
+       // System.out.println("You are in " + room.getDescription() + "\n" + room.getInstructions());
         if(room.getProblem() != null)
         	p1.setCurrentProblem(room.getProblem());
 

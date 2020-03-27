@@ -57,6 +57,7 @@ public class Paper implements Item {
 	public void editItem() {
 		readable = true;
 	}
+
 	
 	public void addInspection(String s) {}
 	

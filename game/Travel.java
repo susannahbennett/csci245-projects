@@ -1,6 +1,7 @@
 package game;
 
 import java.util.HashMap;
+import java.util.Iterator;
 
 /**
  * Command.java
@@ -35,10 +36,12 @@ public class Travel implements Command {
 	
 	public void doSomething(String[] command) {
 			HashMap<String, Room> seenRooms = p1.returnMap();
+			
 			if(seenRooms.containsKey(command[1])) {
 				Room nextRoom = seenRooms.get(command[1]);
 				game.setCurrentRoom(nextRoom);
 				p1.setCurrentRoom(nextRoom);
+				System.out.println("You are in " + nextRoom.getDescription() + "\n" + nextRoom.getInstructions());
 			}else 
 				System.out.println("Not an accessible room");
 			

@@ -56,19 +56,20 @@ public class Game {
     public Game() {
 
         Room[] rooms = new Room[10];
-        rooms[0] = new Room("room 0:\n", " ");
-        rooms[1] = new Room("room 1:\n", "Now, you’re in the house. You look around the entryway. Across the room, you notice what looks like a map and a key.\n\n"
+
+        rooms[0] = new Room("room 0", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
+        rooms[1] = new Room("entryway", "Now, you’re in the house. You look around the entryway. Across the room, you notice what looks like a map and a key.\n\n"
         		+ "To pick up the map, enter "+ Game.CYAN + "pickup dynamic map" + Game.RESET + ".\nTo pick up the key, enter " + Game.CYAN + "pickup key to room 2" + Game.RESET + ".\n"
         		+ "From now on, use the "  + Game.CYAN + "look" + Game.RESET + " command (to see what rooms and items are nearby) and the " + Game.CYAN + "move" + Game.RESET + " command (to move to one of the listed rooms). "
         		+ "To get further descriptions of available commands, use the " + Game.CYAN + "help" + Game.RESET + " command.\n");
-        rooms[2] = new Room("room 2:\n", " ");
-        rooms[3] = new Room("room 3:\n", " ");
-        rooms[4] = new Room("room 4:\n", " ");
-        rooms[5] = new Room("room 5:\n", " ");
-        rooms[6] = new Room("room 6:\n", " ");
-        rooms[7] = new Room("room 7:\n", " ");
-        rooms[8] = new Room("room 8:\n", " ");
-        rooms[9] = new Room("room 9:\n", " ");
+        rooms[2] = new Room("room 2", " ");
+        rooms[3] = new Room("room 3", " ");
+        rooms[4] = new Room("room 4", " ");
+        rooms[5] = new Room("room 5", " ");
+        rooms[6] = new Room("room 6", " ");
+        rooms[7] = new Room("room 7", " ");
+        rooms[8] = new Room("room 8", " ");
+        rooms[9] = new Room("room 9", " ");
         
         rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));

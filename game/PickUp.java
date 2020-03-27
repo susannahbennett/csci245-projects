@@ -48,16 +48,20 @@ public class PickUp implements Command {
 		if(items.size() <= 6) {
 			if(command[1].equals("all")) {
 				Iterator<String> i = items.keySet().iterator();
+				System.out.println();
 				while(i.hasNext()) {
 					String s = i.next();
 					p1.addToInventory(s, items.get(s));
+					System.out.print(s+", ");
 					items.get(s).addFunctionality(p1, p);
 					i.remove();				
 				}
+				System.out.print("have been added to your inventory.");
 			}else {
 				System.out.println(command[1]);
 				if(items.containsKey(command[1])) {
 					p1.addToInventory(command[1], items.get(command[1]));
+					System.out.println(command[1]+"added to your inventory.");
 					items.get(command[1]).addFunctionality(p1, p);
 					p1.getCurrentRoom().removeItem(command[1]);
 				}
