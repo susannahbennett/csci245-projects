@@ -37,7 +37,7 @@ public class Use implements Command {
 			System.out.println("Inventory does not contain this item");
 			return;
 		}
-		System.out.println("contains item");
+		
 		items.get(command[1]).function(p1);
 	}
 

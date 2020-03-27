@@ -47,7 +47,7 @@ public class Move implements Command {
 				System.out.println(r.getDescription());
 				link.use(p1);
 				r=p1.getCurrentRoom();
-				System.out.println("You are in " + r.getDescription() + "\n" + r.getInstructions());
+				System.out.println("You are in the" + r.getDescription() + "\n" + r.getInstructions());
 				//System.out.println(r.getInstructions());
 			}else 
 				System.out.println("You cannot move there.");	

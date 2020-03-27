@@ -36,6 +36,7 @@ public class Drop implements Command {
 		if(p1.getItemList().containsKey(command[1])) {
 			p1.getCurrentRoom().addItem(command[1], p1.getItem(command[1]));
 			p1.getItemList().remove(command[1]);
+			System.out.println("You have removed " + command[1] +" from your inventory.");
 		}else
 			System.out.println("That item does not exist");
 	}

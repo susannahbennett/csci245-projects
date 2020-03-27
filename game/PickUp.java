@@ -44,8 +44,8 @@ public class PickUp implements Command {
 	 */
 	public void doSomething(String[] command) {
 		HashMap<String, Item> items = p1.getCurrentRoom().getItemMap();	
-		
-		if(items.size() <= 6) {
+		HashMap<String,Item> playersItems = p1.getItemList();
+		if(playersItems.size() <= 6) {
 			if(command[1].equals("all")) {
 				Iterator<String> i = items.keySet().iterator();
 				System.out.println();
