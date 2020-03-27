@@ -73,35 +73,35 @@ public class Game {
         rooms[9] = new Room("bedroom", " ");
         
         rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
-        rooms[0].setExit("back", new NullExit(rooms[0]));
+        rooms[0].setExit("to porch", new NullExit(rooms[0]));
         
         Key keytoroom2 = new Key();
         rooms[1].setExit("to living room", new LockedDoorExit(rooms[2], keytoroom2));
-        rooms[1].setExit("back", new NormalExit(rooms[0]));
+        rooms[1].setExit("to entryway", new NormalExit(rooms[0]));
         DynamicMap m = new DynamicMap();
         rooms[1].addItem("dynamic map", m);
         rooms[1].addItem("key to living room", keytoroom2);
 
         //testing Puzzle exits
         rooms[2].setExit("to bedroom", new ProblemExit(rooms[3], new Puzzle("Answer this riddle to unlock the door: password is password", "password", null)));
-        rooms[2].setExit("back", new NormalExit(rooms[1]));
+        rooms[2].setExit("to living room", new NormalExit(rooms[1]));
        
         //testing magnifying glass
         rooms[3].setExit("to stairs", new NormalExit(rooms[4]));
-        rooms[3].setExit("back", new NormalExit(rooms[2]));
+        rooms[3].setExit("to bedroom", new NormalExit(rooms[2]));
         MagnifyingGlass glass = new MagnifyingGlass();
         rooms[3].addItem("magnifying glass", glass);
         rooms[3].setInspection("The room's inspection");
         
         rooms[4].setExit("to bathroom", new ProblemExit(rooms[5], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)", "elephant", null)));
-        rooms[4].setExit("back", new NormalExit(rooms[3]));
+        rooms[4].setExit("to stairs", new NormalExit(rooms[3]));
         Paper scrambledWord = new Paper("ateplhen", true);
         rooms[4].addItem("paper with scrambled word", scrambledWord);
         Key keytohiddenexit = new Key();
         rooms[4].addItem("key to hidden exit", keytohiddenexit);
         
-        rooms[5].setExit("to room 7", new NormalExit(rooms[7]));
-        rooms[5].setExit("back", new NormalExit(rooms[4]));
+        rooms[5].setExit("to deck", new NormalExit(rooms[7]));
+        rooms[5].setExit("to bathroom", new NormalExit(rooms[4]));
         rooms[5].setExit("to room 6", new NormalExit(rooms[6]));
         Paper clue1 = new Paper("\nRiddle: What is greater than God,\nmore evil than the devil,\nthe poor have it,\nthe rich need it,\nand if you eat it, you'll die?", true);
         rooms[5].addItem("clue1", clue1);

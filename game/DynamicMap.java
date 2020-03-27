@@ -39,21 +39,15 @@ public class DynamicMap implements Item{
 		HashMap<String, Room> seenRooms = p1.returnMap();
 		Room treehouse = new Room("a treehouse", " ");
 		Room dungeon = new Room("a dungeon", " ");
-<<<<<<< HEAD
 		if(!seenRooms.containsKey("treehouse") && !seenRooms.containsKey("dungeon")) {
 			p1.updateMap("treehouse", treehouse);
 			p1.updateMap("dungeon", dungeon);
 		}
 		Item letter = new Paper("Welcome to the secret treehouse", true);
 		treehouse.addItem("letter", letter);
-=======
-		seenRooms.put("treehouse", treehouse);
-		Item letter = new Paper("Welcome to the secret treehouse", true);
-		treehouse.addItem("letter", letter);
 		Lemon lemon = new Lemon();
 		treehouse.addItem("lemon", lemon);
 		seenRooms.put("trapdoor", dungeon);
->>>>>>> 6147bffaec2223f982504a198f1e5d6c68ab7713
 		Iterator<String> i = seenRooms.keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
 		while (i.hasNext()) 
