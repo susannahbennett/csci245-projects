@@ -58,8 +58,6 @@ public class Paper implements Item {
 		readable = true;
 	}
 
-	public void addFunctionality(Player p1, Parser p) {}
-
 
 	public void addInspection(String s) {}
 	
@@ -67,9 +65,6 @@ public class Paper implements Item {
 	public String getDescription() {
 		return "Miscellaneous paper that can have hints to be used later on";
 	}
-
-	public String getDescription() { return "Miscellaneous paper that can have hints to be used later on"; }
-
 
 	public void removeFunctionality(Parser p) {}
 

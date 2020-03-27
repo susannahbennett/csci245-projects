@@ -63,5 +63,11 @@ public class Message implements Item {
 	public String getDescription() {
 		return "Will print out the message when the read command or use command is used";
 	}
+
+	@Override
+	public void removeFunctionality(Parser p) {
+		// TODO Auto-generated method stub
+		
+	}
 	
 }
