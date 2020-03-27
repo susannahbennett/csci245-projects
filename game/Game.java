@@ -56,7 +56,9 @@ public class Game {
     public Game() {
 
         Room[] rooms = new Room[10];
+
         rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
+
         rooms[1] = new Room("entryway", "Now, you’re in the house. You look around the entryway. Across the room, you notice what looks like a map and a key.\n\n"
         		+ "To pick up the map, enter "+ Game.CYAN + "pickup dynamic map" + Game.RESET + ".\nTo pick up the key, enter " + Game.CYAN + "pickup key to room 2" + Game.RESET + ".\n"
         		+ "From now on, use the "  + Game.CYAN + "look" + Game.RESET + " command (to see what rooms and items are nearby) and the " + Game.CYAN + "move" + Game.RESET + " command (to move to one of the listed rooms). "
@@ -70,10 +72,8 @@ public class Game {
         rooms[8] = new Room("dining room", " ");
         rooms[9] = new Room("bedroom", " ");
         
-        //outside the house
         rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
-        //testing keys and locked doors
         
         Key keytoroom2 = new Key();
         rooms[1].setExit("to living room", new LockedDoorExit(rooms[2], keytoroom2));
@@ -90,14 +90,11 @@ public class Game {
         rooms[3].setExit("to stairs", new NormalExit(rooms[4]));
         rooms[3].setExit("back", new NormalExit(rooms[2]));
         MagnifyingGlass glass = new MagnifyingGlass();
-        //DynamicMap m = new DynamicMap();
         rooms[3].addItem("magnifying glass", glass);
-       // rooms[3].addItem("dynamic map", m);
         rooms[3].setInspection("The room's inspection");
         
         rooms[4].setExit("to bathroom", new ProblemExit(rooms[5], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)", "elephant", null)));
         rooms[4].setExit("back", new NormalExit(rooms[3]));
-        //rooms[4].setExit("to gameover1", new DeathExit());
         Paper scrambledWord = new Paper("ateplhen", true);
         rooms[4].addItem("paper with scrambled word", scrambledWord);
         Key keytohiddenexit = new Key();
@@ -110,19 +107,16 @@ public class Game {
         rooms[5].addItem("clue1", clue1);
         
         rooms[6].setExit("back", new NormalExit(rooms[5]));
+        Paper deadEndClue = new Paper("\nYou've reached a deadend. Go back.", true);
+        rooms[6].addItem("clue2", deadEndClue);
         
         rooms[7].setExit("back", new NormalExit(rooms[5]));
-        //rooms[7].setExit("to gameover2", new DeathExit());
-        //rooms[7].setExit("to gameover3", new DeathExit());
         rooms[7].setExit("to room 8", new ProblemExit(rooms[8], new Puzzle("Answer the riddle that was already given", "nothing", null)));
         Paper hiddenMessage = new Paper("A great treasure lies behind this door; knock to enter", false);
         rooms[7].addItem("hidden message", hiddenMessage);
         
         rooms[8].setExit("back", new NormalExit(rooms[7]));
-        rooms[8].setExit("to room 9", new ProblemExit(rooms[9], new Puzzle("When life gives you lemons...", "knock", null)));
-        Lemon lemon = new Lemon();
-        rooms[8].addItem("lemon", lemon);
-        
+        rooms[8].setExit("to room 9", new ProblemExit(rooms[9], new Puzzle("When life gives you lemons... try decoding the hidden message", "knock", null)));
         
         HashMap<String, Item> requireditems = new HashMap<>();
         requireditems.put("magnifying glass", glass);
