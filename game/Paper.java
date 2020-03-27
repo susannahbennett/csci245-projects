@@ -45,6 +45,7 @@ public class Paper implements Item {
 	public void inspect(Player p1) { System.out.println(inspection); }
 
 
+
 	public void addFunctionality(Player p1, Parser p) {}
 
 

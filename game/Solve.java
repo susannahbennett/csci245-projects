@@ -39,11 +39,8 @@ public class Solve implements Command {
 		
 	}
 
-	/**
-	 * Gets the description of the command
-	 * 
-	 * @return The description
-	 */
-	public String getDescription() {return "Solve a puzzle that you are currently facing"; }
+	public String getDescription() {return "Enter 'solve' followed by the answer to a puzzle to unlock a locked door"
+			+ "\n\t(However, if faced with a locked door needing a key, pickup the key to unlock the door)"; }
+
 
 }

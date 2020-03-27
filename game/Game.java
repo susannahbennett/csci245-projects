@@ -59,8 +59,7 @@ public class Game {
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("room " + i + ":");
 
-      
-        rooms[0].setExit("to room 1", new NormalExit(rooms[1]));
+        rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
         //testing keys and locked doors
         
@@ -72,7 +71,7 @@ public class Game {
         rooms[1].addItem("key to room 2", keytoroom2);
 
         //testing Puzzle exits
-        rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Password is password", "password", null)));
+        rooms[2].setExit("to room 3", new ProblemExit(rooms[3], new Puzzle("Locked door: password is password", "password", null)));
         rooms[2].setExit("back", new NormalExit(rooms[1]));
        
         //testing magnifying glass
@@ -84,22 +83,22 @@ public class Game {
        // rooms[3].addItem("dynamic map", m);
         rooms[3].setInspection("The room's inspection");
         
-        rooms[4].setExit("to room 5", new ProblemExit(rooms[5], new Puzzle("Unscramble given letters. (Hint: find paper item in room)", "ELEPHANT", null)));
+        rooms[4].setExit("to room 5", new ProblemExit(rooms[5], new Puzzle("Locked door: unscramble given letters (Hint: find paper item in room)", "ELEPHANT", null)));
         rooms[4].setExit("back", new NormalExit(rooms[3]));
         //rooms[4].setExit("to gameover1", new DeathExit());
         Paper scrambledWord = new Paper("ATEPLHEN");
-        rooms[4].addItem("scrambled word", scrambledWord);
+        rooms[4].addItem("paper with scrambled word", scrambledWord);
         Key keytohiddenexit = new Key();
         rooms[4].addItem("key to hidden exit", keytohiddenexit);
         
         rooms[5].setExit("to room 7", new NormalExit(rooms[6]));
         rooms[5].setExit("back", new NormalExit(rooms[4]));
         rooms[5].setExit("to room 6", new NormalExit(rooms[6]));
-        Paper clue1 = new Paper("What is greater than God,\nmore evil than the devil,\nthe poor have it,\nthe rich need it,\nand if you eat it, you'll die?");
+        Paper clue1 = new Paper("Locked door: \nWhat is greater than God,\nmore evil than the devil,\nthe poor have it,\nthe rich need it,\nand if you eat it, you'll die?");
         rooms[5].addItem("clue1", clue1);
         
         //dead end room, so only one exit (back)
-        rooms[6].setExit("back", new NormalExit(rooms[5]));
+        //rooms[6].setExit("back", new NormalExit(rooms[5]));
         
         rooms[7].setExit("back", new NormalExit(rooms[5]));
         //rooms[7].setExit("to gameover2", new DeathExit());
@@ -111,15 +110,7 @@ public class Game {
         requireditems.put("key to room 2", keytoroom2);
         requireditems.put("dynamic map", m);
 
-        // rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
-
-        //rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
-       // rooms[4].setExit("back", new NormalExit(rooms[3]));
-        
-        //testing null exits
-       // rooms[5].setExit("null", new NullExit(rooms[5]));
-       // rooms[5].setExit("back", new NormalExit(rooms[4]));
-        
+       
         over = false;
         currentRoom = rooms[0];
     }
