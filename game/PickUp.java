@@ -70,6 +70,6 @@ public class PickUp implements Command {
 	}
 
 	
-	public String getDescription() { return "pick up a specific item in the room"; }
+	public String getDescription() { return "Pick up a specific item in the room"; }
 
 }
