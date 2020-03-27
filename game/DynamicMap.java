@@ -40,7 +40,7 @@ public class DynamicMap implements Item{
 		Room treehouse = new Room("a treehouse", " ");
 		Room dungeon = new Room("a dungeon", " ");
 		seenRooms.put("treehouse", treehouse);
-		Item letter = new Paper("Welcome to the secret treehouse", true);
+		Paper letter = new Paper("Welcome to the secret treehouse", true);
 		treehouse.addItem("letter", letter);
 		Lemon lemon = new Lemon();
 		treehouse.addItem("lemon", lemon);

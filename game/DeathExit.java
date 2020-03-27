@@ -18,11 +18,6 @@ public class DeathExit implements Exit {
 	/**
 	 * 
 	 */
-	private Game g;
-	
-	/**
-	 * 
-	 */
 	private boolean canuse = true;
 
 	/**
@@ -33,8 +28,7 @@ public class DeathExit implements Exit {
 	/**
 	 * 
 	 */
-	public DeathExit(Game game, Room r) { 
-		g = game;
+	public DeathExit(Room r) { 
 		sameroom = r;
 	}
 
@@ -50,7 +44,7 @@ public class DeathExit implements Exit {
 	@Override
 	public void use(Player p1) {
 		System.out.println("You finished the game");
-		g.finishGame();
+		p1.getGame().finishGame();
 	}
 
 	@Override

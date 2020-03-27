@@ -55,7 +55,7 @@ public class Game {
      */
     public Game() {
 
-        Room[] rooms = new Room[10];
+        Room[] rooms = new Room[12];
 
         rooms[0] = new Room("room 0", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
         rooms[1] = new Room("entryway", "Now, you’re in the house. You look around the entryway. Across the room, you notice what looks like a map and a key.\n\n"
@@ -70,6 +70,8 @@ public class Game {
         rooms[7] = new Room("room 7", " ");
         rooms[8] = new Room("room 8", " ");
         rooms[9] = new Room("room 9", " ");
+        rooms[10] = new Room("room 10", " ");
+        rooms[11] = new Room("room 11", " ");
         
         rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
@@ -94,8 +96,8 @@ public class Game {
         rooms[4].setExit("back", new NormalExit(rooms[3]));
         Paper scrambledWord = new Paper("ateplhen", true);
         rooms[4].addItem("paper with scrambled word", scrambledWord);
-        Key keytohiddenexit = new Key();
-        rooms[4].addItem("key to hidden exit", keytohiddenexit);
+        Key randomKey = new Key();
+        rooms[4].addItem("key", randomKey);
         
         rooms[5].setExit("to room 7", new NormalExit(rooms[7]));
         rooms[5].setExit("back", new NormalExit(rooms[4]));
@@ -114,6 +116,10 @@ public class Game {
         
         rooms[8].setExit("back", new NormalExit(rooms[7]));
         rooms[8].setExit("to room 9", new ProblemExit(rooms[9], new Puzzle("When life gives you lemons... try decoding the hidden message", "knock", null)));
+        
+        rooms[9].setExit("back", new NormalExit(rooms[8]));
+        rooms[9].setExit("to room 10", new DeathExit(rooms[10]));
+        rooms[9].setExit("to room 11", new NormalExit(rooms[11]));
         
         HashMap<String, Item> requireditems = new HashMap<>();
         requireditems.put("magnifying glass", glass);
