@@ -18,51 +18,45 @@ public class Paper implements Item {
 	/**
 	 * Determines whether or not the words on the paper are readable.  Will be false if the contents are hidden.
 	 */
-	Boolean readable;
-
+	Boolean readable = true;
+	
+	/**
+	 * 
+	 */
+	String inspection;
+	
 	/**
 	 * Constructor to initializes the contents of the paper
+	 * 
+	 * @param s The contents on the paper
 	 */
-	public Paper(String s) {
-		contents=s;
-	}
+	public Paper(String s) { contents = s; }
 
 	@Override
 	public void function(Player p1) {
-		if(readable) {
+		if(readable) 
 			System.out.println(contents);
-		}else {
+		else 
 			System.out.println("This paper appears to be blank... you may need another item to reveal its contents.");
-		}
+		
 	}
 
-	@Override
-	public void inspect(Player p1) {
-		// TODO Auto-generated method stub
+
+	public void inspect(Player p1) { System.out.println(inspection); }
 
 
-	}
+	public void addFunctionality(Player p1, Parser p) {}
 
-	@Override
-	public void addFunctionality(Player p1, Parser p) {
-		// TODO Auto-generated method stub
 
-	}
-
-	@Override
-	public void addInspection(String s) {
-		// TODO Auto-generated method stub
-
-	}
+	public void addInspection(String s) {}
 	
-	public void setReadable() {
-		readable=!readable;
-	}
+	
+	public void setReadable() { readable=!readable; }
 
-	@Override
-	public String getDescription() {
-		// TODO Auto-generated method stub
-		return "Miscellaneous paper that can have hints to be used later on";
-	}
+
+	public String getDescription() { return "Miscellaneous paper that can have hints to be used later on"; }
+
+
+	public void removeFunctionality(Parser p) {}
 
 }

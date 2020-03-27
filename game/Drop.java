@@ -1,6 +1,5 @@
 package game;
 
-import java.util.*;
 /**
  * Drop.java
  * 
@@ -22,32 +21,31 @@ public class Drop implements Command {
 	/**
 	 * Constructor
 	 * 
-	 * Initiates The player and parser
+	 * Initiates The player
 	 * 
 	 * @param p1
 	 * @param itemname
 	 */
-	public Drop(Player player) {
-		p1 = player;
-		
-	}
+	public Drop(Player player) { p1 = player; }
 	
 	
-	@Override
+	/**
+	 * Removes the inputed item from the players inventory and puts it in the room's hashmap of items
+	 */
 	public void doSomething(String[] command) {
-		HashMap<String, Item> roomItems = p1.getCurrentRoom().getItemMap();	
-		HashMap<String, Item> playerItems = p1.getItemList();
-		
-		if(playerItems.containsKey(command[1])) {
-			roomItems.put(command[1], playerItems.get(command[1]));
-			playerItems.remove(command[1]);
-		}
+		if(p1.getItemList().containsKey(command[1])) {
+			p1.getCurrentRoom().addItem(command[1], p1.getItem(command[1]));
+			p1.getItemList().remove(command[1]);
+		}else
+			System.out.println("That item does not exist");
 	}
 
-	@Override
-	public String getDescription() {
-		// TODO Auto-generated method stub
-		return "Removes an item from your personal inventory and moves it to the room.";
-	}
+	/**
+	 * Gets the description of the command
+	 * 
+	 * @return The description
+	 */
+	public String getDescription() {return "Removes an item from your personal inventory "
+			+ "and moves it to the room."; }
 
 }

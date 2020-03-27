@@ -1,17 +1,27 @@
-/**
- * 
- */
 package game;
 
 import java.util.HashMap;
 
-
 /**
- * @author kaligrose
- *
+ * Command.java
+ * 
+ * Supertype for all class that represent commands in the game
+ * 
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
  */
 public class Travel implements Command {
+	
+	/**
+	 * The reference to the player
+	 */
 	private Player p1;
+	
+	/**
+	 * The reference to the game
+	 */
 	private Game game;
 	
 	/**
@@ -22,26 +32,16 @@ public class Travel implements Command {
 		game = p1.getGame();
 	}
 
-	/* (non-Javadoc)
-	 * @see game.Command#doSomething()
-	 */
-
-	@Override
+	
 	public void doSomething(String[] command) {
-		
-		if(p1.getItemList().containsKey("dynamic map")) {
 			HashMap<String, Room> seenRooms = p1.returnMap();
 			if(seenRooms.containsKey(command[1])) {
 				Room nextRoom = seenRooms.get(command[1]);
 				game.setCurrentRoom(nextRoom);
 				p1.setCurrentRoom(nextRoom);
-			}else {
+			}else 
 				System.out.println("Not an accessible room");
-				return;
-			}
-		}else {
-			System.out.println("I do not know how to travel without a Map.");
-		}
+			
 	}
 
 	@Override

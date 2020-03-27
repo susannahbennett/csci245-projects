@@ -4,7 +4,8 @@ package game;
  * Solve.java
  * 
  * Solve class that implements the Command interface.
- * This class checks if the user's entered solution matches the solution stored in the problem in the room/exit.
+ * This class checks if the user's entered solution matches 
+ * the solution stored in the problem in the room/exit.
  *
  * @author Steven Barker, Susannah Bennett, and Kali Grose
  * Wheaton College, CS 245, Spring 2020
@@ -38,7 +39,11 @@ public class Solve implements Command {
 		
 	}
 
-	@Override
+	/**
+	 * Gets the description of the command
+	 * 
+	 * @return The description
+	 */
 	public String getDescription() {return "Solve a puzzle that you are currently facing"; }
 
 }

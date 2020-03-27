@@ -60,10 +60,19 @@ public class MagnifyingGlass implements Item {
 	public void addInspection(String s) { inspection = s; }
 
 
-	@Override
-	public String getDescription() {
-		// TODO Auto-generated method stub
-		return "Will give the player the ability to inspect items and rooms";
-	}
+	/**
+	 * Gets the description of the Magnifying glass
+	 * 
+	 * @return The description
+	 */
+	public String getDescription() { return "Will give the player the ability to inspect items and rooms"; }
+
+
+	/**
+	 * Will take away the player's the ability to inspect items and rooms
+	 * 
+	 * @param p The reference to the parser to add the command
+	 */
+	public void removeFunctionality(Parser p) { p.removeCommand("inspect"); }
 
 }

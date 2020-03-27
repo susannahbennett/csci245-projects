@@ -13,21 +13,29 @@ package game;
  * Wheaton College, CS 245, Spring 2020
  */
 public class ProblemExit implements Exit {
+	
 	/**
 	 * Holds the reference to the room behind the exit
 	 */
 	private Room nextroom;
+	
 	/**
 	 * Indicates whether the room has been unlocked yet
 	 */
 	private boolean canuse = false;
+	
 	/**
 	 * The problem associated with the exit
 	 */
 	private Puzzle givenproblem;
 
 	/**
-	 * Constructor to set the next room and the given problem
+	 * Constructor 
+	 * 
+	 * Initializes instance variables and gives the puzzle a reference to this
+	 * 
+	 * @param r The reference to the next room
+	 * @param p The puzzle associated with this exit
 	 */
 	public ProblemExit(Room r, Puzzle p) {
 		nextroom = r;
@@ -37,6 +45,8 @@ public class ProblemExit implements Exit {
 	}
 	/**
 	 * Returns the room the player want to enter that is after the exit
+	 * 
+	 * @return The next room
 	 */
 	public Room destination() { return nextroom; }
 	

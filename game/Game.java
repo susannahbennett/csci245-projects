@@ -59,31 +59,6 @@ public class Game {
         for (int i = 0; i < rooms.length; i++)
             rooms[i] = new Room("room " + i + ":");
 
-      /*
-        rooms[0].setExit("room 1", exit0S);
-        rooms[1].setExit("room 0", exit1N);//from room 1 back to room 0
-        rooms[1].addItem("dynamic map",new DynamicMap());
-        rooms[1].setExit("room 2", room2E);
-        rooms[2].setExit("room 1", );//from room 2 back to room 1
-    	*/
-        
-        /*needed simpler world for testing but didnt want to delete this
-        rooms[0].setExit("room 1", new LockedDoorExit(rooms[1], keytoroom1));
-        rooms[1].setExit("room 0",new NormalExit(rooms[0])); //from room 1 back to room 0
-        rooms[1].setExit("room 2", new NormalExit(rooms[2]));
-        rooms[2].setExit("room 1", new NormalExit(rooms[1]));//from room 2 back to room 1
-        rooms[1].setExit("room 3", new NormalExit(rooms[3]));
-        rooms[3].setExit("room 2", new NormalExit(rooms[1]));//from room 3 back to room 1
-        rooms[3].setExit("room 4", new NormalExit(rooms[4]));
-        rooms[4].setExit("room 3", new NormalExit(rooms[3]));//from room 4 back to room 3
-        rooms[4].setExit("to infinity and beyond", null);
-        rooms[2].setRiddle("Mary's mother has four kids. The names of the first three are Summer, Autumn, Winter. What's the name of the four kid?", "Mary");
-        rooms[0].addItem("Key to room 1", keytoroom1);
-        rooms[1].addItem("dynamic map", new DynamicMap());
-        */
-       
-        //making sure I didnt break anything
-        //outside the house
       
         rooms[0].setExit("to room 1", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
@@ -138,12 +113,12 @@ public class Game {
 
         // rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
 
-        rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
-        rooms[4].setExit("back", new NormalExit(rooms[3]));
+        //rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
+       // rooms[4].setExit("back", new NormalExit(rooms[3]));
         
         //testing null exits
-        rooms[5].setExit("null", new NullExit(rooms[5]));
-        rooms[5].setExit("back", new NormalExit(rooms[4]));
+       // rooms[5].setExit("null", new NullExit(rooms[5]));
+       // rooms[5].setExit("back", new NormalExit(rooms[4]));
         
         over = false;
         currentRoom = rooms[0];

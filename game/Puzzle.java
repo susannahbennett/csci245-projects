@@ -19,17 +19,17 @@ public class Puzzle {
 	private String puzzle;
 	
 	/**
-	 * This is the 
+	 * This is the solution
 	 */
 	private String solution;
 	
 	/**
-	 * 
+	 * The reference to the exit that is using this puzzle
 	 */
 	private Exit exit;
 	
 	/**
-	 * 
+	 * The reference to the currentroom that the player is in
 	 */
 	private Room room;
 	
@@ -43,17 +43,20 @@ public class Puzzle {
 	}
 
 	/**
-	 * 
+	 * This is what will run when the puzzle is introduced
 	 */
 	public void runProblem() { System.out.println(puzzle); }
 
 	/**
+	 * Gets the solution to the puzzle
 	 * 
+	 * @return solution The solution
 	 */
 	public String getSolution() { return solution; }
 
 	/**
-	 * 
+	 * This when the player solves the puzzle using the solve command,
+	 * it will allow the player to move or use the exit
 	 */
 	public void solve() { 
 		if(exit != null)
@@ -63,7 +66,7 @@ public class Puzzle {
 	}
 	
 	/**
-	 * 
+	 * Gives the reference to the exit that is using the puzzle
 	 */
 	public void setExit(Exit e) { exit = e; }
 	

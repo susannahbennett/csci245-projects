@@ -37,9 +37,7 @@ public class Key implements Item {
 	 */
 	public void inspect(Player p1) { System.out.println(inspection); }
 	
-	/**
-	 * Keys do not give any added ability
-	 */
+
 	public void addFunctionality(Player p1, Parser p) {}
 	
 	/**
@@ -54,7 +52,8 @@ public class Key implements Item {
 	 * 
 	 * @return String description
 	 */
-	public String getDescription() {
-		return "Used to unlock doors and when inspected, it will print a message";
-	}
+	public String getDescription() { return "Used to unlock doors and when inspected, it will print a message"; }
+
+	
+	public void removeFunctionality(Parser p) {}
 }

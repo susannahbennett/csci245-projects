@@ -1,23 +1,37 @@
 package game;
 
 import java.util.HashMap;
-import java.util.Scanner;
 
+/**
+ * Command.java
+ * 
+ * Supertype for all class that represent commands in the game
+ * 
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
+ */
 public class Use implements Command {
 	
+	/**
+	 * The reference to the player
+	 */
 	private Player p1;
-	private Scanner keyboard;
-	private String item;
+	
+	/**
+	 * Constructor
+	 * 
+	 * @param p1 The player
+	 */
+	public Use(Player p1) { this.p1 = p1; }
 
-	public Use(Player p1) {
-		this.p1 = p1;
-		keyboard = new Scanner(System.in);
-		item = "";
-	}
-
-	@Override
+	/**
+	 * 
+	 * 
+	 * @param
+	 */
 	public void doSomething(String[] command) {
-		//item = keyboard.nextLine().toLowerCase();
 		HashMap<String, Item> items = p1.getItemList();
 		if (!items.containsKey(command[1])) {
 			System.out.println("Inventory does not contain this item");
