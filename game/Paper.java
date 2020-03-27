@@ -57,17 +57,9 @@ public class Paper implements Item {
 	public void editItem() {
 		readable = true;
 	}
-
-	public void addFunctionality(Player p1, Parser p) {}
-
-
+	
 	public void addInspection(String s) {}
 	
-	@Override
-	public String getDescription() {
-		return "Miscellaneous paper that can have hints to be used later on";
-	}
-
 	public String getDescription() { return "Miscellaneous paper that can have hints to be used later on"; }
 
 
