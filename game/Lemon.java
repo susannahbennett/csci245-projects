@@ -28,7 +28,7 @@ public class Lemon implements Item {
 	public void function(Player p1) {
 		if (p1.getItemList().containsKey("hidden message")) {
 			p1.getItemList().get("hidden message").editItem();
-			System.out.println("\nThe hidden message is changing!\n");
+			System.out.println("\nThe blank paper is changing!\n");
 		} else {
 			System.out.println("You're missing the correct item to use the lemon on.");
 		}
