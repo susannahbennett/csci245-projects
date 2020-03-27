@@ -24,9 +24,7 @@ public class Read implements Command {
 	 * 
 	 * @param p1 The reference to the player
 	 */
-	public Read(Player p1) {
-		this.p1 = p1;
-	}
+	public Read(Player p) { p1 = p; }
 
 	/**
 	 * If the message exists, it prints out the message
@@ -39,10 +37,17 @@ public class Read implements Command {
 			System.out.println("That item does not exist, try again");
 			return;
 		}
-		p1.getItem(command[1]).function(p1);
+		if(p1.getItem(command[1]) instanceof Paper)
+			p1.getItem(command[1]).function(p1);
+		else
+			System.out.println("You cannot read that");
 	}
 
-	
+	/**
+	 * Gets the description of the command
+	 * 
+	 * @return The description
+	 */
 	public String getDescription() {return "Read a message or writting that may be around"; }
 
 }

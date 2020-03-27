@@ -67,6 +67,7 @@ public class Parser {
 
         System.out.print("\nEnter command--> ");
         String command = keyboard.nextLine().toLowerCase();  // user's command
+
         String[] parsedcom = parse(command);
 
         if(actions.containsKey(parsedcom[0])) 
@@ -95,16 +96,32 @@ public class Parser {
     }
     
     /**
+     * Adds a command to the lists of available commands
      * 
-     * @param s
-     * @param c
+     * @param s The name of the command
+     * @param c And instance of Command
      */
     public void addCommand(String s, Command c) { actions.put(s, c); }
     
     /**
+     * Removes a command from the lists of available commands
      * 
+     * @param s The name of the command
      */
-    public HashMap<String, Command> getCommands(){ return actions; }
+    public void removeCommand(String s) { actions.remove(s); }
     
-    public HashMap<String, Item> getItems() { return items; }
+    /**
+     * Gets the list of available commands
+     * 
+     * @return A HashMap of all the commands
+     */
+	public HashMap<String, Command> getCommands() {return actions; }
+
+	/**
+	 * 
+	 * @return
+	 */
+	public HashMap<String, Item> getItems() { return p1.getItemList();}
+    
+	
 }

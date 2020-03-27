@@ -22,27 +22,30 @@ public class Paper implements Item {
 
 	/**
 	 * Constructor to initializes the contents of the paper
+	 * 
+	 * @param s The contents on the paper
 	 */
+
 	public Paper(String s, boolean readable) {
 		contents=s;
 		this.readable = readable;
 	}
-	
+
 	@Override
 	public void function(Player p1) {
-		if(readable) {
+		if(readable) 
 			System.out.println(contents);
-		}else {
+		else 
 			System.out.println("This paper appears to be blank... you may need another item to reveal its contents.");
-		}
+		
 	}
+
 
 	@Override
 	public void inspect(Player p1) {
 		System.out.println("\n" + contents);
-
 	}
-
+		
 	/**
 	 * Paper does not add any new commands for player to use
 	 */
@@ -55,16 +58,19 @@ public class Paper implements Item {
 		readable = true;
 	}
 
-	@Override
-	public void addInspection(String s) {
-		// TODO Auto-generated method stub
+	public void addFunctionality(Player p1, Parser p) {}
 
-	}
+
+	public void addInspection(String s) {}
 	
 	@Override
 	public String getDescription() {
-		// TODO Auto-generated method stub
 		return "Miscellaneous paper that can have hints to be used later on";
 	}
+
+	public String getDescription() { return "Miscellaneous paper that can have hints to be used later on"; }
+
+
+	public void removeFunctionality(Parser p) {}
 
 }

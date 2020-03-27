@@ -1,6 +1,5 @@
 package game;
 
-
 /**
  * Item.java
  * 
@@ -41,6 +40,13 @@ public interface Item {
 	 * 
 	 */
 	void editItem();
+	
+	/** This will add any remove abilities from the HashMap of commands if the item that is dropped gives new functionality,
+	 * otherwise this will be empty.
+	 *
+	 * @param p The reference to the parser to add the new command to the HashMap of commands.
+	 */
+	void removeFunctionality(Parser p);
 	
 	/**
 	 * This gives each instance of an item a specific message to print when inspected

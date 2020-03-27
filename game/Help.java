@@ -43,19 +43,19 @@ public class Help implements Command {
 			String item = command[1];
 			HashMap<String, Item> items = p.getItems();
 			Iterator<String> i = items.keySet().iterator();
-			while (i.hasNext()) {
-				if (item == i.next()) {
-					System.out.println(Game.CYAN + item + Game.RESET + ": " + items.get(item).getDescription());
-				}
-				
-			}
+			if(items.containsKey(command[1]))
+				System.out.println(Game.CYAN + item + Game.RESET + ": " + items.get(item).getDescription());
+			else
+				System.out.println("That item does not exist");
 		}
 	}
+
 
 	/**
 	 * Gets the description of this command.
 	 * 
 	 * @return The description of the Help command
 	 */
-	public String getDescription() { return "Lists out all known commands" ; }
+	public String getDescription() { return "Lists out all known commands. You can also type \""
+			+ Game.BLUE + "help" + Game.RESET + "\'some item\'\" " ; }
 }

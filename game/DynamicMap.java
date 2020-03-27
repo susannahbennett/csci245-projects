@@ -64,6 +64,13 @@ public class DynamicMap implements Item{
 	 * Dynamic Map has no edits to be implemented or changed
 	 */
 	public void editItem() { }
+	
+	 * Gives the user the ability to travel when the map is in the player's inventory.
+	 * 
+	 * @param p1 The reference to the player for the new command.
+	 * @param p The reference to the parser to add the command.
+	 */
+	public void removeFunctionality(Parser p) {	p.removeCommand("travel"); }
 		
 	/**
 	 * Gives a new String to be printed out upon inspection

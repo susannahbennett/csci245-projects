@@ -71,7 +71,6 @@ public class Game {
         rooms[9] = new Room("room 9:\n", " ");
         
         //outside the house
-      
         rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
         //testing keys and locked doors
@@ -130,15 +129,7 @@ public class Game {
         requireditems.put("key to room 2", keytoroom2);
         requireditems.put("dynamic map", m);
 
-        // rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
-
-        // rooms[4].setExit("to room 5", new InventoryExit(rooms[5], requireditems));
-        // rooms[4].setExit("back", new NormalExit(rooms[3]));
-        
-        //testing null exits
-        // rooms[5].setExit("null", new NullExit(rooms[5]));
-        // rooms[5].setExit("back", new NormalExit(rooms[4]));
-        
+       
         over = false;
         currentRoom = rooms[0];
     }

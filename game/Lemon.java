@@ -65,4 +65,10 @@ public class Lemon implements Item {
 		return null;
 	}
 
+	@Override
+	public void removeFunctionality(Parser p) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
