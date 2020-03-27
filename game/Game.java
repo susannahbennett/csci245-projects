@@ -86,6 +86,43 @@ public class Game {
         //I did connect the bathroom and the master bedroom though!
         //Maybe make sure the user can't explore downstairs until they've gotten items from the upstairs?
         
+        
+        //items:
+        
+        Key keyToBedroom = new Key(); //in bathroom
+        rooms[5].addItem("key to bedroom", keyToBedroom);
+        MagnifyingGlass glass = new MagnifyingGlass();//in master bedroom
+        rooms[6].addItem("magnifying glass", glass);
+        DynamicMap dm = new DynamicMap(); //in bedroom
+        rooms[4].addItem("map", dm);
+        Paper toDining = new Paper("A great treasure lies behind this door; knock to enter", false); //in the master bedroom
+        toDining.addInspection("This paper looks worn and old.");
+        rooms[6].addItem("crumpled paper", toDining);
+		Lemon lemon = new Lemon(); //in kitchen
+		rooms[8].addItem("lemon", lemon);
+        Paper toKitchen = new Paper("HTEPLENA",true); //in living room
+        rooms[7].addItem("notebook paper", toKitchen);
+        
+        //these four clues together will unlock the study (final room)
+        
+        /* Treehouse items commented out bc they are in dm
+         * Paper piece1 = new Paper("7", true); // in treehouse
+        * piece1.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
+        */
+        
+        Paper piece2 = new Paper("7", false); // in master bed
+        piece2.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
+        Paper piece3 = new Paper("6", false); // on deck
+        piece3.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
+        Paper piece4 = new Paper("1", true); // in dining room
+        piece4.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
+        rooms[6].addItem("torn paper 2", piece2);
+        rooms[9].addItem("torn paper 3", piece2);
+        rooms[10].addItem("torn paper 4", piece2);
+        
+       Key keyToMasterBed = new Key();//in treehouse
+        
+        
         rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
         
@@ -97,16 +134,19 @@ public class Game {
         rooms[2].setExit("to hallway", new ProblemExit(rooms[3], new Puzzle("Answer this riddle to unlock the door: password is password", "password", null)));
         
         rooms[3].setExit("to stairs", new NormalExit(rooms[2]));
-        //place this key somewhere
-        Key keyToBedroom = new Key();
+       
+     
+    
+        rooms[3].addItem("magnifying glass", glass);
         rooms[3].setExit("to bedroom", new LockedDoorExit(rooms[4], keyToBedroom));
         rooms[3].setExit("to bathroom", new NormalExit(rooms[5]));
-        //place this key somewhere
-        Key keyToMasterBed = new Key();
         rooms[3].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
         
+      
+        rooms[4].addItem("dynamic map", dm);
        	rooms[4].setExit("to hallway", new NormalExit(rooms[3]));
        	
+       	rooms[5].addItem("key to bedroom", keyToBedroom);
        	rooms[5].setExit("to hallway", new NormalExit(rooms[3]));
        	rooms[5].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
        	
@@ -120,16 +160,13 @@ public class Game {
        	rooms[8].setExit("to living room", new NormalExit(rooms[7]));
        	//add puzzle/items you want (or reuse old items and puzzles)
        	rooms[8].setExit("to deck", new ProblemExit(rooms[9], new Puzzle("","", null)));
-       	rooms[8].setExit("to dining room", new NormalExit(rooms[9]));
-		Lemon lemon = new Lemon();
-		rooms[8].addItem("lemon", lemon);
+       	rooms[8].setExit("to dining room", new ProblemExit(rooms[10], new Puzzle("When life gives you lemons... try decoding the hidden message", "knock", null)));
        	
        	rooms[9].setExit("to kitchen", new NormalExit(rooms[8]));
        	
-        Paper hiddenMessage = new Paper("A great treasure lies behind this door; knock to enter", false);
-        rooms[10].addItem("blank paper", hiddenMessage);
+
        	rooms[10].setExit("to kitchen", new NormalExit(rooms[9]));
-       	rooms[10].setExit("to study", new ProblemExit(rooms[11], new Puzzle("When life gives you lemons... try decoding the hidden message", "knock", null)));
+       	rooms[10].setExit("to study", new ProblemExit(rooms[11], new Puzzle("To unlock the door, you must enter the correct 4-digit code", "1776", null)));
        	
        	rooms[11].setExit("to dining room", new NormalExit(rooms[10]));
        	
@@ -172,8 +209,8 @@ public class Game {
        	
         HashMap<String, Item> requireditems = new HashMap<>();
         requireditems.put("magnifying glass", glass);
-        requireditems.put("key to room 2", keytoroom2);
-        requireditems.put("dynamic map", m);
+        requireditems.put("key to bedroom", keyToBedroom);
+        requireditems.put("dynamic map", dm);
 
        
         over = false;

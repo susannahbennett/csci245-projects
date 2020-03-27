@@ -19,6 +19,11 @@ public class Paper implements Item {
 	 * Determines whether or not the words on the paper are readable.  Will be false if the contents are hidden.
 	 */
 	boolean readable;
+	
+	/**
+	 * Reveals texture/other clues about the paper
+	 */
+	String inspection; 
 
 	/**
 	 * Constructor to initializes the contents of the paper
@@ -43,7 +48,7 @@ public class Paper implements Item {
 
 	@Override
 	public void inspect(Player p1) {
-		System.out.println("\n" + contents);
+		System.out.println("\n" + inspection);
 	}
 		
 	/**
@@ -59,7 +64,7 @@ public class Paper implements Item {
 	}
 
 	
-	public void addInspection(String s) {}
+	public void addInspection(String s) {inspection =s; }
 	
 	public String getDescription() { return "Miscellaneous paper that can have hints to be used later on"; }
 

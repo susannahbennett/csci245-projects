@@ -38,14 +38,16 @@ public class DynamicMap implements Item{
 	public void function(Player p1) {
 		HashMap<String, Room> seenRooms = p1.returnMap();
 		Room treehouse = new Room("a treehouse", " ");
-		Room dungeon = new Room("a dungeon", " ");
-		if(!seenRooms.containsKey("treehouse") && !seenRooms.containsKey("dungeon")) {
+		
+		if(!seenRooms.containsKey("treehouse")) {
 			p1.updateMap("treehouse", treehouse);
-			p1.updateMap("dungeon", dungeon);
+			
 		}
 
-		Item letter = new Paper("Welcome to the secret treehouse", true);
-		treehouse.addItem("letter", letter);
+		Paper piece1 = new Paper("7", true); // in treehouse
+		treehouse.addItem("torn paper 1", piece1);
+		Key keyToMasterBed = new Key();
+		treehouse.addItem("key to master bedroom", keyToMasterBed);
 
 		Iterator<String> i = seenRooms.keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
