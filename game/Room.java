@@ -49,7 +49,11 @@ public class Room {
      * What will be printed if the room is inspected with the magnifying glass
      */
     private String inspection = "Inspection";
-
+    
+    /**
+     * Name of the room
+     */
+    private String name = "";
 
     /**
      * Constructor.
@@ -167,5 +171,16 @@ public class Room {
 	 * @param instructions the instructions to set
 	 */
 	public void setInstructions(String i) { instructions = i; }
-
-}
+	
+	/**
+	 * Sets the name 
+	 */
+	public void setName(String s) { name = s; }
+	
+	/**
+	 * Gets the name of the room
+	 * 
+	 * @return The name
+	 */
+	public String getName() { return name; }
+}	
