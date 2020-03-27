@@ -102,6 +102,8 @@ public class Game {
 		rooms[8].addItem("lemon", lemon);
         Paper toKitchen = new Paper("HTEPLENA",true); //in living room
         rooms[7].addItem("notebook paper", toKitchen);
+        Key keyToLiving = new Key();//in master bedroom
+        rooms[6].addItem("key to living room", keyToLiving);
         
         //these four clues together will unlock the study (final room)
         
@@ -128,7 +130,7 @@ public class Game {
         
         rooms[1].setExit("to porch", new NormalExit(rooms[0]));
         rooms[1].setExit("to stairs", new NormalExit(rooms[2]));
-        rooms[1].setExit("to living room", new NormalExit(rooms[7]));
+        rooms[1].setExit("to living room", new LockedDoorExit(rooms[7], keyToLiving));
         
         rooms[2].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[2].setExit("to hallway", new ProblemExit(rooms[3], new Puzzle("Answer this riddle to unlock the door: password is password", "password", null)));
@@ -137,16 +139,15 @@ public class Game {
        
      
     
-        rooms[3].addItem("magnifying glass", glass);
+      
         rooms[3].setExit("to bedroom", new LockedDoorExit(rooms[4], keyToBedroom));
         rooms[3].setExit("to bathroom", new NormalExit(rooms[5]));
         rooms[3].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
         
       
-        rooms[4].addItem("dynamic map", dm);
        	rooms[4].setExit("to hallway", new NormalExit(rooms[3]));
        	
-       	rooms[5].addItem("key to bedroom", keyToBedroom);
+       	
        	rooms[5].setExit("to hallway", new NormalExit(rooms[3]));
        	rooms[5].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
        	
