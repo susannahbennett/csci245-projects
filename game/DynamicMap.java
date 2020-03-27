@@ -43,11 +43,12 @@ public class DynamicMap implements Item{
 			p1.updateMap("treehouse", treehouse);
 			p1.updateMap("dungeon", dungeon);
 		}
+
 		Item letter = new Paper("Welcome to the secret treehouse", true);
 		treehouse.addItem("letter", letter);
 		Lemon lemon = new Lemon();
 		treehouse.addItem("lemon", lemon);
-		seenRooms.put("trapdoor", dungeon);
+
 		Iterator<String> i = seenRooms.keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
 		while (i.hasNext()) 

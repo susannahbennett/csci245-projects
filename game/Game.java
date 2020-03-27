@@ -55,7 +55,7 @@ public class Game {
      */
     public Game() {
 
-        Room[] rooms = new Room[10];
+        Room[] rooms = new Room[12];
 
         rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
 
@@ -63,6 +63,7 @@ public class Game {
         		+ "To pick up the map, enter "+ Game.CYAN + "pickup dynamic map" + Game.RESET + ".\nTo pick up the key, enter " + Game.CYAN + "pickup key to room 2" + Game.RESET + ".\n"
         		+ "From now on, use the "  + Game.CYAN + "look" + Game.RESET + " command (to see what rooms and items are nearby) and the " + Game.CYAN + "move" + Game.RESET + " command (to move to one of the listed rooms). "
         		+ "To get further descriptions of available commands, use the " + Game.CYAN + "help" + Game.RESET + " command.\n");
+        
         rooms[2] = new Room("living room", " ");
         rooms[3] = new Room("bedroom", " ");
         rooms[4] = new Room("stairs", " ");
@@ -71,6 +72,8 @@ public class Game {
         rooms[7] = new Room("deck", " ");
         rooms[8] = new Room("dining room", " ");
         rooms[9] = new Room("bedroom", " ");
+        rooms[10] = new Room("room 10", " ");
+        rooms[11] = new Room("room 11", " ");
         
         rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[0].setExit("to porch", new NullExit(rooms[0]));
@@ -97,8 +100,8 @@ public class Game {
         rooms[4].setExit("to stairs", new NormalExit(rooms[3]));
         Paper scrambledWord = new Paper("ateplhen", true);
         rooms[4].addItem("paper with scrambled word", scrambledWord);
-        Key keytohiddenexit = new Key();
-        rooms[4].addItem("key to hidden exit", keytohiddenexit);
+        Key randomKey = new Key();
+        rooms[4].addItem("key", randomKey);
         
         rooms[5].setExit("to deck", new NormalExit(rooms[7]));
         rooms[5].setExit("to bathroom", new NormalExit(rooms[4]));
@@ -117,6 +120,10 @@ public class Game {
         
         rooms[8].setExit("back", new NormalExit(rooms[7]));
         rooms[8].setExit("to room 9", new ProblemExit(rooms[9], new Puzzle("When life gives you lemons... try decoding the hidden message", "knock", null)));
+        
+        rooms[9].setExit("back", new NormalExit(rooms[8]));
+        rooms[9].setExit("to room 10", new DeathExit(rooms[10]));
+        rooms[9].setExit("to room 11", new NormalExit(rooms[11]));
         
         HashMap<String, Item> requireditems = new HashMap<>();
         requireditems.put("magnifying glass", glass);

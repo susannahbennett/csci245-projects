@@ -61,7 +61,7 @@ public class PickUp implements Command {
 				System.out.println(command[1]);
 				if(items.containsKey(command[1])) {
 					p1.addToInventory(command[1], items.get(command[1]));
-					System.out.println(command[1]+"added to your inventory.");
+					System.out.println(command[1]+" added to your inventory.");
 					items.get(command[1]).addFunctionality(p1, p);
 					p1.getCurrentRoom().removeItem(command[1]);
 				}
