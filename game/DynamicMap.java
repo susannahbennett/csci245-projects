@@ -39,10 +39,12 @@ public class DynamicMap implements Item{
 		HashMap<String, Room> seenRooms = p1.returnMap();
 		Room treehouse = new Room("a treehouse", " ");
 		Room dungeon = new Room("a dungeon", " ");
-		seenRooms.put("treehouse", treehouse );
+		if(!seenRooms.containsKey("treehouse") && !seenRooms.containsKey("dungeon")) {
+			p1.updateMap("treehouse", treehouse);
+			p1.updateMap("dungeon", dungeon);
+		}
 		Item letter = new Paper("Welcome to the secret treehouse", true);
 		treehouse.addItem("letter", letter);
-		seenRooms.put("trapdoor", dungeon);
 		Iterator<String> i = seenRooms.keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
 		while (i.hasNext()) 
@@ -87,7 +89,7 @@ public class DynamicMap implements Item{
 	 * @return String description
 	 */
 	public String getDescription() {
-		return "Lists all of the previously seen rooms, letting the player know that those room are now available";
+		return "Lists all of the previously seen rooms (and hidden rooms), letting the player know that those room are now available by \"Travel\"";
 	}
 
 }
