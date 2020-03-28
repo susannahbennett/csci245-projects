@@ -54,11 +54,9 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-
-        Room[] rooms = new Room[13];
-
-        rooms[0] = new Room("porch", "\nYou’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
-
+        Room[] rooms = new Room[14];
+        // rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET);
+        rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move" + Game.RESET  + "to" + Game.GREEN +  "entryway." + Game.RESET);
         rooms[1] = new Room("entryway", "\nNow you’re in the house. From where you are now, you can either move to the rooms upstairs or move to the rooms on the main floor." + 
         		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
         rooms[2] = new Room("stairs", "\nYou look ahead at a locked door. If prompted with a puzzle or riddle, enter " + Game.CYAN + "solve" + Game.RESET + "and your answer to unlock it.");
@@ -74,6 +72,7 @@ public class Game {
         				+ "To get more information about the item, you will need the magnifying glass to " + Game.CYAN + "inspect" + Game.RESET + " it.");
         rooms[8] = new Room("kitchen", "\nSome items you find may not be helpful in your search for the treasure. "
         		+ "Remember to limit the items you pick up and put in your inventory.");
+        rooms[13] = new Room("other room", "\nRoom where you die");
         rooms[9] = new Room("deck", "\nSome items might be parts of a series, so make sure to " + Game.CYAN + "inspect" + Game.RESET + " the additional information about items.");
         rooms[10] = new Room("dining room", "\nThe study seems suspicious... Stay on your toes as you get closer to the last puzzles and the treasure.");
         rooms[11] = new Room("study", "There's a large bookcase. There isn't an obivious exit from the room, but you think there might be another room beyond this one. "+
@@ -100,7 +99,10 @@ public class Game {
         rooms[7].addItem("notebook paper", toKitchen);
         Paper newspaper = new Paper("The New York Times\t Headline: Declaration of Independence Goes Missing (Published October 1, 2019)", true); // in living room
         newspaper.addInspection("An old newspaper on a chair in the living room");
-        rooms[7].addItem("newspaper", newspaper);
+        rooms[7].addItem("newspaper", newspaper); 
+        Paper throwblanket = new Paper("Throw blanket with Nicholas Cage's face on it", true); // in living room
+        throwblanket.addInspection("It's Barky's favorite blanket!");
+        rooms[7].addItem("Nicholas Cage throw blanket", throwblanket);
 		Lemon lemon = new Lemon(); //in kitchen
 		rooms[8].addItem("lemon", lemon);
 		Paper toDining = new Paper("A great treasure lies behind this door; knock to enter", false); //in the kitchen
@@ -111,6 +113,9 @@ public class Game {
         rooms[8].addItem("Joy's baking guide", cageRecipe);
 		Paper recipe = new Paper("recipe for lemonade", true); // in the kitchen
 		rooms[8].addItem("recipe", recipe);
+		Paper dogtreat = new Paper("dog treat", true); // in the kitchen
+		dogtreat.addInspection("Looks tasty");
+		rooms[8].addItem("dog treat", dogtreat);
 		recipe.addInspection("Stained, old recipe for juicing lemons");
         Key keyToLiving = new Key();//in master bedroom
         rooms[6].addItem("key to living room", keyToLiving);
@@ -118,7 +123,8 @@ public class Game {
         mug.addInspection("Nothing like Cage Face merch to say \"I love you\"");
         
         //these four clues together will unlock the study (final room)
-       /**Treehouse items commented out because they are in dynamic map
+       /**
+        * Treehouse items commented out because they are in dynamic map
         * Paper piece1 = new Paper("7", true); 
         * piece1.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
         */
@@ -136,12 +142,14 @@ public class Game {
         rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
         rooms[1].setExit("to porch", new NormalExit(rooms[0]));
+        rooms[1].setExit("to stairs", new NormalExit(rooms[2]));
         rooms[1].setExit("to living room", new LockedDoorExit(rooms[7], keyToLiving));
         rooms[2].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[2].setExit("to hallway", new ProblemExit(rooms[3], new Puzzle("Answer this riddle to unlock the door: password is password", "password", null)));
         rooms[3].setExit("to stairs", new NormalExit(rooms[2]));
         rooms[3].setExit("to bedroom", new LockedDoorExit(rooms[4], keyToBedroom));
         rooms[3].setExit("to bathroom", new NormalExit(rooms[5]));
+        rooms[3].setExit("to laundry shoot", new DeathExit(rooms[13]));
         rooms[3].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed)); 
        	rooms[5].setExit("to hallway", new NormalExit(rooms[3]));
        	rooms[5].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
@@ -150,7 +158,13 @@ public class Game {
        	rooms[7].setExit("to kitchen", new ProblemExit(rooms[8], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)", "elephant", null)));
        	rooms[7].setExit("to entryway", new NormalExit(rooms[1]));
        	rooms[8].setExit("to living room", new NormalExit(rooms[7]));
-       	rooms[8].setExit("to deck", new ProblemExit(rooms[9], new Puzzle("","", null)));
+       	rooms[8].setExit("to hidden exit", new DeathExit(rooms[13]));
+       	
+        HashMap<String, Item> requireditems = new HashMap<>();
+        requireditems.put("dog treat", dogtreat);
+        requireditems.put("Nicholas Cage throw blanket", throwblanket);
+       	
+       	rooms[8].setExit("to deck", new InventoryExit(rooms[9], requireditems));
        	rooms[8].setExit("to dining room", new ProblemExit(rooms[10], new Puzzle("When life gives you lemons... try decoding the hidden message", "knock", null)));
        	rooms[9].setExit("to kitchen", new NormalExit(rooms[8]));
        	rooms[10].setExit("to kitchen", new NormalExit(rooms[9]));
@@ -158,11 +172,7 @@ public class Game {
        	rooms[11].setExit("to dining room", new NormalExit(rooms[10]));
      
        	//rooms[11].setExit("to another room", new ProblemExit);
-       	
-        HashMap<String, Item> requireditems = new HashMap<>();
-        requireditems.put("magnifying glass", glass);
-        requireditems.put("key to bedroom", keyToBedroom);
-        requireditems.put("dynamic map", dm);
+
 
         over = false;
         currentRoom = rooms[0];
@@ -181,6 +191,25 @@ public class Game {
     /**
      * Indicate that the game is now over.
      */
-    public void finishGame() { over = true; }
+    public void finishGame() { 
+    	try {
+    		
+    		System.out.println( Game.RED + ".");
+    		Thread.sleep(1000);
+    		System.out.println(".");
+    		Thread.sleep(1000);
+    		System.out.println(".");
+    		Thread.sleep(1000);
+    		System.out.println(".");
+    		
+    	}catch(Exception e) {}
+    	
+    	System.out.println("Thank you for playing the game!!");
+    	System.out.println("This game is made by Susannah Bennett, Kali Grose, and Steven Barker" +
+    	"for CSCI245 Spring 2020");
+    	System.out.println("Have a nice day" + Game.RESET);
+    	over = true;
+    	
+    }
     
 }
