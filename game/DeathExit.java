@@ -12,8 +12,14 @@ package game;
  */
 public class DeathExit implements Exit {
 	
+	/**
+	 * The player can always use the death exit
+	 */
 	private boolean canuse = true;
 	
+	/**
+	 * The refence to the room that the player is in
+	 */
 	private Room sameroom;
 	
 	/**

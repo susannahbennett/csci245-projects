@@ -58,7 +58,11 @@ public class Move implements Command {
 		}
 	}
 
-	
+	/**
+	 * Gets the description
+	 * 
+	 * @return The description
+	 */
 	public String getDescription() { return "Move to another place"; }
 
 }

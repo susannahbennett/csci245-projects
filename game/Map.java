@@ -46,7 +46,12 @@ public class Map implements Command {
 		}
 			
 	}
-
+	
+	/**
+	 * Gets the description
+	 * 
+	 * @return The description
+	 */
 	public String getDescription() {return "List out rooms that you have visited"; }
 
 	

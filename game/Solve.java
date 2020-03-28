@@ -23,7 +23,9 @@ public class Solve implements Command {
 	public Solve(Player p1) { this.p1 = p1; }
 
 	/**
-	 * 	 
+	 * Checks to if the input is equal to the solution
+	 * 
+	 * @param command The string array with the full parsed command
 	 */
 	public void doSomething(String[] command) {
 		if(p1.getProblem() != null) {

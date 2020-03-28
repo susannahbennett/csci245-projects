@@ -13,16 +13,19 @@ import java.util.HashMap;
  * March, 2020
  */
 public class Use implements Command {
+	
 	/**
 	 * The reference to the player
 	 */
 	private Player p1;
+	
 	/**
 	 * Constructor
 	 * 
 	 * @param p1 The player
 	 */
 	public Use(Player p1) { this.p1 = p1; }
+	
 	/**
 	 * When the command use is entered, this code runs and calls the item's function
 	 * 
@@ -36,6 +39,7 @@ public class Use implements Command {
 		}
 		items.get(command[1]).function(p1);
 	}
+	
 	/**
 	 * Returns the purpose of the use command
 	 * 

@@ -84,7 +84,9 @@ public class InventoryExit implements Exit {
 		setCanUse();
 	}
 
-
+	/**
+	 * No problem
+	 */
 	public Puzzle getProblem() { return null; }
 
 }

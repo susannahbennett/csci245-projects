@@ -13,16 +13,19 @@ package game;
  *
  */
 public class Inspect implements Command {
+	
 	/**
 	 * The reference to the player
 	 */
 	private Player p1;
+	
 	/**
 	 * Constructor
 	 * 
 	 * @param p1 The current player
 	 */
 	public Inspect(Player p1){ this.p1 = p1; }
+	
 	/**
 	 * Will check to see if the user wants to inspect the room or an item, otherwise it shows that you
 	 * cannot inspect whatever was typed in.
@@ -35,6 +38,7 @@ public class Inspect implements Command {
 		else
 			System.out.println("I cannot inspect that");
 	}
+	
 	/**
 	 * Returns the purpose of the inspect command
 	 * 
