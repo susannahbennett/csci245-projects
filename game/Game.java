@@ -9,10 +9,10 @@ import java.util.HashMap;
  * rooms are organized as a graph, and the Room objects
  * are nodes in the graph.
  *
- * @author Thomas VanDrunen
- * Wheaton College, CS 245, Spring 2007
- * Lab 5
- * Feb 8, 2007
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
  */
 
 public class Game {
@@ -54,9 +54,9 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-        Room[] rooms = new Room[14];
-        // rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET);
-        rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move" + Game.RESET  + "to" + Game.GREEN +  "entryway." + Game.RESET);
+        Room[] rooms = new Room[13];
+        rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET);
+        //rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move" + Game.RESET  + "to" + Game.GREEN +  "entryway." + Game.RESET);
         rooms[1] = new Room("entryway", "\nNow you’re in the house. From where you are now, you can either move to the rooms upstairs or move to the rooms on the main floor." + 
         		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
         rooms[2] = new Room("stairs", "\nYou look ahead at a locked door. If prompted with a puzzle or riddle, enter " + Game.CYAN + "solve" + Game.RESET + "and your answer to unlock it.");
@@ -71,11 +71,10 @@ public class Game {
         				+ "To get more information about the item, you will need the magnifying glass to " + Game.CYAN + "inspect" + Game.RESET + " it.");
         rooms[8] = new Room("kitchen", "\nSome items you find may not be helpful in your search for the treasure. "
         		+ "Remember to limit the items you pick up and put in your inventory.");
-        rooms[13] = new Room("other room", "\nRoom where you die");
+        rooms[12] = new Room("other room", "\nRoom where you die");
         rooms[9] = new Room("deck", "\nSome items might be parts of a series, so make sure to " + Game.CYAN + "inspect" + Game.RESET + " the additional information about items.");
         rooms[10] = new Room("dining room", "\nThe study seems suspicious... Stay on your toes as you get closer to the last puzzles and the treasure.");
         rooms[11] = new Room("study", " ");
-        rooms[12] = new Room("hidden room", " ");
 
         //items:
         Key keyToMasterBed = new Key(); // in hallway
@@ -145,7 +144,7 @@ public class Game {
         rooms[3].setExit("to stairs", new NormalExit(rooms[2]));
         rooms[3].setExit("to bedroom", new LockedDoorExit(rooms[4], keyToBedroom));
         rooms[3].setExit("to bathroom", new NormalExit(rooms[5]));
-        rooms[3].setExit("to laundry shoot", new DeathExit(rooms[13]));
+        rooms[3].setExit("to laundry shoot", new DeathExit(rooms[12]));
         rooms[3].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed)); 
        	rooms[5].setExit("to hallway", new NormalExit(rooms[3]));
        	rooms[5].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
@@ -154,7 +153,7 @@ public class Game {
        	rooms[7].setExit("to kitchen", new ProblemExit(rooms[8], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)", "elephant", null)));
        	rooms[7].setExit("to entryway", new NormalExit(rooms[1]));
        	rooms[8].setExit("to living room", new NormalExit(rooms[7]));
-       	rooms[8].setExit("to hidden exit", new DeathExit(rooms[13]));
+       	rooms[8].setExit("to hidden exit", new DeathExit(rooms[12]));
        	
         HashMap<String, Item> requireditems = new HashMap<>();
         requireditems.put("dog treat", dogtreat);
@@ -166,8 +165,8 @@ public class Game {
        	rooms[10].setExit("to kitchen", new NormalExit(rooms[9]));
        	rooms[10].setExit("to study", new ProblemExit(rooms[11], new Puzzle("To unlock the door, you must enter the correct 4-digit code", "1776", null)));
        	rooms[11].setExit("to dining room", new NormalExit(rooms[10]));
-       	//rooms[11].setExit("to hidden room", new ProblemExit);
-
+       	rooms[11].setExit("to hidden room", new WinExit());
+       	
         over = false;
         currentRoom = rooms[0];
     }
