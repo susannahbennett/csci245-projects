@@ -61,7 +61,7 @@ public class Game {
         rooms[2] = new Room("stairs", "\nYou look ahead at a locked door. If prompted with a puzzle or riddle, enter " + Game.CYAN + "solve " + Game.RESET + "and your answer to unlock it.");
         rooms[3] = new Room ("hallway", "\nYou are now upstairs. Some rooms may be locked; to unlock them, you must find and pick up the key (enter " + Game.CYAN + "pickup " + Game.RESET + "). "
         		+ "\nUse the " + Game.CYAN + "pickup all" + Game.RESET + " command to pick up all items in a room. However, don’t pick up every item you come across" +
-        		"because you have limited space in your bag for items. To view your inventory, enter inventory.");
+        		"\n because you have limited space in your bag for items. To view your inventory, enter inventory.");
         rooms[4] = new Room("bedroom", "\nYou look across the room, and see something."
         		+ "To determine how to use the item, enter " + Game.CYAN + "help " + Game.RESET + "and the item's name. To drop an item, use "+ Game.CYAN + "drop");
         rooms[5] = new Room("bathroom", "\n The lights flicker as cockroaches scurry across the floor.  Peeling wallpaper and a leaky faucet reveal the room’s age. ");
