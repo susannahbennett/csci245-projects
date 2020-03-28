@@ -3,7 +3,7 @@ package game;
 import java.util.*;
 
 /**
- * Help,java
+ * Help.java
  * 
  * This class represent the Help command which lists out all possible commands
  * currently available to the player.
@@ -30,6 +30,8 @@ public class Help implements Command {
 
 	/**
 	 * Prints the list of possible commands.
+	 * 
+	 * @param command String[] of the user's input in Parser.java
 	 */
 	public void doSomething(String[] command) {
 		if (command[1] == null) {
@@ -49,12 +51,10 @@ public class Help implements Command {
 				System.out.println("That item does not exist");
 		}
 	}
-
-
 	/**
 	 * Gets the description of this command.
 	 * 
-	 * @return The description of the Help command
+	 * @return The description of the help command
 	 */
 	public String getDescription() { return "Lists out all known commands. You can also type \""
 			+ Game.BLUE + "help" + Game.RESET + "\'some item\'\" " ; }

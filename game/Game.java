@@ -55,61 +55,61 @@ public class Game {
      */
     public Game() {
 
-        Room[] rooms = new Room[12];
+        Room[] rooms = new Room[13];
 
         rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
 
-        rooms[1] = new Room("entryway", "Now, you’re in the house. You look around the entryway. Across the room, you notice what looks like a map and a key.\n\n"
-        		+ "To pick up the map, enter "+ Game.CYAN + "pickup dynamic map" + Game.RESET + ".\nTo pick up the key, enter " + Game.CYAN + "pickup key to room 2" + Game.RESET + ".\n"
-        		+ "From now on, use the "  + Game.CYAN + "look" + Game.RESET + " command (to see what rooms and items are nearby) and the " + Game.CYAN + "move" + Game.RESET + " command (to move to one of the listed rooms). "
-        		+ "To get further descriptions of available commands, use the " + Game.CYAN + "help" + Game.RESET + " command.\n");
-        
-        rooms[2] = new Room("stairs", " ");
-        rooms[3] = new Room ("hallway", " ");
-        
-        rooms[4] = new Room("bedroom", " ");
+        rooms[1] = new Room("entryway", "\nNow you’re in the house. From where you are now, you can either move to the rooms upstairs or move to the rooms on the main floor." + 
+        		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
+        rooms[2] = new Room("stairs", "\nYou look ahead at a locked door. If prompted with a puzzle or riddle, enter " + Game.CYAN + "solve" + Game.RESET + "and your answer to unlock it.");
+        rooms[3] = new Room ("hallway", "\nYou are now upstairs. Some rooms may be locked; to unlock them, you must find and pick up the key (enter " + Game.CYAN + "pickup " + Game.RESET + ")."
+        		+ "However, don’t pick up every item you come across because you have limited space in your bag for items. To view your inventory, enter inventory.");
+        rooms[4] = new Room("bedroom", "\nYou look across the room, and see something."
+        		+ "To determine how to use the item, enter " + Game.CYAN + "help " + Game.RESET + "and the item's name.");
         rooms[5] = new Room("bathroom", " ");
         rooms[6] = new Room("master bedroom", " ");
-        
-        rooms[7] = new Room("living room", " ");
-        rooms[8] = new Room("kitchen", " ");
-        
-        rooms[9] = new Room("deck", " ");
-        rooms[10] = new Room("dining room", " ");
-
+        rooms[7] = new Room("living room", "\nYou hear creaks coming from upstairs. Better hurry to find the treasure before this N.C. person!\n"
+        		+ "Some items need to be read; to do so, use the " + Game.CYAN + "use " + Game.RESET + "command."
+        				+ "To get more information about the item, you will need the magnifying glass to " + Game.CYAN + "inspect" + Game.RESET + " it.");
+        rooms[8] = new Room("kitchen", "\nSome items you find may not be helpful in your search for the treasure. "
+        		+ "Remember to limit the items you pick up and put in your inventory.");
+        rooms[9] = new Room("deck", "\nSome items might be parts of a series, so make sure to " + Game.CYAN + "inspect" + Game.RESET + " the additional information about items.");
+        rooms[10] = new Room("dining room", "\nThe study seems suspicious... Stay on your toes as you get closer to the last puzzles and the treasure.");
         rooms[11] = new Room("study", " ");
-        
-        //items to add: magnifying glass, dynamic map, more papers/clues, random objects and keys
-        //we need to make the user have to go to the treehouse, maybe add a different important item there?
-        //I ended up putting the lemon in the kitchen because it probably would be there...
-        //Also I didn't connect the dining room and the living room
-        //I did connect the bathroom and the master bedroom though!
-        //Maybe make sure the user can't explore downstairs until they've gotten items from the upstairs?
-        
-        
+        rooms[12] = new Room("hidden room", " ");
+
         //items:
-        
+        Key keyToMasterBed = new Key(); // in hallway
+        rooms[3].addItem("key to master bed", keyToMasterBed);
         Key keyToBedroom = new Key(); //in bathroom
         rooms[5].addItem("key to bedroom", keyToBedroom);
         MagnifyingGlass glass = new MagnifyingGlass();//in master bedroom
         rooms[6].addItem("magnifying glass", glass);
         DynamicMap dm = new DynamicMap(); //in bedroom
+        dm.addInspection("Changing map that shows you rooms you've already been to (and hidden rooms)");
         rooms[4].addItem("map", dm);
-        Paper toDining = new Paper("A great treasure lies behind this door; knock to enter", false); //in the master bedroom
-        toDining.addInspection("This paper looks worn and old.");
-        rooms[6].addItem("crumpled paper", toDining);
-		Lemon lemon = new Lemon(); //in kitchen
-		rooms[8].addItem("lemon", lemon);
+        Paper poster = new Paper("National Treasure movie Premiere: November 14, 2004", true); //in bedroom
+        rooms[6].addItem("old poster", poster);
+        poster.addInspection("The movie poster looks epic");
         Paper toKitchen = new Paper("HTEPLENA",true); //in living room
         rooms[7].addItem("notebook paper", toKitchen);
+        Paper newspaper = new Paper("The New York Times\t Headline: Declaration of Independence Goes Missing (Published October 1, 2019)", true); // in living room
+        newspaper.addInspection("An old newspaper on a chair in the living room");
+        rooms[7].addItem("newspaper", newspaper);
+		Lemon lemon = new Lemon(); //in kitchen
+		rooms[8].addItem("lemon", lemon);
+		Paper toDining = new Paper("A great treasure lies behind this door; knock to enter", false); //in the kitchen
+        toDining.addInspection("This paper looks worn and old.");
+        rooms[8].addItem("crumpled paper", toDining);
+		Paper recipe = new Paper("recipe", true); // in the kitchen
+		rooms[8].addItem("recipe", recipe);
+		recipe.addInspection("Stained, old recipe for juicing lemons");
         
         //these four clues together will unlock the study (final room)
-        
-        /* Treehouse items commented out bc they are in dm
-         * Paper piece1 = new Paper("7", true); // in treehouse
+       /**Treehouse items commented out because they are in dynamic map
+        * Paper piece1 = new Paper("7", true); 
         * piece1.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
         */
-        
         Paper piece2 = new Paper("7", false); // in master bed
         piece2.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
         Paper piece3 = new Paper("6", false); // on deck
@@ -119,100 +119,40 @@ public class Game {
         rooms[6].addItem("torn paper 2", piece2);
         rooms[9].addItem("torn paper 3", piece2);
         rooms[10].addItem("torn paper 4", piece2);
-        
-       Key keyToMasterBed = new Key();//in treehouse
-        
-        
+     
+        // Room exits:
         rooms[0].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[0].setExit("back", new NullExit(rooms[0]));
-        
         rooms[1].setExit("to porch", new NormalExit(rooms[0]));
         rooms[1].setExit("to stairs", new NormalExit(rooms[2]));
         rooms[1].setExit("to living room", new NormalExit(rooms[7]));
-        
         rooms[2].setExit("to entryway", new NormalExit(rooms[1]));
         rooms[2].setExit("to hallway", new ProblemExit(rooms[3], new Puzzle("Answer this riddle to unlock the door: password is password", "password", null)));
-        
         rooms[3].setExit("to stairs", new NormalExit(rooms[2]));
-       
-     
-    
-        rooms[3].addItem("magnifying glass", glass);
         rooms[3].setExit("to bedroom", new LockedDoorExit(rooms[4], keyToBedroom));
         rooms[3].setExit("to bathroom", new NormalExit(rooms[5]));
-        rooms[3].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
-        
-      
-        rooms[4].addItem("dynamic map", dm);
+        rooms[3].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed)); 
        	rooms[4].setExit("to hallway", new NormalExit(rooms[3]));
-       	
-       	rooms[5].addItem("key to bedroom", keyToBedroom);
        	rooms[5].setExit("to hallway", new NormalExit(rooms[3]));
        	rooms[5].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
-       	
        	rooms[6].setExit("to hallway", new NormalExit(rooms[3]));
        	rooms[6].setExit("to bathroom", new NormalExit(rooms[5]));
-        
-       	//must create paper with scrambled words or something before this point
        	rooms[7].setExit("to kitchen", new ProblemExit(rooms[8], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)", "elephant", null)));
        	rooms[7].setExit("to entryway", new NormalExit(rooms[1]));
-       	
        	rooms[8].setExit("to living room", new NormalExit(rooms[7]));
-       	//add puzzle/items you want (or reuse old items and puzzles)
        	rooms[8].setExit("to deck", new ProblemExit(rooms[9], new Puzzle("","", null)));
        	rooms[8].setExit("to dining room", new ProblemExit(rooms[10], new Puzzle("When life gives you lemons... try decoding the hidden message", "knock", null)));
-       	
        	rooms[9].setExit("to kitchen", new NormalExit(rooms[8]));
-       	
-
        	rooms[10].setExit("to kitchen", new NormalExit(rooms[9]));
        	rooms[10].setExit("to study", new ProblemExit(rooms[11], new Puzzle("To unlock the door, you must enter the correct 4-digit code", "1776", null)));
-       	
        	rooms[11].setExit("to dining room", new NormalExit(rooms[10]));
-       	
-       /**
-        //testing magnifying glass
-        rooms[3].setExit("to stairs", new NormalExit(rooms[4]));
-        rooms[3].setExit("to bedroom", new NormalExit(rooms[2]));
-        MagnifyingGlass glass = new MagnifyingGlass();
-        rooms[3].addItem("magnifying glass", glass);
-        rooms[3].setInspection("The room's inspection");
-        
-        rooms[4].setExit("to bathroom", new ProblemExit(rooms[5], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)", "elephant", null)));
-        rooms[4].setExit("to stairs", new NormalExit(rooms[3]));
-        Paper scrambledWord = new Paper("ateplhen", true);
-        rooms[4].addItem("paper with scrambled word", scrambledWord);
-        Key randomKey = new Key();
-        rooms[4].addItem("key", randomKey);
-        
-        rooms[5].setExit("to deck", new NormalExit(rooms[7]));
-        rooms[5].setExit("to bathroom", new NormalExit(rooms[4]));
-        rooms[5].setExit("to room 6", new NormalExit(rooms[6]));
-        Paper clue1 = new Paper("\nRiddle: What is greater than God,\nmore evil than the devil,\nthe poor have it,\nthe rich need it,\nand if you eat it, you'll die?", true);
-        rooms[5].addItem("clue1", clue1);
-        
-        rooms[6].setExit("back", new NormalExit(rooms[5]));
-        Paper deadEndClue = new Paper("\nYou've reached a deadend. Go back.", true);
-        rooms[6].addItem("clue2", deadEndClue);
-        
-        rooms[7].setExit("back", new NormalExit(rooms[5]));
-        rooms[7].setExit("to room 8", new ProblemExit(rooms[8], new Puzzle("Answer the riddle that was already given", "nothing", null)));
-
-        
-        rooms[8].setExit("back", new NormalExit(rooms[7]));
-        rooms[8].setExit("to room 9", new ProblemExit(rooms[9], new Puzzle("When life gives you lemons... try decoding the hidden message", "knock", null)));
-        
-        rooms[9].setExit("back", new NormalExit(rooms[8]));
-        rooms[9].setExit("to room 10", new DeathExit(rooms[10]));
-        rooms[9].setExit("to room 11", new NormalExit(rooms[11]));
-        */
+       	//rooms[11].setExit("to another room", new ProblemExit);
        	
         HashMap<String, Item> requireditems = new HashMap<>();
         requireditems.put("magnifying glass", glass);
         requireditems.put("key to bedroom", keyToBedroom);
         requireditems.put("dynamic map", dm);
 
-       
         over = false;
         currentRoom = rooms[0];
     }

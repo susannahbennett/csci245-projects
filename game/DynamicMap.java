@@ -15,20 +15,16 @@ import java.util.*;
  * March, 2020
  */
 public class DynamicMap implements Item{
-	
 	/**
 	 * What will be printed upon inspection
 	 */
 	private String inspection;
-	
 	/**
 	 * Constructor
 	 * 
 	 * Builds an instance of the DynamicMap.
 	 */
 	public DynamicMap() { }
-	
-
 	/**
 	 * When the player uses the dynamic map, it lists out all previously seen rooms in green
 	 * letting the player know that those rooms are now available.
@@ -41,23 +37,22 @@ public class DynamicMap implements Item{
 		
 		if(!seenRooms.containsKey("treehouse")) {
 			p1.updateMap("treehouse", treehouse);
-			
 		}
 
 		Paper piece1 = new Paper("7", true); // in treehouse
 		treehouse.addItem("torn paper 1", piece1);
-		Key keyToMasterBed = new Key();
-		treehouse.addItem("key to master bedroom", keyToMasterBed);
 
 		Iterator<String> i = seenRooms.keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
 		while (i.hasNext()) 
 			System.out.println(Game.GREEN + i.next() + Game.RESET);			
 	}
-	
-	
+	/**
+	 * Reveals more information about the dynamic map to the user.
+	 * 
+	 * @param p1 The reference to the player for the new command.
+	 */
 	public void inspect(Player p1) { System.out.println("\n" + inspection); }
-
 	/**
 	 * Gives the user the ability to travel when the map is in the player's inventory.
 	 * 
@@ -65,13 +60,10 @@ public class DynamicMap implements Item{
 	 * @param p The reference to the parser to add the command.
 	 */
 	public void addFunctionality(Player p1, Parser p) {	p.addCommand("travel", new Travel(p1)); }
-	
 	/**
-	 * Dynamic Map has no edits to be implemented or changed
+	 * Dynamic Map has no edits to be implemented or changed.
 	 */
 	public void editItem() { }
-	
-
 	/**
 	 * Gives the user the ability to travel when the map is in the player's inventory.
 	 * 
@@ -79,7 +71,6 @@ public class DynamicMap implements Item{
 	 * @param p The reference to the parser to add the command.
 	 */
 	public void removeFunctionality(Parser p) {	p.removeCommand("travel"); }
-		
 	/**
 	 * Gives a new String to be printed out upon inspection
 	 * 
@@ -95,5 +86,4 @@ public class DynamicMap implements Item{
 	public String getDescription() {
 		return "Lists all of the previously seen rooms (and hidden rooms), letting the player know that those room are now available by \"Travel\"";
 	}
-
 }

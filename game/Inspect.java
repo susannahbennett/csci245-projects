@@ -13,34 +13,32 @@ package game;
  *
  */
 public class Inspect implements Command {
-
 	/**
 	 * The reference to the player
 	 */
 	private Player p1;
-
 	/**
 	 * Constructor
 	 * 
-	 * 
+	 * @param p1 The current player
 	 */
 	public Inspect(Player p1){ this.p1 = p1; }
-
 	/**
 	 * Will check to see if the user wants to inspect the room or an item, otherwise it shows that you
 	 * cannot inspect whatever was typed in.
 	 * 
 	 * @param command The thing to be inspected.
 	 */
-	@Override
 	public void doSomething(String[] command) {
 		if (p1.getItemList().containsKey(command[1]))
 			p1.getItemList().get(command[1]).inspect(p1);
-		// else if (command[1].equals("this room"))
-		// 	p1.getCurrentRoom().inspect();
 		else
 			System.out.println("I cannot inspect that");
 	}
-	
+	/**
+	 * Returns the purpose of the inspect command
+	 * 
+	 * @return String of the purpose of the inspect command
+	 */
 	public String getDescription() { return "Further inspect a room or object"; }
 }

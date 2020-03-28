@@ -16,7 +16,7 @@ import java.util.*;
 public class PlayGame {
 	
     public static void main(String[] args) {
-        System.out.println("Welcome to the game!"+ "\n\n" + "You are a treasure hunter searching for the Declaration of Independence. All of your years of hunting have led you to this house. "
+        System.out.println(Game.BLUE + "\nWelcome to the game!"+ Game.RESET + "\n\n" + "You are a treasure hunter searching for the Declaration of Independence. All of your years of hunting have led you to this house. "
         		+ "You walk up a hill to an old abandoned house.\n\n"
         		+ "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
         Game game = new Game();   // reference to the game object

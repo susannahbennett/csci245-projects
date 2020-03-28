@@ -1,7 +1,6 @@
 package game;
 
 /**
- * /**
  * Command.java
  * 
  * Supertype for all class that represent commands in the game

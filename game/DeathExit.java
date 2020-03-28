@@ -14,7 +14,6 @@ package game;
  * March, 2020
  */
 public class DeathExit implements Exit {
-
 	/**
 	 * 
 	 */

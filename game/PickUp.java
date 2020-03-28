@@ -12,21 +12,18 @@ import java.util.*;
  * March, 2020   
  */
 public class PickUp implements Command {
-
 	/**
 	 * The reference to the player
 	 */
 	private Player p1;
-	
 	/**
 	 * The reference to the parser
 	 */
 	private Parser p;
-	
 	/**
 	 * Constructor
 	 * 
-	 * Initiates The player and parser
+	 * Initiates the player and parser
 	 * 
 	 * @param p1
 	 * @param itemname
@@ -35,7 +32,6 @@ public class PickUp implements Command {
 		p1 = player;
 		p = parser;
 	}
-
 	/**
 	 * Looks for the inputed item in the room, if the user input "all" then it picks up everything, otherwise
 	 * it will add the desired item to the player's inventory and remove the reference from the room. 
@@ -72,8 +68,10 @@ public class PickUp implements Command {
 			System.out.println("\nYou have reached carrying capacity.  Please drop an item before picking another up.");
 		}
 	}
-
-	
+	/**
+	 * Returns the purpose of the pickup command
+	 * 
+	 * @return String of the purpose fo the pickup command
+	 */
 	public String getDescription() { return "Pick up a specific item in the room"; }
-
 }

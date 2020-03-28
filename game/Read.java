@@ -11,12 +11,10 @@ package game;
  * March, 2020
  */
 public class Read implements Command {
-	
 	/**
 	 * The reference to the player
 	 */
 	private Player p1;
-	
 	/**
 	 * Constructor
 	 * 
@@ -25,13 +23,11 @@ public class Read implements Command {
 	 * @param p1 The reference to the player
 	 */
 	public Read(Player p) { p1 = p; }
-
 	/**
 	 * If the message exists, it prints out the message
 	 * 
 	 * @param command The String array of the command
 	 */
-	@Override
 	public void doSomething(String[] command) {
 		if(!p1.getItemList().containsKey(command[1])) {
 			System.out.println("That item does not exist, try again");
