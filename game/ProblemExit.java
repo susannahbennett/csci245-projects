@@ -8,9 +8,11 @@ package game;
  * 
  * MProblemExit class implements the Exit interface
  * This class represents an exit with a problem associated with it.
- *
- * @author Steven Barker, Susannah Bennett, and Kali Grose
- * Wheaton College, CS 245, Spring 2020
+ * 
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
  */
 public class ProblemExit implements Exit {
 	
