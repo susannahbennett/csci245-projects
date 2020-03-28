@@ -14,35 +14,25 @@ package game;
  * March, 2020
  */
 public class DeathExit implements Exit {
-	/**
-	 * 
-	 */
-	private boolean canuse = true;
 
 	/**
-	 * 
+	 * Constructor
 	 */
-	private Room sameroom;
+	public DeathExit() {}
+
+
+	public Room destination() { return null; }
+
+
+	public boolean canUse() { return false;}
+
 	
-	/**
-	 * 
-	 */
-	public DeathExit(Room r) { 
-		sameroom = r;
-	}
-
-
-	public Room destination() { return sameroom; }
-
-
-	public boolean canUse() { return canuse; }
-
-	@Override
 	public void setCanUse() {}
 
 	@Override
 	public void use(Player p1) {
-		System.out.println("You finished the game");
+		System.out.println("You went down the wrong path and died");
+		System.out.println("Game over");
 		p1.getGame().finishGame();
 	}
 

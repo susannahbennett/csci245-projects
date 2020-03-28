@@ -57,7 +57,7 @@ public class Game {
 
         Room[] rooms = new Room[13];
 
-        rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
+        rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move" + Game.RESET  + "to" + Game.GREEN +  "entryway." + Game.RESET + "\n");
 
         rooms[1] = new Room("entryway", "\nNow you’re in the house. From where you are now, you can either move to the rooms upstairs or move to the rooms on the main floor." + 
         		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
@@ -148,10 +148,6 @@ public class Game {
        	rooms[11].setExit("to dining room", new NormalExit(rooms[10]));
        	//rooms[11].setExit("to another room", new ProblemExit);
        	
-        HashMap<String, Item> requireditems = new HashMap<>();
-        requireditems.put("magnifying glass", glass);
-        requireditems.put("key to bedroom", keyToBedroom);
-        requireditems.put("dynamic map", dm);
 
         over = false;
         currentRoom = rooms[0];
@@ -170,6 +166,25 @@ public class Game {
     /**
      * Indicate that the game is now over.
      */
-    public void finishGame() { over = true; }
+    public void finishGame() { 
+    	try {
+    		
+    		System.out.println( Game.RED + ".");
+    		Thread.sleep(1000);
+    		System.out.println(".");
+    		Thread.sleep(1000);
+    		System.out.println(".");
+    		Thread.sleep(1000);
+    		System.out.println(".");
+    		
+    	}catch(Exception e) {}
+    	
+    	System.out.println("Thank you for playing the game!!");
+    	System.out.println("This game is made by Susannah Bennett, Kali Grose, and Steven Barker" +
+    	"for CSCI245 Spring 2020");
+    	System.out.println("Have a nice day" + Game.RESET);
+    	over = true;
+    	
+    }
     
 }
