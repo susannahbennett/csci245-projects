@@ -56,7 +56,6 @@ public class Game {
     public Game() {
         Room[] rooms = new Room[13];
         rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET);
-        //rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move" + Game.RESET  + "to" + Game.GREEN +  "entryway." + Game.RESET);
         rooms[1] = new Room("entryway", "\nNow you’re in the house. From where you are now, you can either move to the rooms upstairs or move to the rooms on the main floor." + 
         		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
         rooms[2] = new Room("stairs", "\nYou look ahead at a locked door. If prompted with a puzzle or riddle, enter " + Game.CYAN + "solve" + Game.RESET + "and your answer to unlock it.");
