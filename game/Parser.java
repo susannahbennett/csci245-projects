@@ -42,7 +42,6 @@ public class Parser {
         actions.put("pickup", new PickUp(p1, this));
         actions.put("map", new Map(p1));
         actions.put("solve", new Solve(p1));
-        actions.put("read", new Read(p1));
         actions.put("move", new Move(p1));
         actions.put("inventory", new Inventory(p1));
         actions.put("drop", new Drop(p1)); 

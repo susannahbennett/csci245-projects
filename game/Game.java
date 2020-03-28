@@ -57,7 +57,11 @@ public class Game {
 
         Room[] rooms = new Room[13];
 
+<<<<<<< HEAD
         rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move" + Game.RESET  + "to" + Game.GREEN +  "entryway." + Game.RESET + "\n");
+=======
+        rooms[0] = new Room("porch", "\nYou’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
+>>>>>>> fa45da1ccb8da230fb6b7356d7d368ada5facabd
 
         rooms[1] = new Room("entryway", "\nNow you’re in the house. From where you are now, you can either move to the rooms upstairs or move to the rooms on the main floor." + 
         		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
@@ -66,8 +70,8 @@ public class Game {
         		+ "However, don’t pick up every item you come across because you have limited space in your bag for items. To view your inventory, enter inventory.");
         rooms[4] = new Room("bedroom", "\nYou look across the room, and see something."
         		+ "To determine how to use the item, enter " + Game.CYAN + "help " + Game.RESET + "and the item's name.");
-        rooms[5] = new Room("bathroom", " ");
-        rooms[6] = new Room("master bedroom", " ");
+        rooms[5] = new Room("bathroom", "\n The lights flicker as cockroaches scurry across the floor.  Peeling wallpaper and a leaky faucet reveal the room’s age. ");
+        rooms[6] = new Room("master bedroom", "\nThe room is musty and dark.  A desk in the corner is covered in papers and other miscellaneous items. ");
         rooms[7] = new Room("living room", "\nYou hear creaks coming from upstairs. Better hurry to find the treasure before this N.C. person!\n"
         		+ "Some items need to be read; to do so, use the " + Game.CYAN + "use " + Game.RESET + "command."
         				+ "To get more information about the item, you will need the magnifying glass to " + Game.CYAN + "inspect" + Game.RESET + " it.");
@@ -83,6 +87,9 @@ public class Game {
         rooms[3].addItem("key to master bed", keyToMasterBed);
         Key keyToBedroom = new Key(); //in bathroom
         rooms[5].addItem("key to bedroom", keyToBedroom);
+        Paper cutout = new Paper("Cardboard cutout of Nicolas Cage", true);
+        cutout.addInspection("Dang, his eyebrows even look good on cardboard!");
+        rooms[5].addItem("Cardboard cutout", cutout);
         MagnifyingGlass glass = new MagnifyingGlass();//in master bedroom
         rooms[6].addItem("magnifying glass", glass);
         DynamicMap dm = new DynamicMap(); //in bedroom
@@ -90,7 +97,7 @@ public class Game {
         rooms[4].addItem("map", dm);
         Paper poster = new Paper("National Treasure movie Premiere: November 14, 2004", true); //in bedroom
         rooms[6].addItem("old poster", poster);
-        poster.addInspection("The movie poster looks epic");
+        poster.addInspection("The movie poster looks epic! It's even signed by Nicolas Cage!!");
         Paper toKitchen = new Paper("HTEPLENA",true); //in living room
         rooms[7].addItem("notebook paper", toKitchen);
         Paper newspaper = new Paper("The New York Times\t Headline: Declaration of Independence Goes Missing (Published October 1, 2019)", true); // in living room
@@ -101,7 +108,10 @@ public class Game {
 		Paper toDining = new Paper("A great treasure lies behind this door; knock to enter", false); //in the kitchen
         toDining.addInspection("This paper looks worn and old.");
         rooms[8].addItem("crumpled paper", toDining);
-		Paper recipe = new Paper("recipe", true); // in the kitchen
+        Paper cageRecipe = new Paper("Mama Cage's lemon bar recipe", true);
+        cageRecipe.addInspection("Wait... this recipe was signed by Joy Cage!");
+        rooms[8].addItem("Joy's baking guide", cageRecipe);
+		Paper recipe = new Paper("recipe for lemonade", true); // in the kitchen
 		rooms[8].addItem("recipe", recipe);
 		recipe.addInspection("Stained, old recipe for juicing lemons");
         Key keyToLiving = new Key();//in master bedroom
