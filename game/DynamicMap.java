@@ -33,14 +33,26 @@ public class DynamicMap implements Item{
 	 */
 	public void function(Player p1) {
 		HashMap<String, Room> seenRooms = p1.returnMap();
-		Room treehouse = new Room("a treehouse", " ");
+		Room treehouse = new Room("a treehouse", "You open your eyes, and you are in a small wooden box overlooking the backyard."+
+		"You can't seem to remember quite how you got there, but the map in your hands refreshes your memory."
+		+ " The floorboards creak as you carefully snoop around. ");
 		
 		if(!seenRooms.containsKey("treehouse")) {
 			p1.updateMap("treehouse", treehouse);
 		}
-
+		
+		
+		Paper book1 = new Paper("Declaration of Independence for Dummies",true);
+		book1.addInspection("Hmm... it looks someone wrote a joke on the over: \n"
+				+ "Q. Why couldn’t the two elephants go swimming together?\n" + 
+				"A. Because they only had one pair of trunks!");
+		Paper book2 = new Paper("Nicolas Cage: A Biography",true);
+		book2.addInspection("It looks like this book was signed by Nicolas Cage himself!");
 		Paper piece1 = new Paper("7", true); // in treehouse
+		piece1.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
 		treehouse.addItem("torn paper 1", piece1);
+		treehouse.addItem("old book", book1);
+		treehouse.addItem("book with green cover", book2);
 
 		Iterator<String> i = seenRooms.keySet().iterator();
 		System.out.println("Rooms you've been to so far: ");
@@ -84,6 +96,6 @@ public class DynamicMap implements Item{
 	 * @return String description
 	 */
 	public String getDescription() {
-		return "Lists all of the previously seen rooms (and hidden rooms), letting the player know that those room are now available by \"Travel\"";
+		return "Lists all of the previously seen rooms (and hidden rooms), letting the player know that those room are now available by" + Game.CYAN + "Travel";
 	}
 }
