@@ -11,42 +11,32 @@ package game;
  * March, 2020
  */
 public class DeathExit implements Exit {
-	/**
-	 * Boolean concerning whether the exit is locked or not
-	 */
-	private boolean canuse = true;
-
-	/**
-	 * What room is after it
-	 */
-	private Room sameroom;
+	
 	
 	/**
 	 * Constructor to initialize sameroom
 	 * 
 	 * @param r Room after the exit (destination)
 	 */
-	public DeathExit(Room r) { 
-		sameroom = r;
-	}
+	public DeathExit() {}
 	/**
 	 * Returns the Room after the exit
 	 * 
 	 * @returns sameroom The Room after the exit
 	 */
-	public Room destination() { return sameroom; }
+	public Room destination() { return null; }
 
 	/**
 	 * Returns whether the exit is locked or not
 	 * 
 	 * @return canuse Whether the exit is locked or not
 	 */
-	public boolean canUse() { return canuse; }
+	public boolean canUse() { return true; }
 
 	/**
 	 * Set the exit to unlocked
 	 */
-	public void setCanUse() { canuse = true; }
+	public void setCanUse() {}
 
 	/**
 	 * Prints that the player lost the game after using the exit
@@ -54,7 +44,6 @@ public class DeathExit implements Exit {
 	 * @param p1 The reference to the player.
 	 */
 	public void use(Player p1) {
-		System.out.println("You lost the game! You went through a trapdoor and died!");
 		System.out.println("You went down the wrong path and died");
 		System.out.println("Game over");
 		p1.getGame().finishGame();

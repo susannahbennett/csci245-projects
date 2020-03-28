@@ -148,7 +148,7 @@ public class Game {
         rooms[3].setExit("to stairs", new NormalExit(rooms[2]));
         rooms[3].setExit("to bedroom", new LockedDoorExit(rooms[4], keyToBedroom));
         rooms[3].setExit("to bathroom", new NormalExit(rooms[5]));
-        rooms[3].setExit("to laundry shoot", new DeathExit(rooms[12]));
+        rooms[3].setExit("to laundry shoot", new DeathExit());
         rooms[3].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed)); 
        	rooms[5].setExit("to hallway", new NormalExit(rooms[3]));
        	rooms[5].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
@@ -157,7 +157,7 @@ public class Game {
        	rooms[7].setExit("to kitchen", new ProblemExit(rooms[8], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)", "elephant", null)));
        	rooms[7].setExit("to entryway", new NormalExit(rooms[1]));
        	rooms[8].setExit("to living room", new NormalExit(rooms[7]));
-       	rooms[8].setExit("to hidden exit", new DeathExit(rooms[12]));
+       	rooms[8].setExit("to hidden exit", new DeathExit());
        	
         HashMap<String, Item> requireditems = new HashMap<>();
         requireditems.put("dog treat", dogtreat);
