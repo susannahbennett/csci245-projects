@@ -47,7 +47,11 @@ public class Travel implements Command {
 				Room nextRoom = seenRooms.get(command[1]);
 				game.setCurrentRoom(nextRoom);
 				p1.setCurrentRoom(nextRoom);
-				System.out.println("You are in the " + nextRoom.getDescription() + "\n" + nextRoom.getInstructions());
+				System.out.println("You are in the " + nextRoom.getDescription() + "\n");
+				if(nextRoom.getSeenRoom() == false) {
+					System.out.println(nextRoom.getInstructions());
+					p1.getCurrentRoom().setSeenRoom();
+				}
 			}else 
 				System.out.println("Not an accessible room");
 	}

@@ -12,10 +12,11 @@ package game;
  */
 public class WinExit implements Exit {
 	
+	private Room sameroom;
 	/**
 	 * Constructor
 	 */
-	public WinExit() { 	}
+	public WinExit(Room r) { sameroom=r;}
 
 	/**
 	 * There is no destination

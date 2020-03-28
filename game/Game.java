@@ -59,13 +59,14 @@ public class Game {
         rooms[1] = new Room("entryway", "\nNow you’re in the house. From where you are now, you can either move to the rooms upstairs or move to the rooms on the main floor." + 
         		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
       
-        rooms[2] = new Room("stairs", "\nYou look ahead at a locked door. If prompted with a puzzle or riddle, enter " + Game.CYAN + "solve" + Game.RESET + "and your answer to unlock it.");
+        rooms[2] = new Room("stairs", "\nYou look ahead at a locked door. If prompted with a puzzle or riddle, enter " + Game.CYAN + "solve " + Game.RESET + "and your answer to unlock it.");
         rooms[3] = new Room ("hallway", "\nYou are now upstairs. Some rooms may be locked; to unlock them, you must find and pick up the key (enter " + Game.CYAN + "pickup " + Game.RESET + ").\n"
         		+ "Use the " + Game.CYAN + "pickup all" + Game.RESET + " command to pick up all items in a room. However, don’t pick up every item you come across" +
-        		"because you have limited space in your bag for items. To view your inventory, enter " + Game.CYAN + "inventory" + Game.RESET + "."
+        		"\n because you have limited space in your bag for items. To view your inventory, enter " + Game.CYAN + "inventory" + Game.RESET + "."
         		+ "To read initial writing and information of an item, enter " + Game.CYAN + "use" + Game.RESET + " on paper objects.");
         rooms[4] = new Room("bedroom", "\nYou look across the room, and see something."
-        		+ "To determine how to use the item, enter " + Game.CYAN + "help " + Game.RESET + "and the item's name. To drop an item, use "+ Game.CYAN + "drop" + Game.RESET);
+        		+ "To determine how to use the item, enter " + Game.CYAN + "help " + Game.RESET + "and the item's name. To drop an item, use "+ Game.CYAN + "drop." + Game.RESET
+        		+ "\n Once you add the map to your inventory, the command "+ Game.CYAN + "travel " + Game.RESET + "will be added.");
         rooms[5] = new Room("bathroom", "\n The lights flicker as cockroaches scurry across the floor.  Peeling wallpaper and a leaky faucet reveal the room’s age. ");
         rooms[6] = new Room("master bedroom", "\nThe room is musty and dark.  A desk in the corner is covered in papers and other miscellaneous items. "
         		+ "\n With the magnifying glass in the room, you now have the " + Game.CYAN + "inspect " + Game.RESET + "command."
@@ -76,6 +77,7 @@ public class Game {
         rooms[8] = new Room("kitchen", "\nSome items you find may not be helpful in your search for the treasure. "
         		+ "Remember to limit the items you pick up and put in your inventory.");
         rooms[12] = new Room("hidden room", "\nRoom where you die");
+        rooms[13]= new Room("hidden room", "\nRoom where you win");
         rooms[9] = new Room("deck", "\nSome items might be parts of a series, so make sure to " + Game.CYAN + "inspect" + Game.RESET + " the additional information about items.");
         rooms[10] = new Room("dining room", "\nThe study seems suspicious... Stay on your toes as you get closer to the last puzzles and the treasure.");
         rooms[11] = new Room("study", "There's a large bookcase. There isn't an obivious exit from the room, but you think there might be another room beyond this one. "+
@@ -89,7 +91,7 @@ public class Game {
         rooms[5].addItem("key to bedroom", keyToBedroom);
         Paper cutout = new Paper("Cardboard cutout of Nicolas Cage", true);
         cutout.addInspection("Dang, his eyebrows even look good on cardboard!");
-        rooms[5].addItem("Cardboard cutout", cutout);
+        rooms[5].addItem("cardboard cutout", cutout);
         MagnifyingGlass glass = new MagnifyingGlass();//in master bedroom
         rooms[6].addItem("magnifying glass", glass);
         DynamicMap dm = new DynamicMap(); //in bedroom
@@ -100,20 +102,20 @@ public class Game {
         poster.addInspection("The movie poster looks epic! It's even signed by Nicolas Cage!!");
         Paper toKitchen = new Paper("HTEPLENA",true); //in living room
         rooms[7].addItem("notebook paper", toKitchen);
-        Paper newspaper = new Paper("The New York Times\t Headline: Declaration of Independence Goes Missing (Published October 1, 2019)", true); // in living room
-        newspaper.addInspection("An old newspaper on a chair in the living room");
+        Paper newspaper = new Paper("An old newspaper on a chair in the living room", true); // in living room
+        newspaper.addInspection("The New York Times\\t Headline: Declaration of Independence Goes Missing (Published October 1, 2019)");
         rooms[7].addItem("newspaper", newspaper); 
         Paper throwblanket = new Paper("Throw blanket with Nicholas Cage's face on it", true); // in living room
         throwblanket.addInspection("It's Barky's favorite blanket!");
-        rooms[7].addItem("Nicholas Cage throw blanket", throwblanket);
+        rooms[7].addItem("nicholas cage throw blanket", throwblanket);
 		Lemon lemon = new Lemon(); //in kitchen
 		rooms[8].addItem("lemon", lemon);
 		Paper toDining = new Paper("A great treasure lies behind this door; knock to enter", false); //in the kitchen
         toDining.addInspection("This paper looks worn and old.");
-        rooms[8].addItem("crumpled paper", toDining);
+        rooms[8].addItem("hidden message", toDining);
         Paper cageRecipe = new Paper("Mama Cage's lemon bar recipe", true);
         cageRecipe.addInspection("Wait... this recipe was signed by Joy Cage!");
-        rooms[8].addItem("Joy's baking guide", cageRecipe);
+        rooms[8].addItem("joy's baking guide", cageRecipe);
 		Paper recipe = new Paper("recipe for lemonade", true); // in the kitchen
 		rooms[8].addItem("recipe", recipe);
 		Paper dogtreat = new Paper("dog treat", true); // in the kitchen
@@ -124,6 +126,7 @@ public class Game {
         rooms[6].addItem("key to living room", keyToLiving);
         Paper mug = new Paper("You are my national treasure", true);
         mug.addInspection("Nothing like Cage Face merch to say \"I love you\"");
+        rooms[8].addItem("mug", mug);
         
         //these four clues together will unlock the study (final room)
        /**
@@ -131,9 +134,9 @@ public class Game {
         * Paper piece1 = new Paper("7", true); 
         * piece1.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
         */
-        Paper piece2 = new Paper("7", false); // in master bed
+        Paper piece2 = new Paper("7", true); // in master bed
         piece2.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
-        Paper piece3 = new Paper("6", false); // on deck
+        Paper piece3 = new Paper("6", true); // on deck
         piece3.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
         Paper piece4 = new Paper("1", true); // in dining room
         piece4.addInspection("The paper appears to be ripped... look for missing pieces to complete the message");
@@ -174,10 +177,10 @@ public class Game {
        	rooms[8].setExit("to deck", new InventoryExit(rooms[9], requireditems));
        	rooms[8].setExit("to dining room", new ProblemExit(rooms[10], new Puzzle("When life gives you lemons... try decoding the hidden message", "knock", null)));
        	rooms[9].setExit("to kitchen", new NormalExit(rooms[8]));
-       	rooms[10].setExit("to kitchen", new NormalExit(rooms[9]));
+       	rooms[10].setExit("to kitchen", new NormalExit(rooms[8]));
        	rooms[10].setExit("to study", new ProblemExit(rooms[11], new Puzzle("To unlock the door, you must enter the correct 4-digit code", "1776", null)));
        	rooms[11].setExit("to dining room", new NormalExit(rooms[10]));
-       	rooms[11].setExit("to hidden room", new WinExit());
+       	rooms[11].setExit("to hidden room", new WinExit(rooms[13]));
   
         over = false;
         currentRoom = rooms[0];

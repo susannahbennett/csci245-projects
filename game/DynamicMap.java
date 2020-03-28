@@ -55,7 +55,7 @@ public class DynamicMap implements Item{
 		treehouse.addItem("book with green cover", book2);
 
 		Iterator<String> i = seenRooms.keySet().iterator();
-		System.out.println("Rooms you've been to so far: ");
+		System.out.println("Rooms you've been to so far (and hidden rooms): ");
 		while (i.hasNext()) 
 			System.out.println(Game.GREEN + i.next() + Game.RESET);			
 	}
