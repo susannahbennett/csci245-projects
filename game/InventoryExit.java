@@ -74,7 +74,8 @@ public class InventoryExit implements Exit {
 		Iterator<String> i = requireditems.keySet().iterator();
 		while(i.hasNext()) {
 			if(!inventory.containsKey(i.next())) {
-				System.out.println("Someone's dog is right outside the door. He looks vicious! You're missing an item to get past.");
+				System.out.println("Someone's dog is right outside the door. He looks vicious! You're missing two dog-related items to get past."
+						+ "\n Try inspecting items.");
 				return;
 			}
 		}
