@@ -74,11 +74,11 @@ public class InventoryExit implements Exit {
 		Iterator<String> i = requireditems.keySet().iterator();
 		while(i.hasNext()) {
 			if(!inventory.containsKey(i.next())) {
-				System.out.println("You don't have all of the neccesary items");
+				System.out.println("Someone's dog is right outside the door. He looks angry! You're missing an item to get past.");
 				return;
 			}
 		}
-		System.out.println("You had everything you needed");
+		System.out.println("You had everything you needed. Looks like little Barky is happy now!");
 		p1.setCurrentRoom(nextroom);
 		p1.getGame().setCurrentRoom(nextroom);
 		setCanUse();
