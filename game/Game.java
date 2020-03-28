@@ -60,9 +60,10 @@ public class Game {
         		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
         rooms[2] = new Room("stairs", "\nYou look ahead at a locked door. If prompted with a puzzle or riddle, enter " + Game.CYAN + "solve" + Game.RESET + "and your answer to unlock it.");
         rooms[3] = new Room ("hallway", "\nYou are now upstairs. Some rooms may be locked; to unlock them, you must find and pick up the key (enter " + Game.CYAN + "pickup " + Game.RESET + ")."
-        		+ "However, don’t pick up every item you come across because you have limited space in your bag for items. To view your inventory, enter inventory.");
+        		+ "Use the " + Game.CYAN + "pickup all" + Game.RESET + " command to pick up all items in a room. However, don’t pick up every item you come across" +
+        		"because you have limited space in your bag for items. To view your inventory, enter inventory.");
         rooms[4] = new Room("bedroom", "\nYou look across the room, and see something."
-        		+ "To determine how to use the item, enter " + Game.CYAN + "help " + Game.RESET + "and the item's name.");
+        		+ "To determine how to use the item, enter " + Game.CYAN + "help " + Game.RESET + "and the item's name. To drop an item, use "+ Game.CYAN + "drop");
         rooms[5] = new Room("bathroom", "\n The lights flicker as cockroaches scurry across the floor.  Peeling wallpaper and a leaky faucet reveal the room’s age. ");
         rooms[6] = new Room("master bedroom", "\nThe room is musty and dark.  A desk in the corner is covered in papers and other miscellaneous items. ");
         rooms[7] = new Room("living room", "\nYou hear creaks coming from upstairs. Better hurry to find the treasure before this N.C. person!\n"
@@ -73,7 +74,9 @@ public class Game {
         rooms[12] = new Room("other room", "\nRoom where you die");
         rooms[9] = new Room("deck", "\nSome items might be parts of a series, so make sure to " + Game.CYAN + "inspect" + Game.RESET + " the additional information about items.");
         rooms[10] = new Room("dining room", "\nThe study seems suspicious... Stay on your toes as you get closer to the last puzzles and the treasure.");
-        rooms[11] = new Room("study", " ");
+        rooms[11] = new Room("study", "There's a large bookcase. There isn't an obivious exit from the room, but you think there might be another room beyond this one. "+
+        		"\n The bookshelf looks like it revolves, revealing an exit.  To get past the revolving door, you pull a book on the shelf "
+        		+"\n enter " + Game.CYAN + "move to hidden room "+ Game.RESET+ " to enter the final room. ");
 
         //items:
         Key keyToMasterBed = new Key(); // in hallway
@@ -115,6 +118,8 @@ public class Game {
 		recipe.addInspection("Stained, old recipe for juicing lemons");
         Key keyToLiving = new Key();//in master bedroom
         rooms[6].addItem("key to living room", keyToLiving);
+        Paper mug = new Paper("You are my national treasure", true);
+        mug.addInspection("Nothing like Cage Face merch to say \"I love you\"");
         
         //these four clues together will unlock the study (final room)
        /**
@@ -165,7 +170,7 @@ public class Game {
        	rooms[10].setExit("to study", new ProblemExit(rooms[11], new Puzzle("To unlock the door, you must enter the correct 4-digit code", "1776", null)));
        	rooms[11].setExit("to dining room", new NormalExit(rooms[10]));
        	rooms[11].setExit("to hidden room", new WinExit());
-       	
+  
         over = false;
         currentRoom = rooms[0];
     }
