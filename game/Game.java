@@ -76,7 +76,8 @@ public class Game {
         rooms[9] = new Room("deck", "\nSome items might be parts of a series, so make sure to " + Game.CYAN + "inspect" + Game.RESET + " the additional information about items.");
         rooms[10] = new Room("dining room", "\nThe study seems suspicious... Stay on your toes as you get closer to the last puzzles and the treasure.");
         rooms[11] = new Room("study", "There's a large bookcase. There isn't an obivious exit from the room, but you think there might be another room beyond this one. "+
-        		"Try moving to the next room.");
+        		"\n The bookshelf looks like it revolves, revealing an exit.  To get past the revolving door, you pull a book on the shelf "
+        		+"\n enter " + Game.CYAN + "move to hidden room "+ Game.RESET+ " to enter the final room. ");
         rooms[12] = new Room("hidden room", " ");
 
         //items:
