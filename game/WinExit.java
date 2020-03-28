@@ -15,7 +15,7 @@ public class WinExit implements Exit {
 	/**
 	 * Constructor
 	 */
-	public WinExit() { 	}
+	public WinExit() {}
 
 	/**
 	 * There is no destination
@@ -32,7 +32,7 @@ public class WinExit implements Exit {
 	/**
 	 * Set whether the room can be used or not
 	 */
-	public void setCanUse() { }
+	public void setCanUse() {}
 	
 	/**
 	 * This is what will run when you play the game

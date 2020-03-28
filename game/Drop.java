@@ -11,10 +11,12 @@ package game;
  * March, 2020   
  */
 public class Drop implements Command {
+	
 	/**
 	 * The reference to the player
 	 */
 	private Player p1;
+	
 	/**
 	 * Constructor
 	 * 
@@ -24,6 +26,7 @@ public class Drop implements Command {
 	 * @param itemname
 	 */
 	public Drop(Player player) { p1 = player; }
+	
 	/**
 	 * Removes the inputed item from the players inventory and puts it in the room's hashmap of items
 	 * 
@@ -37,6 +40,8 @@ public class Drop implements Command {
 		}else
 			System.out.println("That item does not exist");
 	}
+	
+	
 	/**
 	 * Gets the description of the drop command
 	 * 

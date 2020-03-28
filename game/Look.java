@@ -12,10 +12,12 @@ import java.util.*;
  * March, 2020
  */
 public class Look implements Command {
+	
 	/**
 	 * The reference to the player
 	 */
 	private Player p1;
+	
 	/**
 	 * Constructor
 	 * 
@@ -24,6 +26,7 @@ public class Look implements Command {
 	 * @param p1 The reference to the player
 	 */
 	public Look(Player p1) { this.p1 = p1; }
+	
 	/**
 	 * Will find and list out all available rooms and available items.
 	 * 
@@ -45,6 +48,7 @@ public class Look implements Command {
 		while (j.hasNext()) 
 			System.out.println(Game.BLUE + j.next() + Game.RESET);
 	}
+	
 	/**
 	 * Returns the purpose of this command when the help command is used
 	 * 

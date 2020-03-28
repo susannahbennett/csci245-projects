@@ -57,6 +57,7 @@ public interface Item {
 	
 	/**
 	 * Will return the description of each item for the Help feature.
+	 * 
 	 * @return A description of the item.
 	 */
 	String getDescription();

@@ -14,18 +14,22 @@ package game;
  * March, 2020
  */
 public class LockedDoorExit implements Exit {
+	
 	/**
 	 * Holds the reference to the room behind the exit
 	 */
 	private Room nextroom;
+	
 	/**
 	 * Indicates whether the room has been unlocked yet
 	 */
 	private boolean canuse = false;
+	
 	/**
 	 * The reference to the specific instance of Key that will unlock this exit
 	 */
 	private Key key;
+	
 	/**
 	 * Constructor
 	 * 
@@ -37,12 +41,14 @@ public class LockedDoorExit implements Exit {
 		nextroom = n;
 		key = k;
 	}
+	
 	/**
 	 * Returns the reference to the next room
 	 * 
 	 * @return the next room
 	 */
 	public Room destination() { return nextroom; }
+	
 	/**
 	 * True if the player can use the exit, false if the player cannot
 	 * 
@@ -73,6 +79,7 @@ public class LockedDoorExit implements Exit {
 		}else
 			System.out.println("You do not have the right key");
 	}
+	
 	/**
 	 * The locked door does not have a problem to return
 	 * 

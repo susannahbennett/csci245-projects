@@ -37,7 +37,12 @@ public class Inventory implements Command {
 		while(i.hasNext())
 			System.out.println(Game.BLUE + i.next() + Game.RESET);		
 	}
-
+	
+	/**
+	 * Gets the description
+	 * 
+	 * @return The description
+	 */
 	public String getDescription() { return "View all items currently in your inventory"; }
 
 }

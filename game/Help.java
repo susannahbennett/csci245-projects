@@ -44,13 +44,13 @@ public class Help implements Command {
 		} else {
 			String item = command[1];
 			HashMap<String, Item> items = p.getItems();
-			Iterator<String> i = items.keySet().iterator();
 			if(items.containsKey(command[1]))
 				System.out.println(Game.CYAN + item + Game.RESET + ": " + items.get(item).getDescription());
 			else
 				System.out.println("That item does not exist");
 		}
 	}
+	
 	/**
 	 * Gets the description of this command.
 	 * 

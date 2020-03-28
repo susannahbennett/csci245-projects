@@ -16,7 +16,8 @@ public class MagnifyingGlass implements Item {
 	/**
 	 * What will be printed upon inspection
 	 */
-	private String inspection = ("You are using the" + Game.BLUE + " magnifying glass " + Game.RESET + "to inspect the" + Game.BLUE + "magnifying glass" + Game.RESET);
+	private String inspection = ("You are using the" + Game.BLUE + " magnifying glass " 
+	 + Game.RESET + "to inspect the" + Game.BLUE + "magnifying glass" + Game.RESET);
 
 	/**
 	 * Constructor
@@ -32,7 +33,8 @@ public class MagnifyingGlass implements Item {
 	 * @param p1 The reference to the player
 	 */
 	public void function(Player p1) {
-		System.out.println("You can use the inspect command to use the magnifying glass to inspect items");
+		System.out.println("You can use the inspect command to "
+				+ "use the magnifying glass to inspect items");
 	}
 	
 	/**
@@ -40,9 +42,7 @@ public class MagnifyingGlass implements Item {
 	 * 
 	 * @param p1 The reference to the player
 	 */
-	public void inspect(Player p1) {
-		System.out.println("\n" + inspection);
-	}
+	public void inspect(Player p1) { System.out.println("\n" + inspection); }
 
 	/**
 	 * Will give the player the ability to inspect items and rooms

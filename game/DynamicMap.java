@@ -19,12 +19,14 @@ public class DynamicMap implements Item{
 	 * What will be printed upon inspection
 	 */
 	private String inspection;
+	
 	/**
 	 * Constructor
 	 * 
 	 * Builds an instance of the DynamicMap.
 	 */
-	public DynamicMap() { }
+	public DynamicMap() {}
+	
 	/**
 	 * When the player uses the dynamic map, it lists out all previously seen rooms in green
 	 * letting the player know that those rooms are now available.
@@ -59,12 +61,14 @@ public class DynamicMap implements Item{
 		while (i.hasNext()) 
 			System.out.println(Game.GREEN + i.next() + Game.RESET);			
 	}
+	
 	/**
 	 * Reveals more information about the dynamic map to the user.
 	 * 
 	 * @param p1 The reference to the player for the new command.
 	 */
 	public void inspect(Player p1) { System.out.println("\n" + inspection); }
+	
 	/**
 	 * Gives the user the ability to travel when the map is in the player's inventory.
 	 * 
@@ -72,10 +76,12 @@ public class DynamicMap implements Item{
 	 * @param p The reference to the parser to add the command.
 	 */
 	public void addFunctionality(Player p1, Parser p) {	p.addCommand("travel", new Travel(p1)); }
+	
 	/**
 	 * Dynamic Map has no edits to be implemented or changed.
 	 */
 	public void editItem() { }
+	
 	/**
 	 * Gives the user the ability to travel when the map is in the player's inventory.
 	 * 
@@ -83,6 +89,7 @@ public class DynamicMap implements Item{
 	 * @param p The reference to the parser to add the command.
 	 */
 	public void removeFunctionality(Parser p) {	p.removeCommand("travel"); }
+	
 	/**
 	 * Gives a new String to be printed out upon inspection
 	 * 
@@ -96,6 +103,7 @@ public class DynamicMap implements Item{
 	 * @return String description
 	 */
 	public String getDescription() {
-		return "Lists all of the previously seen rooms (and hidden rooms), letting the player know that those room are now available by" + Game.CYAN + "Travel";
+		return "Lists all of the previously seen rooms (and hidden rooms), letting the player"
+				+ " know that those room are now available by" + Game.CYAN + "Travel";
 	}
 }

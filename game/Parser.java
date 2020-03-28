@@ -20,17 +20,21 @@ public class Parser {
      */
     private Scanner keyboard;
     
+    /**
+     * The Hashmap of commands for the player
+     */
     private HashMap<String, Command> actions;
     
-    private HashMap<String, Item> items;
-    
+    /**
+     * The reference to the player
+     */
     private Player p1;
-    
-
-    
+   
 
     /**
-     * Plain constructor
+     * Constructed
+     * 
+     * Initializes the player and the actions map
      */
     public Parser(Player p) {
         keyboard = new Scanner(System.in);
@@ -45,9 +49,6 @@ public class Parser {
         actions.put("move", new Move(p1));
         actions.put("inventory", new Inventory(p1));
         actions.put("drop", new Drop(p1)); 
-
-        items = p1.getItemList();
-
     }
 
     /**
