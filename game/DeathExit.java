@@ -11,14 +11,9 @@ package game;
  * March, 2020
  */
 public class DeathExit implements Exit {
-	/**
-	 * Boolean concerning whether the exit is locked or not
-	 */
+	
 	private boolean canuse = true;
-
-	/**
-	 * What room is after it
-	 */
+	
 	private Room sameroom;
 	
 	/**
@@ -26,7 +21,7 @@ public class DeathExit implements Exit {
 	 * 
 	 * @param r Room after the exit (destination)
 	 */
-	public DeathExit(Room r) { 
+	public DeathExit(Room r) {
 		sameroom = r;
 	}
 	/**
@@ -54,9 +49,8 @@ public class DeathExit implements Exit {
 	 * @param p1 The reference to the player.
 	 */
 	public void use(Player p1) {
-		System.out.println("You lost the game! You went through a trapdoor and died!");
-		System.out.println("You went down the wrong path and died");
-		System.out.println("Game over");
+		System.out.println("You lost the game! You went through a trapdoor and died!\n\n");
+		System.out.println("Game over.");
 		p1.getGame().finishGame();
 	}
 
