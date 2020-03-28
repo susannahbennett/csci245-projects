@@ -1,7 +1,7 @@
 package game;
 
 /**
- * Command.java
+ * WinExit.java
  * 
  * Supertype for all class that represent commands in the game
  * 

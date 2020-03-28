@@ -6,24 +6,23 @@ import java.util.*;
  * Room.java
  * 
  * Class to model a room in the game.
- *
- * @author Thomas VanDrunen
- * Wheaton College, CS 245, Spring 2007
- * Lab 5
- * Feb 8, 2007
+ * 
+ * @author Susannah Bennett, Kali Grose, and Steven Barker
+ * Wheaton College, CSCI 245, Spring 2020
+ * Project 4
+ * March, 2020
  */
-
 public class Room {
 	
 	/**
 	 * The map of exits accessible from this room
 	 */
-	private HashMap<String, Exit> exitmap = new HashMap<>();
+	private HashMap<String, Exit> exitmap;
 
 	/**
 	 * The player's inventory
 	 */
-	private HashMap<String, Item> itemmap = new HashMap<String, Item>();
+	private HashMap<String, Item> itemmap;
 	
 	/**
 	 * The puzzle associated with the room, if there is one
@@ -43,17 +42,17 @@ public class Room {
     /**
      * Determines if the player is able to move out of the room
      */
-    private boolean canmove = true;
+    private boolean canmove;
     
     /**
      * What will be printed if the room is inspected with the magnifying glass
      */
-    private String inspection = "Inspection";
+    private String inspection;
     
     /**
-     * Name of the room
+     * Tells whether the room has been seen already or not
      */
-    private String name = "";
+    private boolean seenRoom;
 
     /**
      * Constructor.
@@ -64,6 +63,11 @@ public class Room {
     public Room(String description, String instructions) { 
     	this.description = description; 
     	this.instructions = instructions;
+    	seenRoom = false;
+    	inspection = "Inspection";
+    	canmove = true;
+    	itemmap = new HashMap<String, Item>();
+    	exitmap = new HashMap<>();
     }
 
     /**
@@ -112,7 +116,6 @@ public class Room {
      * @param item The item to remove
      */
     public void removeItem(String item) { itemmap.remove(item); }
-
 
     /**
      * Gets the Puzzle associated with the room
@@ -177,14 +180,13 @@ public class Room {
 	public void setInstructions(String i) { instructions = i; }
 	
 	/**
-	 * Sets the name 
-	 */
-	public void setName(String s) { name = s; }
-	
-	/**
-	 * Gets the name of the room
+	 * Returns whether the room has been seen already or not
 	 * 
-	 * @return The name
+	 * @return seenRoom 
 	 */
-	public String getName() { return name; }
+	public boolean getSeenRoom() { return seenRoom; }
+	/**
+	 * Makes seenRoom true once player has moved to that room already
+	 */
+	public void setSeenRoom() { seenRoom = true; }
 }	
