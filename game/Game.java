@@ -57,12 +57,8 @@ public class Game {
 
         Room[] rooms = new Room[14];
 
-<<<<<<< HEAD
-        rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET);
-=======
-        rooms[0] = new Room("porch", "\nYou’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET + "\n");
->>>>>>> fa45da1ccb8da230fb6b7356d7d368ada5facabd
-
+        // rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET);
+        rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move" + Game.RESET  + "to" + Game.GREEN +  "entryway." + Game.RESET);
         rooms[1] = new Room("entryway", "\nNow you’re in the house. From where you are now, you can either move to the rooms upstairs or move to the rooms on the main floor." + 
         		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
         rooms[2] = new Room("stairs", "\nYou look ahead at a locked door. If prompted with a puzzle or riddle, enter " + Game.CYAN + "solve" + Game.RESET + "and your answer to unlock it.");
@@ -97,13 +93,8 @@ public class Game {
         dm.addInspection("Changing map that shows you rooms you've already been to (and hidden rooms)");
         rooms[4].addItem("map", dm);
         Paper poster = new Paper("National Treasure movie Premiere: November 14, 2004", true); //in bedroom
-<<<<<<< HEAD
-        rooms[6].addItem("old poster", poster); // in bedroom
-        poster.addInspection("The movie poster looks epic");
-=======
         rooms[6].addItem("old poster", poster);
         poster.addInspection("The movie poster looks epic! It's even signed by Nicolas Cage!!");
->>>>>>> fa45da1ccb8da230fb6b7356d7d368ada5facabd
         Paper toKitchen = new Paper("HTEPLENA",true); //in living room
         rooms[7].addItem("notebook paper", toKitchen);
         Paper newspaper = new Paper("The New York Times\t Headline: Declaration of Independence Goes Missing (Published October 1, 2019)", true); // in living room
@@ -178,8 +169,6 @@ public class Game {
        	rooms[10].setExit("to study", new ProblemExit(rooms[11], new Puzzle("To unlock the door, you must enter the correct 4-digit code", "1776", null)));
        	rooms[11].setExit("to dining room", new NormalExit(rooms[10]));
        	//rooms[11].setExit("to hidden room", new ProblemExit);
-       	
-       	//add inventory exit
 
         over = false;
         currentRoom = rooms[0];
@@ -198,6 +187,25 @@ public class Game {
     /**
      * Indicate that the game is now over.
      */
-    public void finishGame() { over = true; }
+    public void finishGame() { 
+    	try {
+    		
+    		System.out.println( Game.RED + ".");
+    		Thread.sleep(1000);
+    		System.out.println(".");
+    		Thread.sleep(1000);
+    		System.out.println(".");
+    		Thread.sleep(1000);
+    		System.out.println(".");
+    		
+    	}catch(Exception e) {}
+    	
+    	System.out.println("Thank you for playing the game!!");
+    	System.out.println("This game is made by Susannah Bennett, Kali Grose, and Steven Barker" +
+    	"for CSCI245 Spring 2020");
+    	System.out.println("Have a nice day" + Game.RESET);
+    	over = true;
+    	
+    }
     
 }

@@ -55,6 +55,8 @@ public class DeathExit implements Exit {
 	 */
 	public void use(Player p1) {
 		System.out.println("You lost the game! You went through a trapdoor and died!");
+		System.out.println("You went down the wrong path and died");
+		System.out.println("Game over");
 		p1.getGame().finishGame();
 	}
 
