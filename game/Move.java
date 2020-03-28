@@ -44,7 +44,7 @@ public class Move implements Command {
 		else {
 			if(link != null) {
 				p1.updateMap(r.getDescription(), r);
-				System.out.println(r.getDescription());
+				
 				link.use(p1);
 				r=p1.getCurrentRoom();
 				System.out.println("You are in the " + r.getDescription() + "\n");

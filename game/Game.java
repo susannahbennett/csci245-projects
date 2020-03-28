@@ -58,20 +58,24 @@ public class Game {
         rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET);
         rooms[1] = new Room("entryway", "\nNow you’re in the house. From where you are now, you can either move to the rooms upstairs or move to the rooms on the main floor." + 
         		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
+      
         rooms[2] = new Room("stairs", "\nYou look ahead at a locked door. If prompted with a puzzle or riddle, enter " + Game.CYAN + "solve" + Game.RESET + "and your answer to unlock it.");
-        rooms[3] = new Room ("hallway", "\nYou are now upstairs. Some rooms may be locked; to unlock them, you must find and pick up the key (enter " + Game.CYAN + "pickup " + Game.RESET + ")."
+        rooms[3] = new Room ("hallway", "\nYou are now upstairs. Some rooms may be locked; to unlock them, you must find and pick up the key (enter " + Game.CYAN + "pickup " + Game.RESET + ").\n"
         		+ "Use the " + Game.CYAN + "pickup all" + Game.RESET + " command to pick up all items in a room. However, don’t pick up every item you come across" +
-        		"because you have limited space in your bag for items. To view your inventory, enter inventory.");
+        		"because you have limited space in your bag for items. To view your inventory, enter " + Game.CYAN + "inventory" + Game.RESET + "."
+        		+ "To read initial writing and information of an item, enter " + Game.CYAN + "use" + Game.RESET + " on paper objects.");
         rooms[4] = new Room("bedroom", "\nYou look across the room, and see something."
-        		+ "To determine how to use the item, enter " + Game.CYAN + "help " + Game.RESET + "and the item's name. To drop an item, use "+ Game.CYAN + "drop");
+        		+ "To determine how to use the item, enter " + Game.CYAN + "help " + Game.RESET + "and the item's name. To drop an item, use "+ Game.CYAN + "drop" + Game.RESET);
         rooms[5] = new Room("bathroom", "\n The lights flicker as cockroaches scurry across the floor.  Peeling wallpaper and a leaky faucet reveal the room’s age. ");
-        rooms[6] = new Room("master bedroom", "\nThe room is musty and dark.  A desk in the corner is covered in papers and other miscellaneous items. ");
+        rooms[6] = new Room("master bedroom", "\nThe room is musty and dark.  A desk in the corner is covered in papers and other miscellaneous items. "
+        		+ "\n With the magnifying glass in the room, you now have the " + Game.CYAN + "inspect " + Game.RESET + "command."
+        				+ "\n You must be holding an item to inspect it. " );
         rooms[7] = new Room("living room", "\nYou hear creaks coming from upstairs. Better hurry to find the treasure before this N.C. person!\n"
         		+ "Some items need to be read; to do so, use the " + Game.CYAN + "use " + Game.RESET + "command."
         				+ "To get more information about the item, you will need the magnifying glass to " + Game.CYAN + "inspect" + Game.RESET + " it.");
         rooms[8] = new Room("kitchen", "\nSome items you find may not be helpful in your search for the treasure. "
         		+ "Remember to limit the items you pick up and put in your inventory.");
-        rooms[12] = new Room("other room", "\nRoom where you die");
+        rooms[12] = new Room("hidden room", "\nRoom where you die");
         rooms[9] = new Room("deck", "\nSome items might be parts of a series, so make sure to " + Game.CYAN + "inspect" + Game.RESET + " the additional information about items.");
         rooms[10] = new Room("dining room", "\nThe study seems suspicious... Stay on your toes as you get closer to the last puzzles and the treasure.");
         rooms[11] = new Room("study", "There's a large bookcase. There isn't an obivious exit from the room, but you think there might be another room beyond this one. "+
@@ -148,8 +152,9 @@ public class Game {
         rooms[3].setExit("to stairs", new NormalExit(rooms[2]));
         rooms[3].setExit("to bedroom", new LockedDoorExit(rooms[4], keyToBedroom));
         rooms[3].setExit("to bathroom", new NormalExit(rooms[5]));
-        rooms[3].setExit("to laundry shoot", new DeathExit());
+        rooms[3].setExit("to hidden room", new DeathExit(rooms[12]));
         rooms[3].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed)); 
+        rooms[4].setExit("to hallway", new NormalExit(rooms[3]));
        	rooms[5].setExit("to hallway", new NormalExit(rooms[3]));
        	rooms[5].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
        	rooms[6].setExit("to hallway", new NormalExit(rooms[3]));
@@ -157,7 +162,10 @@ public class Game {
        	rooms[7].setExit("to kitchen", new ProblemExit(rooms[8], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)", "elephant", null)));
        	rooms[7].setExit("to entryway", new NormalExit(rooms[1]));
        	rooms[8].setExit("to living room", new NormalExit(rooms[7]));
-       	rooms[8].setExit("to hidden exit", new DeathExit());
+       	rooms[8].setExit("to hidden room", new DeathExit(rooms[12]));
+
+       	// rooms[8].setExit("to hidden exit", new DeathExit());
+
        	
         HashMap<String, Item> requireditems = new HashMap<>();
         requireditems.put("dog treat", dogtreat);
