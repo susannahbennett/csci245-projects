@@ -23,7 +23,7 @@ public class WinExit implements Exit {
 	/**
 	 * There is no destination
 	 */
-	public Room destination() { return null; }
+	public Room destination() { return sameroom; }
 
 	/**
 	 * The player is always able to use this

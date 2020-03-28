@@ -54,7 +54,7 @@ public class Game {
      * Constructor to set up the game.
      */
     public Game() {
-        Room[] rooms = new Room[13];
+        Room[] rooms = new Room[14];
         rooms[0] = new Room("porch", "You’re currently outside the house. \nTo move inside the house, enter " + Game.CYAN + "move to entryway." + Game.RESET);
         rooms[1] = new Room("entryway", "\nNow you’re in the house. From where you are now, you can either move to the rooms upstairs or move to the rooms on the main floor." + 
         		"\n\nTo see the rooms you can move to, enter " + Game.CYAN + "look" + Game.RESET + ". For help about commands you can use, enter " + Game.CYAN + "help" + Game.RESET + ".");
@@ -100,8 +100,9 @@ public class Game {
         Paper poster = new Paper("National Treasure movie Premiere: November 14, 2004", true); //in bedroom
         rooms[6].addItem("old poster", poster);
         poster.addInspection("The movie poster looks epic! It's even signed by Nicolas Cage!!");
-        Paper toKitchen = new Paper("HTEPLENA",true); //in living room
+        Paper toKitchen = new Paper("hteplena",true); //in living room
         rooms[7].addItem("notebook paper", toKitchen);
+        toKitchen.addInspection("Will be used to open a door");
         Paper newspaper = new Paper("An old newspaper on a chair in the living room", true); // in living room
         newspaper.addInspection("The New York Times\\t Headline: Declaration of Independence Goes Missing (Published October 1, 2019)");
         rooms[7].addItem("newspaper", newspaper); 
@@ -151,7 +152,7 @@ public class Game {
         rooms[1].setExit("to stairs", new NormalExit(rooms[2]));
         rooms[1].setExit("to living room", new LockedDoorExit(rooms[7], keyToLiving));
         rooms[2].setExit("to entryway", new NormalExit(rooms[1]));
-        rooms[2].setExit("to hallway", new ProblemExit(rooms[3], new Puzzle("Answer this riddle to unlock the door: password is password", "password", null)));
+        rooms[2].setExit("to hallway", new ProblemExit(rooms[3], new Puzzle("Answer this riddle to unlock the door: password is password\n", "password", null)));
         rooms[3].setExit("to stairs", new NormalExit(rooms[2]));
         rooms[3].setExit("to bedroom", new LockedDoorExit(rooms[4], keyToBedroom));
         rooms[3].setExit("to bathroom", new NormalExit(rooms[5]));
@@ -162,7 +163,7 @@ public class Game {
        	rooms[5].setExit("to master bedroom", new LockedDoorExit(rooms[6], keyToMasterBed));
        	rooms[6].setExit("to hallway", new NormalExit(rooms[3]));
        	rooms[6].setExit("to bathroom", new NormalExit(rooms[5]));
-       	rooms[7].setExit("to kitchen", new ProblemExit(rooms[8], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)", "elephant", null)));
+       	rooms[7].setExit("to kitchen", new ProblemExit(rooms[8], new Puzzle("Unscramble given letters to unlock door(Hint: find paper item in room)\n", "elephant", null)));
        	rooms[7].setExit("to entryway", new NormalExit(rooms[1]));
        	rooms[8].setExit("to living room", new NormalExit(rooms[7]));
        	rooms[8].setExit("to hidden room", new DeathExit(rooms[12]));
