@@ -33,11 +33,11 @@ public interface CalculatorFace {
      * {+/-} character. 
      * @param button The character indicating the button to which
      * to attach an action listener.
-     * @param listener The action listener to attach.
+     * @param actionListener The action listener to attach.
      * @throws NoSuchButtonException if a character other than the ones
      * listed above are given.
      */
-    public void addActionListener(char button, ActionListener listener);
+    public void addActionListener(char button, ActionListener actionListener);
     
     /**
      * Add an action listener to the indicated number button. This

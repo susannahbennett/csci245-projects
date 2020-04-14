@@ -118,8 +118,8 @@ public class PlainCalculatorFace implements CalculatorFace {
     }
 
     public void writeToScreen(String display) {
-        //screen.setText(display);
-        for (int i = 0; i < 15; i++)
+    	//screen.setText(display);
+    	for (int i = 0; i < 15; i++)
             if (i < display.length())
                 screen[15-1-i].setText("" + display.charAt(display.length() - 1 - i));
             else screen[15-1-i].setText(" ");
