@@ -1,10 +1,11 @@
 package calc;
 
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class CalcInternals {
 	
-	private String currNum;
+	private Stack<Double> operands;
 
 	private CalculatorFace face;
 	
@@ -15,7 +16,6 @@ public class CalcInternals {
 	 * @param face
 	 */
 	public CalcInternals(CalculatorFace face) {
-		currNum = "";
 		this.face = face;
 		activeOperation = false;
 
@@ -25,9 +25,11 @@ public class CalcInternals {
 	 * 
 	 * @param currOperands String holding number sent by action listener
 	 */
-	public void setOperands (String numButton){
-		currNum += numButton;
-		face.writeToScreen(currNum);
+	public void setOperands (double numButton){
+		double temp = operands.pop();
+		temp = (temp*10) + numButton;
+		operands.push(temp);
+		face.writeToScreen(Double.toString(temp));
 		activeOperation = true;
 	}
 	/**
@@ -41,7 +43,7 @@ public class CalcInternals {
 	/**
 	 * Method to format the decimal in the display and in the current operand
 	 */
-	public void decimalFormat() {
+	public void decimal() {
 
 	}
 	/**
@@ -65,9 +67,11 @@ public class CalcInternals {
 	 * Method to add or remove minus sign from the current operand
 	 */
 	public void plusMinus() {
-		int temp = Integer.parseInt(currNum) * -1;
-		currNum = Integer.toString(temp);
-		face.writeToScreen(currNum);
+		//what if there isn't a number in the stack
+		double temp = operands.pop();
+		temp = temp * -1;
+		operands.push(temp);
+		face.writeToScreen(Double.toString(temp));
 	}
 	/**
 	 * Method called when the + button is pressed.
