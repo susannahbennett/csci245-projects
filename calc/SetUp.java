@@ -40,25 +40,25 @@ public class SetUp {
 		face.addActionListener('+', new ActionListener() {
 	
 			public void actionPerformed(ActionEvent e) {
-				internal.evalPlus();
+				internal.setOperator(new Operation.Add());
 			}
 		});
 		face.addActionListener('-', new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				internal.evalMinus();
+				internal.setOperator(new Operation.Subtract());
 			}
 		});
 		face.addActionListener('*', new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				internal.evalMult();
+				internal.setOperator(new Operation.Multiply());
 			}
 		});
 		face.addActionListener('/', new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				internal.evalDiv();
+				internal.setOperator(new Operation.Divide());
 			}
 		});
 		face.addActionListener('.', new ActionListener() {
@@ -73,13 +73,18 @@ public class SetUp {
 				internal.clear();
 			}
 		});
+		face.addActionListener('=', new ActionListener() {
+			
+			public void actionPerformed(ActionEvent e) {
+				internal.evaluate();
+			}
+		});
 		face.addPlusMinusActionListener(new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
 				internal.plusMinus();
 			}
 		});
-	}
 	}
 	
 	

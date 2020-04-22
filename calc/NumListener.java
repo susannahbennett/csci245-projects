@@ -37,6 +37,6 @@ public class NumListener implements ActionListener {
 	 * The actionPerformed method directs to the CalcInternals class for the setOperands method
 	 */
 	public void actionPerformed(ActionEvent e) {
-		internal.setOperands(Double.parseDouble(Integer.toString(button)));
+		internal.setOperands(button);
 	}
 }

@@ -43,7 +43,7 @@ public class PlainCalculatorFace implements CalculatorFace {
     private static final int WINDOW_Y_POSITION = 100;
 	private static final int WINDOW_X_POSITION = 100;
 	private static final int WINDOW_HEIGHT = 200;
-	private static final int WINDOW_WIDTH = 250;
+	private static final int WINDOW_WIDTH = 400;
 
 	
 	/* You can ignore everything below. */
