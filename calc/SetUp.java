@@ -70,13 +70,13 @@ public class SetUp {
 		face.addActionListener('C', new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				internal.clear();
+				internal.reset();
 			}
 		});
 		face.addActionListener('=', new ActionListener() {
 			
 			public void actionPerformed(ActionEvent e) {
-				internal.evaluate();
+				internal.goToOperation();
 			}
 		});
 		face.addPlusMinusActionListener(new ActionListener() {
